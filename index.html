@@ -43,7 +43,7 @@
 
         #chart {
           width: 100%;
-          height: 500px;
+          height: 400px;
         }
 
         #note {
@@ -72,7 +72,6 @@
         • The opposite trends of the two lines indicate an
         <b>inverse relationship</b>: as chemical dose increases, effluent TSS
         decreases, suggesting improved solids removal performance.<br /><br />
-
       </div>
     </div>
 
@@ -159,7 +158,7 @@
           linewidth: 2,
         },
 
-        /* ✅ LEGEND TO THE RIGHT, NO OVERLAP */
+    
         legend: {
           orientation: "v",
           x: 1.05,
@@ -184,7 +183,17 @@
         ],
       };
 
-      Plotly.newPlot("chart", [tssTrace, doseTrace], layout, config);
+      Plotly.newPlot("chart", [tssTrace, doseTrace], layout, config).then(
+        () => {
+          setTimeout(
+            () => Plotly.Plots.resize(document.getElementById("chart")),
+            300
+          );
+          window.addEventListener("resize", () =>
+            Plotly.Plots.resize(document.getElementById("chart"))
+          );
+        }
+      );
     </script>
   </body>
 </html>
