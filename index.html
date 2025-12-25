@@ -21,11 +21,28 @@
         padding: 10px;
       }
 
+      #leftcol {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+      }
+
       #chart {
-         width: 70%; height: 30vh; min-height: 420px; max-height: 650px;
+        width: 100%;
+        height: 30vh;
+        min-height: 420px;
+        max-height: 650px;
       }
 
       #note {
+        margin-top: 12px;
+        padding: 12px 14px;
+        font-size: 14px;
+        color: black;
+        line-height: 1.4;
+      }
+
+      #interpretation {
         width: 30%;
         margin-top: 3rem;
         padding: 12px 14px;
@@ -34,10 +51,14 @@
         line-height: 1.4;
       }
 
-      /* Mobile: stack note under chart */
+      /* Mobile: stack chart, interpretation, then note (note last) */
       @media (max-width: 1024px) {
         #wrapper {
           flex-direction: column;
+        }
+
+        #leftcol {
+          width: 100%;
         }
 
         #chart {
@@ -45,17 +66,37 @@
           height: 400px;
         }
 
-        #note {
+        #interpretation {
           width: 100%;
+          margin-top: 0;
+        }
+
+        /* Stacked order: chart -> interpretation -> note */
+        #chart {
+          order: 1;
+        }
+        #interpretation {
+          order: 2;
+        }
+        #note {
+          order: 3;
+          margin-top: 12px;
         }
       }
     </style>
   </head>
+
   <body>
     <div id="wrapper">
-      <div id="chart"></div>
+      <div id="leftcol">
+        <div id="chart"></div>
+        <div id="note">
+          <b>NOTE:</b> To hide one of the graphs, click its label in the legend
+          on the right of the graph.
+        </div>
+      </div>
 
-      <div id="note">
+      <div id="interpretation">
         <b>Interpretation of the graph</b><br /><br />
         This graph uses a <b>double Y-axis</b> to compare changes in chemical
         dosing with changes in effluent quality over time.<br /><br />
@@ -112,7 +153,7 @@
           "Dose: %{y} mg/L<extra></extra>",
       };
 
-      /* ---------------- LAYOUT ---------------- */
+      /* ---------------- LAYOUT (desktop default) ---------------- */
 
       const layout = {
         plot_bgcolor: "white",
@@ -123,7 +164,6 @@
           font: { color: "black" },
         },
 
-        /* ⬅️ increased right margin to protect legend space */
         margin: { l: 80, r: 160, t: 60, b: 70 },
         font: { color: "black" },
 
@@ -157,7 +197,6 @@
           linewidth: 2,
         },
 
-    
         legend: {
           orientation: "v",
           x: 1.05,
@@ -182,17 +221,47 @@
         ],
       };
 
-      Plotly.newPlot("chart", [tssTrace, doseTrace], layout, config).then(
-        () => {
-          setTimeout(
-            () => Plotly.Plots.resize(document.getElementById("chart")),
-            300
-          );
-          window.addEventListener("resize", () =>
-            Plotly.Plots.resize(document.getElementById("chart"))
-          );
-        }
-      );
+      // ---- Legend behavior: right on desktop, below on small screens ----
+      const MOBILE_WIDTH = 480; // adjust if you want it to switch earlier/later
+
+      function applyLegendForScreen() {
+        const isMobile = window.innerWidth <= MOBILE_WIDTH;
+
+        const updates = isMobile
+          ? {
+              // legend BELOW the plot (inside the chart area)
+              "legend.orientation": "h",
+              "legend.x": 0,
+              "legend.y": -0.25,
+              "legend.xanchor": "left",
+              "legend.yanchor": "top",
+              // remove the big right margin so plot can use full width
+              "margin.r": 20,
+              // add bottom margin so legend doesn't get cut off
+              "margin.b": 120,
+            }
+          : {
+              // legend on the RIGHT (your original)
+              "legend.orientation": "v",
+              "legend.x": 1.05,
+              "legend.y": 0.9,
+              "legend.xanchor": "left",
+              "legend.yanchor": "middle",
+              "margin.r": 160,
+              "margin.b": 70,
+            };
+
+        Plotly.relayout("chart", updates);
+        Plotly.Plots.resize(document.getElementById("chart"));
+      }
+
+      Plotly.newPlot("chart", [tssTrace, doseTrace], layout, config).then(() => {
+        // initial
+        applyLegendForScreen();
+
+        // on resize
+        window.addEventListener("resize", applyLegendForScreen);
+      });
     </script>
   </body>
 </html>
