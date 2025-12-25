@@ -11,7 +11,7 @@
       body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: #fff5f2;
+        background: #FFECE6;
       }
 
       #wrapper {
@@ -30,7 +30,7 @@
         width: 30%;
         padding: 12px 14px;
         font-size: 14px;
-        color: #2d1559;
+        color: black;
         line-height: 1.4;
       }
 
@@ -87,7 +87,7 @@
         yaxis: "y",
         type: "scatter",
         mode: "lines+markers",
-        line: { color: "#2d1559" },
+        line: { color: "black" },
         hovertemplate:
           "<b>Effluent TSS</b><br>" +
           "Day: %{x}<br>" +
@@ -111,15 +111,15 @@
       /* ---------------- LAYOUT ---------------- */
 
       const layout = {
-        plot_bgcolor: "#fff5f2",
-        paper_bgcolor: "#fff5f2",
+        plot_bgcolor: "#FFECE6",
+        paper_bgcolor: "#FFECE6",
         title: {
           text: "<b>Chemical Dose vs Effluent TSS (Double Y-Axis)</b>",
-          font: { color: "#2d1559" },
+          font: { color: "black" },
         },
 
         margin: { l: 80, r: 80, t: 60, b: 70 },
-        font: { color: "#2d1559" },
+        font: { color: "black" },
 
         xaxis: {
           title: "Time (Days)",
@@ -159,8 +159,8 @@
           xanchor: "left",
           yanchor: "middle",
           x: 0.22,
-          y: -0.15,
-          font: { size: 12, color: "#2d1559" }
+          y: -0.22,
+          font: { size: 12, color: "black" }
         },
 
         hovermode: "closest",
