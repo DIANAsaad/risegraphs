@@ -11,7 +11,7 @@
       body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: #FFECE6;
+        background: white;
       }
 
       #wrapper {
@@ -23,26 +23,27 @@
 
       #chart {
         width: 70%;
-        height: 700px;
+        height: 600px;
       }
 
       #note {
         width: 30%;
+        margin-top: 3rem;
         padding: 12px 14px;
         font-size: 14px;
         color: black;
         line-height: 1.4;
       }
 
-      /* NEW: Mobile layout — stack note under chart */
-      @media (max-width: 768px) {
+      /* Mobile: stack note under chart */
+      @media (max-width: 1024px) {
         #wrapper {
           flex-direction: column;
         }
 
         #chart {
           width: 100%;
-          height: 520px;
+          height: 500px;
         }
 
         #note {
@@ -56,14 +57,22 @@
       <div id="chart"></div>
 
       <div id="note">
-        <b>Notes on Graph</b><br /><br />
-        This graph uses a <b>double Y-axis</b> to display two different data
-        sets with different units and scales.<br /><br />
-        <b>1. </b>Hover or click a point to view its value on the correct Y-axis.<br /><br />
-        <b>2. </b>To hide one of the graphs, click on its <b>label</b> right below the graph.<br /><br />
-        <b>3. </b>Zoom in by clicking and dragging a box around the area of interest.<br /><br />
-        <b>4. </b>Reset the zoom by double-clicking anywhere on the graph. <br><br />
-        You can also use the toolbar at the top-right of the graph.
+        <b>Interpretation of the graph</b><br /><br />
+        This graph uses a <b>double Y-axis</b> to compare changes in chemical
+        dosing with changes in effluent quality over time.<br /><br />
+
+        • The <b>right Y-axis</b> represents <b>Chemical Dose (mg/L)</b>, shown
+        by the <b>orange line</b>. As the days progress, the chemical dose is
+        steadily increased from Day 1 to Day 6.<br /><br />
+
+        • The <b>left Y-axis</b> represents <b>Effluent TSS (mg/L)</b>, shown by
+        the <b>black line</b>. Over the same time period, effluent TSS values
+        decrease consistently.<br /><br />
+
+        • The opposite trends of the two lines indicate an
+        <b>inverse relationship</b>: as chemical dose increases, effluent TSS
+        decreases, suggesting improved solids removal performance.<br /><br />
+
       </div>
     </div>
 
@@ -72,10 +81,7 @@
 
       const days = [1, 2, 3, 4, 5, 6];
 
-      // LEFT Y-axis (Effluent quality)
       const effluentTSS = [150, 120, 110, 100, 90, 80, 70];
-
-      // RIGHT Y-axis (Chemical dose)
       const chemicalDose = [0, 5, 10, 13, 15, 18, 20];
 
       /* ---------------- TRACES ---------------- */
@@ -111,14 +117,16 @@
       /* ---------------- LAYOUT ---------------- */
 
       const layout = {
-        plot_bgcolor: "#FFECE6",
-        paper_bgcolor: "#FFECE6",
+        plot_bgcolor: "white",
+        paper_bgcolor: "white",
+
         title: {
           text: "<b>Chemical Dose vs Effluent TSS (Double Y-Axis)</b>",
           font: { color: "black" },
         },
 
-        margin: { l: 80, r: 80, t: 60, b: 70 },
+        /* ⬅️ increased right margin to protect legend space */
+        margin: { l: 80, r: 160, t: 60, b: 70 },
         font: { color: "black" },
 
         xaxis: {
@@ -129,19 +137,16 @@
           linewidth: 2,
         },
 
-        /* LEFT AXIS — OWNS GRID */
         yaxis: {
           title: "Effluent TSS (mg/L)",
           range: [0, 170],
           dtick: 10,
           showgrid: false,
-          gridcolor: "rgba(0,0,0,0.15)",
           zeroline: false,
           showline: true,
           linewidth: 2,
         },
 
-        /* RIGHT AXIS — NO GRID */
         yaxis2: {
           title: "Chemical Dose (mg/L)",
           range: [0, 20],
@@ -154,19 +159,18 @@
           linewidth: 2,
         },
 
+        /* ✅ LEGEND TO THE RIGHT, NO OVERLAP */
         legend: {
-          orientation: "h",
+          orientation: "v",
+          x: 1.05,
+          y: 0.9,
           xanchor: "left",
           yanchor: "middle",
-          x: 0.22,
-          y: -0.22,
-          font: { size: 12, color: "black" }
+          font: { size: 12, color: "black" },
         },
 
         hovermode: "closest",
       };
-
-      /* ---------------- CONFIG ---------------- */
 
       const config = {
         responsive: true,
