@@ -57,8 +57,8 @@
         name: "Flow (MGD)",
         type: "scatter",
         mode: "lines+markers",
-        line: { width: 3 },
-        marker: { size: 8 },
+        line: { width: 3, color:"#ff9287" },
+        marker: { size: 8 , color:"#ff9287"},
         hovertemplate:
           "<b>Flow</b><br>" +
           "Day: %{x}<br>" +
@@ -73,8 +73,9 @@
         type: "scatter",
         mode: "lines+markers",
         yaxis: "y2",
+        line:{color:'#ff4500'},
         line: { width: 3 },
-        marker: { size: 8 },
+        marker: { size: 8, color:"#ff4500" },
         hovertemplate:
           "<b>Effluent BOD</b><br>" +
           "Day: %{x}<br>" +
@@ -89,8 +90,8 @@
         type: "scatter",
         mode: "lines+markers",
         yaxis: "y2",
-        line: { width: 3 },
-        marker: { size: 8 },
+        line: { width: 3 , color:"#8da2db"},
+        marker: { size: 8, color:"#8da2db" },
         hovertemplate:
           "<b>Effluent TSS</b><br>" +
           "Day: %{x}<br>" +
@@ -155,7 +156,7 @@
         displayModeBar: false
       };
 
-      // ✅ RESPONSIVE LEGEND POSITION LOGIC
+   
       function updateLegendPosition() {
         const isSmallScreen = window.innerWidth <= 768;
 
