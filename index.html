@@ -2,40 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Double Y-Axis Operator Graph</title>
 
-    <!-- Plotly CDN -->
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
     <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: white;
+      :root {
+        --gap: 20px;
+        --pad: 10px;
+        --note-gap: 12px;
       }
 
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: white;
+        overflow: hidden; /* prevents iframe scrollbars/extra space */
+      }
+
+      /* Fill the iframe viewport */
       #wrapper {
+        height: 100vh;
+        box-sizing: border-box;
         display: flex;
-        align-items: flex-start;
-        gap: 20px;
-        padding: 10px;
+        align-items: stretch;
+        gap: var(--gap);
+        padding: var(--pad);
       }
 
       #leftcol {
         width: 70%;
         display: flex;
         flex-direction: column;
+        min-height: 0; /* IMPORTANT for flex children sizing */
       }
 
+      /* Key change:
+         - Use a controlled height that won't get "elongated"
+         - Keep it responsive but bounded
+         - Allow Plotly to fill it cleanly
+      */
       #chart {
         width: 100%;
-        height: 30vh;
-        min-height: 420px;
-        max-height: 650px;
+        height: clamp(320px, 48vh, 520px);
+        min-height: 0;
       }
 
       #note {
-        margin-top: 12px;
+        flex: 0 0 auto;
+        margin-top: var(--note-gap);
         padding: 12px 14px;
         font-size: 14px;
         color: black;
@@ -44,31 +65,34 @@
 
       #interpretation {
         width: 30%;
-        margin-top: 3rem;
         padding: 12px 14px;
         font-size: 14px;
         color: black;
         line-height: 1.4;
+        overflow: auto; /* scroll if it’s long */
+        margin-top: 0; /* removed the artificial whitespace */
+        box-sizing: border-box;
       }
 
-      /* Mobile: stack chart, interpretation, then note (note last) */
+      /* Tablet/mobile: stack */
       @media (max-width: 1024px) {
+        body {
+          overflow: auto; /* allow scrolling when stacked */
+        }
+
         #wrapper {
+          height: auto;
           flex-direction: column;
         }
 
-        #leftcol {
-          width: 100%;
-        }
-
-        #chart {
-          width: 100%;
-          height: 400px;
-        }
-
+        #leftcol,
         #interpretation {
           width: 100%;
-          margin-top: 0;
+        }
+
+        /* Chart height on smaller screens */
+        #chart {
+          height: clamp(280px, 44vh, 420px);
         }
 
         /* Stacked order: chart -> interpretation -> note */
@@ -80,7 +104,6 @@
         }
         #note {
           order: 3;
-          margin-top: 12px;
         }
       }
     </style>
@@ -90,9 +113,9 @@
     <div id="wrapper">
       <div id="leftcol">
         <div id="chart"></div>
+
         <div id="note">
-          <b>NOTE:</b> To hide one of the graphs, click its label in the legend
-          on the right of the graph.
+          <b>NOTE:</b> To hide one of the graphs, click its label in the legend.
         </div>
       </div>
 
@@ -102,29 +125,27 @@
         dosing with changes in effluent quality over time.<br /><br />
 
         • The <b>right Y-axis</b> represents <b>Chemical Dose (mg/L)</b>, shown
-        by the <b>orange line</b>. As the days progress, the chemical dose is
-        steadily increased from Day 1 to Day 6.<br /><br />
+        by the <b>orange line</b>. As the days progress, the chemical dose
+        increases steadily.<br /><br />
 
         • The <b>left Y-axis</b> represents <b>Effluent TSS (mg/L)</b>, shown by
-        the <b>black line</b>. Over the same time period, effluent TSS values
-        decrease consistently.<br /><br />
+        the <b>black line</b>. Over the same time period, effluent TSS decreases
+        consistently.<br /><br />
 
-        • The opposite trends of the two lines indicate an
-        <b>inverse relationship</b>: as chemical dose increases, effluent TSS
-        decreases, suggesting improved solids removal performance.<br /><br />
+        • The opposite trends indicate an <b>inverse relationship</b>: as
+        chemical dose increases, effluent TSS decreases, suggesting improved
+        solids removal performance.<br /><br />
       </div>
     </div>
 
     <script>
       /* ---------------- DATA ---------------- */
-
+      // FIXED: array lengths now match (6 points)
       const days = [1, 2, 3, 4, 5, 6];
-
-      const effluentTSS = [150, 120, 110, 100, 90, 80, 70];
-      const chemicalDose = [0, 5, 10, 13, 15, 18, 20];
+      const effluentTSS = [150, 120, 110, 100, 90, 80];
+      const chemicalDose = [0, 5, 10, 13, 15, 18];
 
       /* ---------------- TRACES ---------------- */
-
       const tssTrace = {
         x: days,
         y: effluentTSS,
@@ -153,9 +174,9 @@
           "Dose: %{y} mg/L<extra></extra>",
       };
 
-      /* ---------------- LAYOUT (desktop default) ---------------- */
-
+      /* ---------------- LAYOUT ---------------- */
       const layout = {
+        autosize: true,
         plot_bgcolor: "white",
         paper_bgcolor: "white",
 
@@ -164,7 +185,7 @@
           font: { color: "black" },
         },
 
-        margin: { l: 80, r: 160, t: 60, b: 70 },
+        margin: { l: 80, r: 220, t: 60, b: 70 },
         font: { color: "black" },
 
         xaxis: {
@@ -199,7 +220,7 @@
 
         legend: {
           orientation: "v",
-          x: 1.05,
+          x: 1.15,
           y: 0.9,
           xanchor: "left",
           yanchor: "middle",
@@ -221,47 +242,52 @@
         ],
       };
 
-      // ---- Legend behavior: right on desktop, below on small screens ----
-      const MOBILE_WIDTH = 480; // adjust if you want it to switch earlier/later
+      const MOBILE_WIDTH = 480;
 
       function applyLegendForScreen() {
-        const isMobile = window.innerWidth <= MOBILE_WIDTH;
+        const isMobile = window.innerWidth <= 480;
 
         const updates = isMobile
           ? {
-              // legend BELOW the plot (inside the chart area)
               "legend.orientation": "h",
               "legend.x": 0,
               "legend.y": -0.25,
               "legend.xanchor": "left",
               "legend.yanchor": "top",
-              // remove the big right margin so plot can use full width
               "margin.r": 20,
-              // add bottom margin so legend doesn't get cut off
               "margin.b": 120,
             }
           : {
-              // legend on the RIGHT (your original)
               "legend.orientation": "v",
-              "legend.x": 1.05,
+              "legend.x": 1.15,
               "legend.y": 0.9,
               "legend.xanchor": "left",
               "legend.yanchor": "middle",
-              "margin.r": 160,
+              "margin.r": 220, // ← desktop-only spacing
               "margin.b": 70,
             };
 
         Plotly.relayout("chart", updates);
-        Plotly.Plots.resize(document.getElementById("chart"));
       }
 
-      Plotly.newPlot("chart", [tssTrace, doseTrace], layout, config).then(() => {
-        // initial
-        applyLegendForScreen();
+      function setupResizeObserver() {
+        const chartEl = document.getElementById("chart");
+        if (!chartEl || !("ResizeObserver" in window)) return;
 
-        // on resize
-        window.addEventListener("resize", applyLegendForScreen);
-      });
+        const ro = new ResizeObserver(() => {
+          Plotly.Plots.resize(chartEl);
+        });
+
+        ro.observe(chartEl);
+      }
+
+      Plotly.newPlot("chart", [tssTrace, doseTrace], layout, config).then(
+        () => {
+          applyLegendForScreen();
+          setupResizeObserver();
+          window.addEventListener("resize", applyLegendForScreen);
+        }
+      );
     </script>
   </body>
 </html>
