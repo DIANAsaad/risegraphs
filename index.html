@@ -168,8 +168,7 @@
 
         <div id="miniWrap">
           <div id="miniTitle">
-            <b>Extra example (mini chart):</b> Flow (MGD) vs Effluent Turbidity
-            (NTU)
+            <b>Chart Structure:</b> Variable 1 vs Variable 2
           </div>
           <div id="miniChart"></div>
         </div>
@@ -280,29 +279,29 @@
 
       /* ===================== MINI CHART ===================== */
       const miniDays = [1, 2, 3, 4, 5, 6];
-      const flowMGD = [2.1, 2.4, 2.8, 3.2, 3.0, 2.6];
-      const turbNTU = [7.5, 7.0, 6.2, 8.8, 9.6, 7.9];
+      const flowMGD = [1, 2, 3, 4, 5, 6];
+      const turbNTU = [1, 4, 6, 8, 10, 12];
 
       const flowTrace = {
         x: miniDays,
         y: flowMGD,
-        name: "Flow (MGD)",
+        name: "Variable 1",
         type: "scatter",
         mode: "lines+markers",
-        line: { color: "#1f77b4" },
-        hovertemplate: "<b>Flow</b><br>Day: %{x}<br>%{y} MGD<extra></extra>",
+        line: { color: "black" },
+        hovertemplate: "<b>Variable 1</b><br>Day: %{x}",
       };
 
       const turbTrace = {
         x: miniDays,
         y: turbNTU,
-        name: "Turbidity (NTU)",
+        name: "Variable 2",
         yaxis: "y2",
         type: "scatter",
         mode: "lines+markers",
         line: { color: "#ff4500" },
         hovertemplate:
-          "<b>Turbidity</b><br>Day: %{x}<br>%{y} NTU<extra></extra>",
+          "<b>Variable 2</b><br>Day: %{x}",
       };
 
       const miniLayout = {
@@ -311,19 +310,19 @@
         paper_bgcolor: "white",
         margin: { l: 50, r: 55, t: 35, b: 45 },
         font: { color: "black", size: 11 },
-        xaxis: { title: "Day", dtick: 1, zeroline: false, showline: true },
+        xaxis: { title: "Independent variable", dtick: 1, zeroline: false, showline: true },
         yaxis: {
-          title: "Flow (MGD)",
-          range: [1.8, 3.6],
-          dtick: 0.4,
+          title: "Variable 1",
+          range: [1, 7],
+          dtick: 1,
           showgrid: false,
           zeroline: false,
           showline: true,
         },
         yaxis2: {
-          title: "Turbidity (NTU)",
-          range: [5, 11],
-          dtick: 1,
+          title: "Variable 2",
+          range: [1, 22],
+          dtick: 2,
           overlaying: "y",
           side: "right",
           showgrid: false,
