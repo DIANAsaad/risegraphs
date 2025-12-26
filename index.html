@@ -9,9 +9,9 @@
 
     <style>
       :root {
-        --gap: 20px;
+        --gap: 16px;
         --pad: 10px;
-        --note-gap: 12px;
+        --note-gap: 10px;
       }
 
       html,
@@ -22,13 +22,13 @@
 
       body {
         font-family: Arial, sans-serif;
-        background: white;
-        overflow: hidden; /* prevents iframe scrollbars/extra space */
+        background: #fff;
+        overflow: auto;
       }
 
-      /* Fill the iframe viewport */
       #wrapper {
-        height: 100vh;
+        height: 100%;
+        min-height: 100%;
         box-sizing: border-box;
         display: flex;
         align-items: stretch;
@@ -37,47 +37,63 @@
       }
 
       #leftcol {
-        width: 60%;
+        flex: 1 1 560px;
         display: flex;
         flex-direction: column;
-        min-height: 0; /* IMPORTANT for flex children sizing */
+        min-width: 0;
       }
 
-      /* Key change:
-         - Use a controlled height that won't get "elongated"
-         - Keep it responsive but bounded
-         - Allow Plotly to fill it cleanly
-      */
       #chart {
         width: 100%;
-        height: clamp(320px, 70vh, 750px);
-        min-height: 0;
+        height: 440px;
+        max-height: 560px;
+        min-height: 300px;
       }
 
       #note {
         flex: 0 0 auto;
         margin-top: var(--note-gap);
-       padding: 12px 14px 12px 6px;
+        padding: 12px 14px 12px 6px;
         font-size: 14px;
-        color: black;
+        color: #000;
         line-height: 1.4;
       }
 
       #interpretation {
-        width: 40%;
+        flex: 0 0 360px;
+        min-width: 280px;
+        max-width: 420px;
         padding: 12px 14px;
         font-size: 14px;
-        color: black;
+        color: #000;
         line-height: 1.4;
-        overflow: auto; /* scroll if it’s long */
-        margin-top: 0; /* removed the artificial whitespace */
+        overflow: auto;
         box-sizing: border-box;
       }
 
-      /* Tablet/mobile: stack */
-      @media (max-width: 1024px) {
-        body {
-          overflow: auto; /* allow scrolling when stacked */
+      /* NEW: small example chart inside the interpretation column */
+      #miniWrap {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #ddd;
+      }
+
+      #miniTitle {
+        font-size: 13px;
+        margin: 0 0 8px 0;
+        color: #000;
+      }
+
+      #miniChart {
+        width: 100%;
+        height: 220px; /* small but readable */
+      }
+
+      @media (max-width: 900px) {
+        :root {
+          --gap: 8px;
+          --pad: 8px;
+          --note-gap: 4px;
         }
 
         #wrapper {
@@ -85,25 +101,25 @@
           flex-direction: column;
         }
 
-        #leftcol,
+        #chart {
+          height: 380px;
+          max-height: 480px;
+        }
+
         #interpretation {
+          flex: 1 1 auto;
           width: 100%;
+          max-width: none;
+          padding-top: 8px;
+          padding-bottom: 8px;
         }
 
-        /* Chart height on smaller screens */
-        #chart {
-          height: clamp(280px, 60vh, 500px);
-        }
-
-        /* Stacked order: chart -> interpretation -> note */
-        #chart {
-          order: 1;
-        }
-        #interpretation {
-          order: 2;
-        }
         #note {
-          order: 3;
+          margin-top: 4px;
+        }
+
+        #miniChart {
+          height: 200px; /* slightly tighter on mobile */
         }
       }
     </style>
@@ -135,17 +151,24 @@
         • The opposite trends indicate an <b>inverse relationship</b>: as
         chemical dose increases, effluent TSS decreases, suggesting improved
         solids removal performance.<br /><br />
+
+        <!-- NEW mini example chart -->
+        <div id="miniWrap">
+          <div id="miniTitle">
+            <b>Extra example (mini chart):</b> Flow (MGD) vs Effluent Turbidity
+            (NTU)
+          </div>
+          <div id="miniChart"></div>
+        </div>
       </div>
     </div>
 
     <script>
-      /* ---------------- DATA ---------------- */
-      // FIXED: array lengths now match (6 points)
+      /* ===================== MAIN CHART ===================== */
       const days = [1, 2, 3, 4, 5, 6];
       const effluentTSS = [150, 120, 110, 100, 90, 80];
       const chemicalDose = [0, 5, 10, 13, 15, 18];
 
-      /* ---------------- TRACES ---------------- */
       const tssTrace = {
         x: days,
         y: effluentTSS,
@@ -174,20 +197,16 @@
           "Dose: %{y} mg/L<extra></extra>",
       };
 
-      /* ---------------- LAYOUT ---------------- */
       const layout = {
         autosize: true,
         plot_bgcolor: "white",
         paper_bgcolor: "white",
-
         title: {
           text: "<b>Chemical Dose vs Effluent TSS (Double Y-Axis)</b>",
           font: { color: "black" },
         },
-
-        margin: { l: 80, r: 220, t: 60, b: 70 },
+        margin: { l: 80, r: 60, t: 60, b: 70 },
         font: { color: "black" },
-
         xaxis: {
           title: "Time (Days)",
           dtick: 1,
@@ -195,7 +214,6 @@
           showline: true,
           linewidth: 2,
         },
-
         yaxis: {
           title: "Effluent TSS (mg/L)",
           range: [0, 170],
@@ -205,7 +223,6 @@
           showline: true,
           linewidth: 2,
         },
-
         yaxis2: {
           title: "Chemical Dose (mg/L)",
           range: [0, 20],
@@ -217,16 +234,14 @@
           showline: true,
           linewidth: 2,
         },
-
         legend: {
           orientation: "v",
-          x: 1.15,
-          y: 0.9,
-          xanchor: "left",
-          yanchor: "middle",
+          x: 1,
+          y: 1,
+          xanchor: "right",
+          yanchor: "top",
           font: { size: 12, color: "black" },
         },
-
         hovermode: "closest",
       };
 
@@ -242,58 +257,146 @@
         ],
       };
 
-      const MOBILE_WIDTH = 480;
-      const TABLET_WIDTH = 700;
+      /* iframe-safe responsive behavior */
+      const wrapperEl = document.getElementById("wrapper");
+      const chartEl = document.getElementById("chart");
+      const miniChartEl = document.getElementById("miniChart");
 
-      function applyLegendForScreen() {
-        const isMobile = window.innerWidth <= 480;
-        const isTablet= window.innerWidth <= 700 && window.innerWidth > 480;
+      function getContainerWidth() {
+        return wrapperEl ? wrapperEl.clientWidth : window.innerWidth;
+      }
 
-        const updates = isMobile || isTablet
+      function applyLegendForContainer() {
+        const w = getContainerWidth();
+        const isNarrow = w <= 900;
+
+        const updates = isNarrow
           ? {
               "legend.orientation": "h",
               "legend.x": 0,
-              "legend.y": -0.35,
+              "legend.y": -0.25,
               "legend.xanchor": "left",
               "legend.yanchor": "top",
-              "margin.r": 70,
-              "margin.b": 120,
+              "margin.r": 60,
+              "margin.b": 110,
             }
           : {
               "legend.orientation": "v",
-              "legend.x": 1.15,
-              "legend.y": 0.9,
-              "legend.xanchor": "left",
-              "legend.yanchor": "middle",
-              "margin.r": 220, // ← desktop-only spacing
+              "legend.x": 1,
+              "legend.y": 1,
+              "legend.xanchor": "right",
+              "legend.yanchor": "top",
+              "margin.r": 60,
               "margin.b": 70,
             };
 
-        Plotly.relayout("chart", updates);
+        Plotly.relayout(chartEl, updates);
+      }
+
+      /* ===================== MINI CHART ===================== */
+      // Example: higher flows often coincide with higher turbidity (e.g., during wet weather events)
+      const miniDays = [1, 2, 3, 4, 5, 6];
+      const flowMGD = [2.1, 2.4, 2.8, 3.2, 3.0, 2.6];
+      const turbNTU = [7.5, 7.0, 6.2, 8.8, 9.6, 7.9];
+
+      const flowTrace = {
+        x: miniDays,
+        y: flowMGD,
+        name: "Flow (MGD)",
+        type: "scatter",
+        mode: "lines+markers",
+        line: { color: "#1f77b4" },
+        hovertemplate:
+          "<b>Flow</b><br>Day: %{x}<br>%{y} MGD<extra></extra>",
+      };
+
+      const turbTrace = {
+        x: miniDays,
+        y: turbNTU,
+        name: "Effluent Turbidity (NTU)",
+        yaxis: "y2",
+        type: "scatter",
+        mode: "lines+markers",
+        line: { color: "#ff4500" },
+        hovertemplate:
+          "<b>Turbidity</b><br>Day: %{x}<br>%{y} NTU<extra></extra>",
+      };
+
+      const miniLayout = {
+        autosize: true,
+        plot_bgcolor: "white",
+        paper_bgcolor: "white",
+        margin: { l: 50, r: 50, t: 10, b: 40 },
+        font: { color: "black", size: 11 },
+        xaxis: {
+          title: "Day",
+          dtick: 1,
+          zeroline: false,
+          showline: true,
+          linewidth: 1,
+        },
+        yaxis: {
+          title: "Flow (MGD)",
+          range: [1.8, 3.6],
+          dtick: 0.4,
+          showgrid: false,
+          zeroline: false,
+          showline: true,
+          linewidth: 1,
+        },
+        yaxis2: {
+          title: "Turbidity (NTU)",
+          range: [5, 11],
+          dtick: 1,
+          overlaying: "y",
+          side: "right",
+          showgrid: false,
+          zeroline: false,
+          showline: true,
+          linewidth: 1,
+        },
+        legend: {
+          orientation: "h",
+          x: 0,
+          y: -0.35,
+          xanchor: "left",
+          yanchor: "top",
+          font: { size: 10, color: "black" },
+        },
+        hovermode: "closest",
+      };
+
+      const miniConfig = {
+        responsive: true,
+        displayModeBar: false, // keep it tiny + clean
+      };
+
+      /* ===================== RESIZE HANDLING ===================== */
+      let rafId = null;
+      function scheduleResize() {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          applyLegendForContainer();
+          Plotly.Plots.resize(chartEl);
+          Plotly.Plots.resize(miniChartEl);
+        });
       }
 
       function setupResizeObserver() {
-        const chartEl = document.getElementById("chart");
-        if (!chartEl || !("ResizeObserver" in window)) return;
-
-        const ro = new ResizeObserver(() => {
-          Plotly.Plots.resize(chartEl);
-        });
-
-        ro.observe(chartEl);
+        if (!("ResizeObserver" in window)) return;
+        const ro = new ResizeObserver(scheduleResize);
+        ro.observe(wrapperEl);
       }
 
-    Plotly.newPlot("chart", [tssTrace, doseTrace], layout, config).then(() => {
-  applyLegendForScreen();
-  setupResizeObserver();
-  window.addEventListener("resize", applyLegendForScreen);
-
-  // one safe post-layout resize
-  requestAnimationFrame(() => {
-    Plotly.Plots.resize("chart");
-  });
-});
-
+      Promise.all([
+        Plotly.newPlot(chartEl, [tssTrace, doseTrace], layout, config),
+        Plotly.newPlot(miniChartEl, [flowTrace, turbTrace], miniLayout, miniConfig),
+      ]).then(() => {
+        applyLegendForContainer();
+        setupResizeObserver();
+        window.addEventListener("resize", scheduleResize);
+        scheduleResize();
+      });
     </script>
   </body>
 </html>
