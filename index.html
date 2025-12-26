@@ -9,9 +9,9 @@
 
     <style>
       :root {
-        --gap: 16px;
+        --gap: 20px;
         --pad: 10px;
-        --note-gap: 10px; /* desktop spacing between chart and note */
+        --note-gap: 12px;
       }
 
       html,
@@ -22,14 +22,13 @@
 
       body {
         font-family: Arial, sans-serif;
-        background: #fff;
-        overflow: auto; /* safer in iframes: avoids clipping */
+        background: white;
+        overflow: hidden; /* prevents iframe scrollbars/extra space */
       }
 
-      /* Fit the iframe container (not viewport vh) */
+      /* Fill the iframe viewport */
       #wrapper {
-        height: 100%;
-        min-height: 100%;
+        height: 100vh;
         box-sizing: border-box;
         display: flex;
         align-items: stretch;
@@ -37,50 +36,48 @@
         padding: var(--pad);
       }
 
-      /* LEFT column */
       #leftcol {
-        flex: 1 1 560px;
+        width: 60%;
         display: flex;
         flex-direction: column;
-        min-width: 0; /* critical for flex + Plotly */
+        min-height: 0; /* IMPORTANT for flex children sizing */
       }
 
-      /* Stable embed sizing: avoids “elongated” chart in Rise */
+      /* Key change:
+         - Use a controlled height that won't get "elongated"
+         - Keep it responsive but bounded
+         - Allow Plotly to fill it cleanly
+      */
       #chart {
         width: 100%;
-        height: 440px;
-        max-height: 560px;
-        min-height: 300px;
+        height: clamp(320px, 70vh, 750px);
+        min-height: 0;
       }
 
       #note {
         flex: 0 0 auto;
         margin-top: var(--note-gap);
-        padding: 12px 14px 12px 6px; /* reduced left padding */
+       padding: 12px 14px 12px 6px;
         font-size: 14px;
-        color: #000;
+        color: black;
         line-height: 1.4;
       }
 
-      /* RIGHT column */
       #interpretation {
-        flex: 0 0 360px;
-        min-width: 280px;
-        max-width: 420px;
+        width: 40%;
         padding: 12px 14px;
         font-size: 14px;
-        color: #000;
+        color: black;
         line-height: 1.4;
-        overflow: auto;
+        overflow: auto; /* scroll if it’s long */
+        margin-top: 0; /* removed the artificial whitespace */
         box-sizing: border-box;
       }
 
-      /* Tablet/mobile: stack + tighter spacing (removes the “huge gap”) */
-      @media (max-width: 900px) {
-        :root {
-          --gap: 8px; /* was 16px */
-          --pad: 8px; /* was 10px */
-          --note-gap: 4px; /* was 10px */
+      /* Tablet/mobile: stack */
+      @media (max-width: 1024px) {
+        body {
+          overflow: auto; /* allow scrolling when stacked */
         }
 
         #wrapper {
@@ -88,21 +85,25 @@
           flex-direction: column;
         }
 
-        #chart {
-          height: 380px;
-          max-height: 480px;
-        }
-
+        #leftcol,
         #interpretation {
-          flex: 1 1 auto;
           width: 100%;
-          max-width: none;
-          padding-top: 8px;
-          padding-bottom: 8px;
         }
 
+        /* Chart height on smaller screens */
+        #chart {
+          height: clamp(280px, 60vh, 500px);
+        }
+
+        /* Stacked order: chart -> interpretation -> note */
+        #chart {
+          order: 1;
+        }
+        #interpretation {
+          order: 2;
+        }
         #note {
-          margin-top: 4px; /* extra insurance in Rise */
+          order: 3;
         }
       }
     </style>
@@ -139,6 +140,7 @@
 
     <script>
       /* ---------------- DATA ---------------- */
+      // FIXED: array lengths now match (6 points)
       const days = [1, 2, 3, 4, 5, 6];
       const effluentTSS = [150, 120, 110, 100, 90, 80];
       const chemicalDose = [0, 5, 10, 13, 15, 18];
@@ -183,8 +185,7 @@
           font: { color: "black" },
         },
 
-        /* iframe-safe margins */
-        margin: { l: 80, r: 60, t: 60, b: 70 },
+        margin: { l: 80, r: 220, t: 60, b: 70 },
         font: { color: "black" },
 
         xaxis: {
@@ -217,13 +218,12 @@
           linewidth: 2,
         },
 
-        /* Desktop default: legend inside (safer for iframes) */
         legend: {
           orientation: "v",
-          x: 1,
-          y: 1,
-          xanchor: "right",
-          yanchor: "top",
+          x: 1.15,
+          y: 0.9,
+          xanchor: "left",
+          yanchor: "middle",
           font: { size: 12, color: "black" },
         },
 
@@ -242,67 +242,58 @@
         ],
       };
 
-      /* ---------------- RESPONSIVE BEHAVIOR ----------------
-         Use container width (iframe-safe) instead of window.innerWidth
-      */
-      const wrapperEl = document.getElementById("wrapper");
-      const chartEl = document.getElementById("chart");
+      const MOBILE_WIDTH = 480;
+      const TABLET_WIDTH = 700;
 
-      function getContainerWidth() {
-        return wrapperEl ? wrapperEl.clientWidth : window.innerWidth;
-      }
+      function applyLegendForScreen() {
+        const isMobile = window.innerWidth <= 480;
+        const isTablet= window.innerWidth <= 700 && window.innerWidth > 480;
 
-      function applyLegendForContainer() {
-        const w = getContainerWidth();
-        const isNarrow = w <= 900;
-
-        const updates = isNarrow
+        const updates = isMobile || isTablet
           ? {
               "legend.orientation": "h",
               "legend.x": 0,
-              "legend.y": -0.25,
+              "legend.y": -0.35,
               "legend.xanchor": "left",
               "legend.yanchor": "top",
-              "margin.r": 60,
-              "margin.b": 110,
+              "margin.r": 70,
+              "margin.b": 120,
             }
           : {
               "legend.orientation": "v",
-              "legend.x": 1,
-              "legend.y": 1,
-              "legend.xanchor": "right",
-              "legend.yanchor": "top",
-              "margin.r": 60,
+              "legend.x": 1.15,
+              "legend.y": 0.9,
+              "legend.xanchor": "left",
+              "legend.yanchor": "middle",
+              "margin.r": 220, // ← desktop-only spacing
               "margin.b": 70,
             };
 
-        Plotly.relayout(chartEl, updates);
-      }
-
-      /* Debounced resize */
-      let rafId = null;
-      function scheduleResize() {
-        if (rafId) cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(() => {
-          applyLegendForContainer();
-          Plotly.Plots.resize(chartEl);
-        });
+        Plotly.relayout("chart", updates);
       }
 
       function setupResizeObserver() {
-        if (!("ResizeObserver" in window)) return;
-        const ro = new ResizeObserver(scheduleResize);
-        ro.observe(wrapperEl); /* observe wrapper for better iframe behavior */
+        const chartEl = document.getElementById("chart");
+        if (!chartEl || !("ResizeObserver" in window)) return;
+
+        const ro = new ResizeObserver(() => {
+          Plotly.Plots.resize(chartEl);
+        });
+
+        ro.observe(chartEl);
       }
 
-      Plotly.newPlot(chartEl, [tssTrace, doseTrace], layout, config).then(() => {
-        applyLegendForContainer();
-        setupResizeObserver();
-        window.addEventListener("resize", scheduleResize);
+    Plotly.newPlot("chart", [tssTrace, doseTrace], layout, config).then(() => {
+  applyLegendForScreen();
+  setupResizeObserver();
+  window.addEventListener("resize", applyLegendForScreen);
 
-        /* One safe post-layout resize */
-        scheduleResize();
-      });
+  // one safe post-layout resize
+  requestAnimationFrame(() => {
+    Plotly.Plots.resize("chart");
+  });
+});
+
     </script>
   </body>
 </html>
