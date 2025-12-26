@@ -37,7 +37,7 @@
       }
 
       #leftcol {
-        width: 70%;
+        width: 60%;
         display: flex;
         flex-direction: column;
         min-height: 0; /* IMPORTANT for flex children sizing */
@@ -50,7 +50,7 @@
       */
       #chart {
         width: 100%;
-        height: clamp(320px, 48vh, 520px);
+        height: clamp(320px, 70vh, 750px);
         min-height: 0;
       }
 
@@ -64,7 +64,7 @@
       }
 
       #interpretation {
-        width: 30%;
+        width: 40%;
         padding: 12px 14px;
         font-size: 14px;
         color: black;
@@ -92,7 +92,7 @@
 
         /* Chart height on smaller screens */
         #chart {
-          height: clamp(280px, 44vh, 420px);
+          height: clamp(280px, 60vh, 500px);
         }
 
         /* Stacked order: chart -> interpretation -> note */
@@ -243,18 +243,20 @@
       };
 
       const MOBILE_WIDTH = 480;
+      const TABLET_WIDTH = 700;
 
       function applyLegendForScreen() {
         const isMobile = window.innerWidth <= 480;
+        const isTablet= window.innerWidth <= 700 && window.innerWidth > 480;
 
-        const updates = isMobile
+        const updates = isMobile || isTablet
           ? {
               "legend.orientation": "h",
               "legend.x": 0,
-              "legend.y": -0.25,
+              "legend.y": -0.35,
               "legend.xanchor": "left",
               "legend.yanchor": "top",
-              "margin.r": 20,
+              "margin.r": 70,
               "margin.b": 120,
             }
           : {
