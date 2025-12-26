@@ -43,6 +43,7 @@
         min-width: 0;
       }
 
+      /* MAIN CHART */
       #chart {
         width: 100%;
         height: 440px;
@@ -50,15 +51,18 @@
         min-height: 300px;
       }
 
+      /* NOTE */
       #note {
         flex: 0 0 auto;
         margin-top: var(--note-gap);
-        padding: 12px 14px 12px 6px;
+        margin-bottom: 0; /* IMPORTANT: prevents extra gap before interpretation when stacked */
+        padding: 10px 14px 10px 6px;
         font-size: 14px;
         color: #000;
-        line-height: 1.4;
+        line-height: 1.35;
       }
 
+      /* RIGHT COLUMN */
       #interpretation {
         flex: 0 0 360px;
         min-width: 280px;
@@ -71,34 +75,34 @@
         box-sizing: border-box;
       }
 
-      /* NEW: small example chart inside the interpretation column */
+      /* mini chart */
       #miniWrap {
         margin-top: 10px;
         padding-top: 10px;
         border-top: 1px solid #ddd;
       }
-
       #miniTitle {
         font-size: 13px;
         margin: 0 0 8px 0;
         color: #000;
       }
-
       #miniChart {
         width: 100%;
-        height: 220px; /* small but readable */
+        height: 220px;
       }
 
+      /* STACKED (mobile/tablet) */
       @media (max-width: 900px) {
         :root {
-          --gap: 8px;
-          --pad: 8px;
-          --note-gap: 4px;
+          --gap: 3px;     /* tighter */
+          --pad: 6px;     /* tighter */
+          --note-gap: 4px; /* tighter note spacing */
         }
 
         #wrapper {
           height: auto;
           flex-direction: column;
+          margin-bottom: 0;
         }
 
         #chart {
@@ -106,20 +110,30 @@
           max-height: 480px;
         }
 
-        #interpretation {
-          flex: 1 1 auto;
-          width: 100%;
-          max-width: none;
-          padding-top: 8px;
-          padding-bottom: 8px;
+        /* KEY FIX for the “huge space”:
+           remove any chance of extra margins/padding between leftcol and interpretation */
+        #leftcol {
+          margin-bottom: 0;
+          padding-bottom: 0;
         }
 
         #note {
           margin-top: 4px;
+          margin-bottom: 0px; /* tiny gap before interpretation */
+          padding-top: 8px;
+          padding-bottom: 0px;
+        }
+
+        #interpretation {
+          width: 100%;
+          max-width: none;
+          padding-top: 0px;   /* tighter */
+          padding-bottom: 8px;
+          margin-top: 0;      /* IMPORTANT: no extra gap */
         }
 
         #miniChart {
-          height: 200px; /* slightly tighter on mobile */
+          height: 200px;
         }
       }
     </style>
@@ -152,7 +166,6 @@
         chemical dose increases, effluent TSS decreases, suggesting improved
         solids removal performance.<br /><br />
 
-        <!-- NEW mini example chart -->
         <div id="miniWrap">
           <div id="miniTitle">
             <b>Extra example (mini chart):</b> Flow (MGD) vs Effluent Turbidity
@@ -205,8 +218,11 @@
           text: "<b>Chemical Dose vs Effluent TSS (Double Y-Axis)</b>",
           font: { color: "black" },
         },
+
+        /* We'll dynamically change bottom margin for legend-on-bottom */
         margin: { l: 80, r: 60, t: 60, b: 70 },
         font: { color: "black" },
+
         xaxis: {
           title: "Time (Days)",
           dtick: 1,
@@ -214,6 +230,7 @@
           showline: true,
           linewidth: 2,
         },
+
         yaxis: {
           title: "Effluent TSS (mg/L)",
           range: [0, 170],
@@ -223,6 +240,7 @@
           showline: true,
           linewidth: 2,
         },
+
         yaxis2: {
           title: "Chemical Dose (mg/L)",
           range: [0, 20],
@@ -234,6 +252,7 @@
           showline: true,
           linewidth: 2,
         },
+
         legend: {
           orientation: "v",
           x: 1,
@@ -241,7 +260,9 @@
           xanchor: "right",
           yanchor: "top",
           font: { size: 12, color: "black" },
+          bgcolor: "rgba(255,255,255,0.85)",
         },
+
         hovermode: "closest",
       };
 
@@ -257,44 +278,7 @@
         ],
       };
 
-      /* iframe-safe responsive behavior */
-      const wrapperEl = document.getElementById("wrapper");
-      const chartEl = document.getElementById("chart");
-      const miniChartEl = document.getElementById("miniChart");
-
-      function getContainerWidth() {
-        return wrapperEl ? wrapperEl.clientWidth : window.innerWidth;
-      }
-
-      function applyLegendForContainer() {
-        const w = getContainerWidth();
-        const isNarrow = w <= 900;
-
-        const updates = isNarrow
-          ? {
-              "legend.orientation": "h",
-              "legend.x": 0,
-              "legend.y": -0.25,
-              "legend.xanchor": "left",
-              "legend.yanchor": "top",
-              "margin.r": 60,
-              "margin.b": 110,
-            }
-          : {
-              "legend.orientation": "v",
-              "legend.x": 1,
-              "legend.y": 1,
-              "legend.xanchor": "right",
-              "legend.yanchor": "top",
-              "margin.r": 60,
-              "margin.b": 70,
-            };
-
-        Plotly.relayout(chartEl, updates);
-      }
-
       /* ===================== MINI CHART ===================== */
-      // Example: higher flows often coincide with higher turbidity (e.g., during wet weather events)
       const miniDays = [1, 2, 3, 4, 5, 6];
       const flowMGD = [2.1, 2.4, 2.8, 3.2, 3.0, 2.6];
       const turbNTU = [7.5, 7.0, 6.2, 8.8, 9.6, 7.9];
@@ -306,14 +290,13 @@
         type: "scatter",
         mode: "lines+markers",
         line: { color: "#1f77b4" },
-        hovertemplate:
-          "<b>Flow</b><br>Day: %{x}<br>%{y} MGD<extra></extra>",
+        hovertemplate: "<b>Flow</b><br>Day: %{x}<br>%{y} MGD<extra></extra>",
       };
 
       const turbTrace = {
         x: miniDays,
         y: turbNTU,
-        name: "Effluent Turbidity (NTU)",
+        name: "Turbidity (NTU)",
         yaxis: "y2",
         type: "scatter",
         mode: "lines+markers",
@@ -326,15 +309,9 @@
         autosize: true,
         plot_bgcolor: "white",
         paper_bgcolor: "white",
-        margin: { l: 50, r: 50, t: 10, b: 40 },
+        margin: { l: 50, r: 55, t: 35, b: 45 },
         font: { color: "black", size: 11 },
-        xaxis: {
-          title: "Day",
-          dtick: 1,
-          zeroline: false,
-          showline: true,
-          linewidth: 1,
-        },
+        xaxis: { title: "Day", dtick: 1, zeroline: false, showline: true },
         yaxis: {
           title: "Flow (MGD)",
           range: [1.8, 3.6],
@@ -342,7 +319,6 @@
           showgrid: false,
           zeroline: false,
           showline: true,
-          linewidth: 1,
         },
         yaxis2: {
           title: "Turbidity (NTU)",
@@ -353,25 +329,60 @@
           showgrid: false,
           zeroline: false,
           showline: true,
-          linewidth: 1,
         },
         legend: {
           orientation: "h",
-          x: 0,
-          y: -0.35,
-          xanchor: "left",
-          yanchor: "top",
+          x: 0.5,
+          y: 1.15,
+          xanchor: "center",
+          yanchor: "bottom",
           font: { size: 10, color: "black" },
+          bgcolor: "rgba(255,255,255,0.85)",
         },
         hovermode: "closest",
       };
 
-      const miniConfig = {
-        responsive: true,
-        displayModeBar: false, // keep it tiny + clean
-      };
+      const miniConfig = { responsive: true, displayModeBar: false };
 
-      /* ===================== RESIZE HANDLING ===================== */
+      /* ===================== RESPONSIVE (LEGEND GOES DOWN ON SMALL) ===================== */
+      const wrapperEl = document.getElementById("wrapper");
+      const chartEl = document.getElementById("chart");
+      const miniChartEl = document.getElementById("miniChart");
+
+      function getContainerWidth() {
+        return wrapperEl ? wrapperEl.clientWidth : window.innerWidth;
+      }
+
+      function applyLegendForContainer() {
+        const w = getContainerWidth();
+        const isNarrow = w <= 900;
+
+        // IMPORTANT: on narrow => legend BELOW chart with spacing
+        const updates = isNarrow
+          ? {
+              "legend.orientation": "h",
+              "legend.x": 0,
+              "legend.y": -0.25,       // below plot
+              "legend.xanchor": "left",
+              "legend.yanchor": "top",
+              "margin.b": 130,         // space for legend
+              "margin.t": 60,
+              "margin.r": 60,
+            }
+          : {
+              "legend.orientation": "v",
+              "legend.x": 1,
+              "legend.y": 1,
+              "legend.xanchor": "right",
+              "legend.yanchor": "top",
+              "margin.b": 70,
+              "margin.t": 60,
+              "margin.r": 60,
+            };
+
+        Plotly.relayout(chartEl, updates);
+      }
+
       let rafId = null;
       function scheduleResize() {
         if (rafId) cancelAnimationFrame(rafId);
@@ -392,10 +403,13 @@
         Plotly.newPlot(chartEl, [tssTrace, doseTrace], layout, config),
         Plotly.newPlot(miniChartEl, [flowTrace, turbTrace], miniLayout, miniConfig),
       ]).then(() => {
-        applyLegendForContainer();
         setupResizeObserver();
         window.addEventListener("resize", scheduleResize);
-        scheduleResize();
+
+        // Rise/iframe stabilization
+        setTimeout(scheduleResize, 0);
+        setTimeout(scheduleResize, 120);
+        setTimeout(scheduleResize, 400);
       });
     </script>
   </body>
