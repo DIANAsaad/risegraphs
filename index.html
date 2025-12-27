@@ -94,8 +94,8 @@
       /* STACKED (mobile/tablet) */
       @media (max-width: 900px) {
         :root {
-          --gap: 3px;     /* tighter */
-          --pad: 6px;     /* tighter */
+          --gap: 3px; /* tighter */
+          --pad: 6px; /* tighter */
           --note-gap: 4px; /* tighter note spacing */
         }
 
@@ -113,7 +113,7 @@
         /* KEY FIX for the “huge space”:
            remove any chance of extra margins/padding between leftcol and interpretation */
         #leftcol {
-          margin-bottom: 0;
+          margin-bottom: -150px;
           padding-bottom: 0;
         }
 
@@ -127,9 +127,9 @@
         #interpretation {
           width: 100%;
           max-width: none;
-          padding-top: 0px;   /* tighter */
+          padding-top: 0px; /* tighter */
           padding-bottom: 8px;
-          margin-top: 0;      /* IMPORTANT: no extra gap */
+          margin-top: 0; /* IMPORTANT: no extra gap */
         }
 
         #miniChart {
@@ -145,7 +145,22 @@
         <div id="chart"></div>
 
         <div id="note">
-          <b>NOTE:</b> To hide one of the graphs, click its label in the legend.
+          <b>NOTE:</b><br />
+          <ul>
+            <li>
+              <strong>Click on a label in the legend</strong> to hide or show a
+              specific graph line.
+            </li>
+            <li>
+              <strong>Double Y-axis graphs</strong> are used to compare two
+              variables with different units or scales over the same independent
+              variable (such as time).
+            </li>
+            <li>
+              <strong>Use the legend's labels and colors</strong> to identify
+              which line corresponds to each variable.
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -300,8 +315,7 @@
         type: "scatter",
         mode: "lines+markers",
         line: { color: "#ff4500" },
-        hovertemplate:
-          "<b>Variable 2</b><br>Day: %{x}",
+        hovertemplate: "<b>Variable 2</b><br>Day: %{x}",
       };
 
       const miniLayout = {
@@ -310,7 +324,12 @@
         paper_bgcolor: "white",
         margin: { l: 50, r: 55, t: 35, b: 45 },
         font: { color: "black", size: 11 },
-        xaxis: { title: "Independent variable", dtick: 1, zeroline: false, showline: true },
+        xaxis: {
+          title: "Independent variable",
+          dtick: 1,
+          zeroline: false,
+          showline: true,
+        },
         yaxis: {
           title: "Variable 1",
           range: [1, 7],
@@ -345,8 +364,34 @@
 
       /* ===================== RESPONSIVE (LEGEND GOES DOWN ON SMALL) ===================== */
       const wrapperEl = document.getElementById("wrapper");
+      const leftcolEl = document.getElementById("leftcol");
+      const interpretationEl = document.getElementById("interpretation");
       const chartEl = document.getElementById("chart");
+      const noteEl = document.getElementById("note");
+      const miniWrapEl = document.getElementById("miniWrap");
       const miniChartEl = document.getElementById("miniChart");
+
+      // Remember original DOM positions so we can restore perfectly on desktop.
+      const original = {
+        noteParent: noteEl.parentNode,
+        noteNext: noteEl.nextSibling, // null means "append"
+        miniWrapParent: miniWrapEl.parentNode,
+        miniWrapNext: miniWrapEl.nextSibling,
+      };
+
+      function moveAfter(node, afterNode) {
+        const parent = afterNode.parentNode;
+        if (!parent) return;
+        const next = afterNode.nextSibling;
+        if (next) parent.insertBefore(node, next);
+        else parent.appendChild(node);
+      }
+
+      function restoreOriginal(node, parent, nextSibling) {
+        if (!parent) return;
+        if (nextSibling) parent.insertBefore(node, nextSibling);
+        else parent.appendChild(node);
+      }
 
       function getContainerWidth() {
         return wrapperEl ? wrapperEl.clientWidth : window.innerWidth;
@@ -361,10 +406,10 @@
           ? {
               "legend.orientation": "h",
               "legend.x": 0,
-              "legend.y": -0.25,       // below plot
+              "legend.y": -0.25, // below plot
               "legend.xanchor": "left",
               "legend.yanchor": "top",
-              "margin.b": 130,         // space for legend
+              "margin.b": -100, // space for legend
               "margin.t": 60,
               "margin.r": 60,
             }
@@ -382,10 +427,45 @@
         Plotly.relayout(chartEl, updates);
       }
 
+      function applyMobileOrder() {
+        const w = getContainerWidth();
+        const isNarrow = w <= 900;
+
+        if (isNarrow) {
+          // Mobile order desired:
+          // main chart -> interpretation -> note -> miniWrap
+          //
+          // We do it by:
+          // 1) moving NOTE to be after the interpretation column (as a sibling under wrapper)
+          // 2) moving miniWrap to be after NOTE (also as a sibling under wrapper)
+          if (noteEl.parentNode !== wrapperEl) {
+            wrapperEl.appendChild(noteEl);
+          }
+          if (miniWrapEl.parentNode !== wrapperEl) {
+            wrapperEl.appendChild(miniWrapEl);
+          }
+
+          // Ensure exact order among wrapper children:
+          // leftcol (chart) -> interpretation -> note -> miniWrap
+          moveAfter(interpretationEl, leftcolEl);
+          moveAfter(noteEl, interpretationEl);
+          moveAfter(miniWrapEl, noteEl);
+        } else {
+          // Restore original desktop DOM positions
+          restoreOriginal(noteEl, original.noteParent, original.noteNext);
+          restoreOriginal(
+            miniWrapEl,
+            original.miniWrapParent,
+            original.miniWrapNext
+          );
+        }
+      }
+
       let rafId = null;
       function scheduleResize() {
         if (rafId) cancelAnimationFrame(rafId);
         rafId = requestAnimationFrame(() => {
+          applyMobileOrder(); // <--- IMPORTANT: reorder DOM first
           applyLegendForContainer();
           Plotly.Plots.resize(chartEl);
           Plotly.Plots.resize(miniChartEl);
@@ -400,12 +480,17 @@
 
       Promise.all([
         Plotly.newPlot(chartEl, [tssTrace, doseTrace], layout, config),
-        Plotly.newPlot(miniChartEl, [flowTrace, turbTrace], miniLayout, miniConfig),
+        Plotly.newPlot(
+          miniChartEl,
+          [flowTrace, turbTrace],
+          miniLayout,
+          miniConfig
+        ),
       ]).then(() => {
         setupResizeObserver();
         window.addEventListener("resize", scheduleResize);
 
-        // Rise/iframe stabilization
+        // Initial + iframe stabilization
         setTimeout(scheduleResize, 0);
         setTimeout(scheduleResize, 120);
         setTimeout(scheduleResize, 400);
