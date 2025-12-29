@@ -8,7 +8,8 @@
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
     <style>
-      html, body {
+      html,
+      body {
         margin: 0;
         padding: 0;
         width: 100%;
@@ -31,6 +32,58 @@
         align-items: center;
       }
 
+      /* ===== ADDITION ONLY (no changes to your existing rules) ===== */
+      #layout {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      #graph-wrap {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+      }
+      #interpretation {
+        width: 320px;
+        flex: 0 0 320px;
+        padding: 12px 14px;
+        font-size: 14px;
+        line-height: 1.4;
+        margin-top: 5rem;
+        color: #000;
+        box-sizing: border-box;
+      }
+
+      /* ✅ FIX: on small screens, do NOT force 100vh;
+         instead let Plotly have room for title + legend */
+      @media (max-width: 1200px) {
+        #layout {
+          flex-direction: column;
+          align-items: center;
+        }
+        #interpretation {
+          width: 100%;
+          flex: 0 0 auto;
+          margin-top: 0.1rem;
+        }
+        #graph-wrap {
+          width: 90%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        /* Key change: give chart a stable height that leaves room
+           for the Plotly title + legend without clipping */
+        #chart {
+          width: 100%;
+          height: 70vh;         /* was calc(100vh - 60px) */
+          min-height: 520px;    /* ensures title/legend still visible */
+        }
+      }
+      /* ===== END ADDITION ONLY ===== */
+
       #chart {
         width: 90%;
         height: 100vh;
@@ -41,28 +94,62 @@
 
   <body>
     <div id="container">
-      <div id="chart"></div>
+      <!-- ===== ADDITION ONLY (wrapper + interpretation) ===== -->
+      <div id="layout">
+        <div id="graph-wrap">
+          <div id="chart"></div>
+        </div>
+
+        <div id="interpretation">
+          <strong>Interpretation</strong><br /><br />
+          <ul>
+            <li>Flow shows a steady increase over several days.</li>
+            <li>
+              Effluent BOD and TSS do not improve as expected and begin to rise.
+            </li>
+            <li>
+              Values approach the upper end of typical secondary effluent ranges
+              (near the 30/30 benchmark).
+            </li>
+            <li>
+              This suggests the process is under hydraulic stress, but not in
+              immediate failure.
+            </li>
+            <li>
+              The trend indicates reduced treatment efficiency as flow
+              increases, likely due to reduced detention time or clarifier
+              loading.
+            </li>
+            <li>
+              While this behavior can be normal with higher flows, continued
+              upward trends may lead to permit compliance risk if conditions
+              persist.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- ===== END ADDITION ONLY ===== -->
     </div>
 
     <script>
       const chartEl = document.getElementById("chart");
 
       // X-axis (Time)
-      const days = [1,2,3,4,5,6,7,8,9,10];
+      const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
       // Flow (Left Y-axis)
       const flowTrace = {
         x: days,
-        y: [2.55, 2.65, 2.78, 2.92, 3.06, 3.20, 3.35, 3.48, 3.62, 3.75],
+        y: [2.55, 2.65, 2.78, 2.92, 3.06, 3.2, 3.35, 3.48, 3.62, 3.75],
         name: "Flow (MGD)",
         type: "scatter",
         mode: "lines+markers",
-        line: { width: 3, color:"#ff9287" },
-        marker: { size: 8 , color:"#ff9287"},
+        line: { width: 3, color: "#ff9287" },
+        marker: { size: 8, color: "#ff9287" },
         hovertemplate:
           "<b>Flow</b><br>" +
           "Day: %{x}<br>" +
-          "Flow: %{y:.2f} MGD<extra></extra>"
+          "Flow: %{y:.2f} MGD<extra></extra>",
       };
 
       // Effluent BOD (Right Y-axis)
@@ -73,13 +160,13 @@
         type: "scatter",
         mode: "lines+markers",
         yaxis: "y2",
-        line:{color:'#ff4500'},
+        line: { color: "#ff4500" },
         line: { width: 3 },
-        marker: { size: 8, color:"#ff4500" },
+        marker: { size: 8, color: "#ff4500" },
         hovertemplate:
           "<b>Effluent BOD</b><br>" +
           "Day: %{x}<br>" +
-          "BOD: %{y} mg/L<extra></extra>"
+          "BOD: %{y} mg/L<extra></extra>",
       };
 
       // Effluent TSS (Right Y-axis)
@@ -90,12 +177,12 @@
         type: "scatter",
         mode: "lines+markers",
         yaxis: "y2",
-        line: { width: 3 , color:"#8da2db"},
-        marker: { size: 8, color:"#8da2db" },
+        line: { width: 3, color: "#8da2db" },
+        marker: { size: 8, color: "#8da2db" },
         hovertemplate:
           "<b>Effluent TSS</b><br>" +
           "Day: %{x}<br>" +
-          "TSS: %{y} mg/L<extra></extra>"
+          "TSS: %{y} mg/L<extra></extra>",
       };
 
       const layout = {
@@ -105,7 +192,7 @@
         hoverlabel: {
           bgcolor: "white",
           bordercolor: "black",
-          font: { size: 13, color: "black" }
+          font: { size: 13, color: "black" },
         },
 
         margin: { l: 80, r: 80, t: 150, b: 100 },
@@ -119,7 +206,7 @@
           dtick: 1,
           showline: true,
           linewidth: 2,
-          automargin: true
+          automargin: true,
         },
 
         yaxis: {
@@ -127,7 +214,7 @@
           showline: true,
           showgrid: false,
           linewidth: 2,
-          automargin: true
+          automargin: true,
         },
 
         yaxis2: {
@@ -137,7 +224,7 @@
           showline: true,
           showgrid: false,
           linewidth: 2,
-          automargin: true
+          automargin: true,
         },
 
         // Default: legend ABOVE (desktop)
@@ -145,51 +232,68 @@
           orientation: "h",
           x: 0.5,
           xanchor: "center",
-          y: 1.10,
+          y: 1.1,
           yanchor: "bottom",
-          yref: "paper"
-        }
+          yref: "paper",
+        },
       };
 
       const config = {
         responsive: true,
-        displayModeBar: false
+        displayModeBar: true,
       };
 
-   
       function updateLegendPosition() {
-        const isSmallScreen = window.innerWidth <= 768;
+  const isSmallScreen = window.innerWidth <= 1200;
 
-        Plotly.relayout(chartEl, {
-          legend: isSmallScreen
-            ? {
-                orientation: "h",
-                x: 0.5,
-                xanchor: "center",
-                y: -0.25,
-                yanchor: "top"
-              }
-            : {
-                orientation: "h",
-                x: 0.5,
-                xanchor: "center",
-                y: 1.10,
-                yanchor: "bottom"
-              }
-        });
-      }
+  Plotly.relayout(chartEl, {
+    legend: isSmallScreen
+      ? {
+          orientation: "h",
+          x: 0.5,
+          xanchor: "center",
+          y: -0.25,
+          yanchor: "top",
+        }
+      : {
+          orientation: "h",
+          x: 0.5,
+          xanchor: "center",
+          y: 1.1,
+          yanchor: "bottom",
+        },
+
+    title: isSmallScreen
+      ? {
+          text: "<b>Flow, BOD, and TSS Trends Over Time</b>",
+          x: 0.5,
+          y: 0.65
+        }
+      : {
+          text: "<b>Flow, BOD, and TSS Trends Over Time</b>",
+          x: 0.5,
+          y: 0.95
+        },
+
+    margin: isSmallScreen
+      ? { l: 80, r: 80, t: 250, b: 120 }
+      : { l: 80, r: 80, t: 150, b: 100 }
+  });
+}
 
       function stabilizeLayout() {
         Plotly.Plots.resize(chartEl);
         updateLegendPosition();
       }
 
-      Plotly.newPlot(chartEl, [flowTrace, bodTrace, tssTrace], layout, config).then(() => {
-        setTimeout(stabilizeLayout, 0);
-        setTimeout(stabilizeLayout, 120);
-        setTimeout(stabilizeLayout, 400);
-        setTimeout(stabilizeLayout, 900);
-      });
+      Plotly.newPlot(chartEl, [flowTrace, bodTrace, tssTrace], layout, config).then(
+        () => {
+          setTimeout(stabilizeLayout, 0);
+          setTimeout(stabilizeLayout, 120);
+          setTimeout(stabilizeLayout, 400);
+          setTimeout(stabilizeLayout, 900);
+        }
+      );
 
       // Resize handling (RISE-safe)
       window.addEventListener("resize", stabilizeLayout);
