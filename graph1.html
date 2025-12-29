@@ -57,7 +57,7 @@
 
       /* ✅ FIX: on small screens, do NOT force 100vh;
          instead let Plotly have room for title + legend */
-      @media (max-width: 1200px) {
+      @media (max-width: 1000px) {
         #layout {
           flex-direction: column;
           align-items: center;
@@ -244,7 +244,7 @@
       };
 
       function updateLegendPosition() {
-  const isSmallScreen = window.innerWidth <= 1200;
+  const isSmallScreen = window.innerWidth <= 1000;
 
   Plotly.relayout(chartEl, {
     legend: isSmallScreen
