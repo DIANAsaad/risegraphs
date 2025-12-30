@@ -74,13 +74,24 @@
           align-items: center;
         }
 
-        /* Key change: give chart a stable height that leaves room
-           for the Plotly title + legend without clipping */
+        /* (UNCHANGED) */
         #chart {
           width: 100%;
-          height: 70vh;         /* was calc(100vh - 60px) */
-          min-height: 520px;    /* ensures title/legend still visible */
+          height: 70vh;
+          min-height: 520px;
         }
+      }
+
+      /* ✅ NEW: mobile class tweaks (NO chart height changes) */
+      body.is-mobile #container {
+        padding: 8px; /* helps prevent “everything feels crushed” */
+      }
+      body.is-mobile #graph-wrap {
+        width: 100%;
+      }
+      body.is-mobile #interpretation {
+        padding: 10px 12px;
+        font-size: 13px;
       }
       /* ===== END ADDITION ONLY ===== */
 
@@ -160,8 +171,7 @@
         type: "scatter",
         mode: "lines+markers",
         yaxis: "y2",
-        line: { color: "#ff4500" },
-        line: { width: 3 },
+        line: { width: 3, color: "#ff4500" },
         marker: { size: 8, color: "#ff4500" },
         hovertemplate:
           "<b>Effluent BOD</b><br>" +
@@ -243,43 +253,80 @@
         displayModeBar: true,
       };
 
+      // ✅ NEW: 3-tier behavior:
+      // Desktop: >1000 (legend above)
+      // Medium: 601–1000 (legend below, with safer spacing so it doesn't collide with title)
+      // Mobile: <=600 (legend below + tighter margins so plot area stays readable WITHOUT changing chart height)
       function updateLegendPosition() {
-  const isSmallScreen = window.innerWidth <= 1000;
+        const w = window.innerWidth;
 
-  Plotly.relayout(chartEl, {
-    legend: isSmallScreen
-      ? {
-          orientation: "h",
-          x: 0.5,
-          xanchor: "center",
-          y: -0.25,
-          yanchor: "top",
+        const isMedium = w <= 1000;
+        const isMobile = w <= 600;
+
+        // add/remove mobile class (requested)
+        document.body.classList.toggle("is-mobile", isMobile);
+
+        if (isMobile) {
+          Plotly.relayout(chartEl, {
+            legend: {
+              orientation: "h",
+              x: 0.5,
+              xanchor: "center",
+              y: -0.35,
+              yanchor: "top",
+            },
+            title: {
+              text: "<b>Flow, BOD, and TSS Trends Over Time</b>",
+              x: 0.5,
+              y: 0.98,
+              yanchor: "top",
+            },
+            // tighten margins so the plotting area isn't “tiny”
+            // (this does NOT change chart height; it just gives the plot more usable space)
+            margin: { l: 70, r: 70, t: 120, b: 170 },
+          });
+          return;
         }
-      : {
-          orientation: "h",
-          x: 0.5,
-          xanchor: "center",
-          y: 1.1,
-          yanchor: "bottom",
-        },
 
-    title: isSmallScreen
-      ? {
-          text: "<b>Flow, BOD, and TSS Trends Over Time</b>",
-          x: 0.5,
-          y: 0.65
+        if (isMedium) {
+          Plotly.relayout(chartEl, {
+            legend: {
+              orientation: "h",
+              x: 0.5,
+              xanchor: "center",
+              y: -0.25,
+              yanchor: "top",
+            },
+            // keep title high and stable so legend never overlaps it
+            title: {
+              text: "<b>Flow, BOD, and TSS Trends Over Time</b>",
+              x: 0.5,
+              y: 0.98,
+              yanchor: "top",
+            },
+            // give title room without stealing too much from the plot
+            margin: { l: 80, r: 80, t: 150, b: 140 },
+          });
+          return;
         }
-      : {
-          text: "<b>Flow, BOD, and TSS Trends Over Time</b>",
-          x: 0.5,
-          y: 0.95
-        },
 
-    margin: isSmallScreen
-      ? { l: 80, r: 80, t: 250, b: 120 }
-      : { l: 80, r: 80, t: 150, b: 100 }
-  });
-}
+        // Desktop
+        Plotly.relayout(chartEl, {
+          legend: {
+            orientation: "h",
+            x: 0.5,
+            xanchor: "center",
+            y: 1.1,
+            yanchor: "bottom",
+          },
+          title: {
+            text: "<b>Flow, BOD, and TSS Trends Over Time</b>",
+            x: 0.5,
+            y: 0.95,
+          },
+          margin: { l: 80, r: 80, t: 150, b: 100 },
+        });
+      }
 
       function stabilizeLayout() {
         Plotly.Plots.resize(chartEl);
