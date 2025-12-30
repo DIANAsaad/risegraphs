@@ -163,7 +163,7 @@
       // Flow (Left Y-axis)
       const flowTrace = {
         x: days,
-        y: [2.55, 2.65, 2.78, 2.92, 3.06, 3.2, 3.35, 3.48, 3.62, 3.75],
+        y: [2.5, 2.65, 2.70, 2.95, 3.00, 3.2, 3.35, 3.40, 3.6, 3.70],
         name: "Flow (MGD)",
         type: "scatter",
         mode: "lines+markers",
@@ -237,6 +237,7 @@
           showgrid: false,
           linewidth: 2,
           automargin: true,
+          dtick:0.1,
         },
 
         yaxis2: {
@@ -247,6 +248,7 @@
           showgrid: false,
           linewidth: 2,
           automargin: true,
+          dtick:2,
         },
 
         // Default: legend ABOVE (desktop)
