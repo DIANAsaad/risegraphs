@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DO and Effluent Ammonia Trend Example</title>
+
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 16px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* ===== ADDITION ONLY (no changes to your existing rules) ===== */
+      #layout {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      #graph-wrap {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+      }
+      #interpretation {
+        width: 320px;
+        flex: 0 0 320px;
+        padding: 12px 14px;
+        font-size: 14px;
+        line-height: 1.4;
+        margin-top: 5rem;
+        color: #000;
+        box-sizing: border-box;
+      }
+
+      /* ✅ FIX: on small screens, do NOT force 100vh;
+         instead let Plotly have room for title + legend */
+      @media (max-width: 1000px) {
+        #layout {
+          flex-direction: column;
+          align-items: center;
+        }
+        #interpretation {
+          width: 100%;
+          flex: 0 0 auto;
+          margin-top: 0.1rem;
+        }
+        #graph-wrap {
+          width: 90%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        /* Key change: give chart a stable height that leaves room
+           for the Plotly title + legend without clipping */
+        #chart {
+          width: 100%;
+          height: 80vh; /* was calc(100vh - 60px) */
+          min-height: 520px; /* ensures title/legend still visible */
+        }
+      }
+      /* ===== END ADDITION ONLY ===== */
+
+      #chart {
+        width: 90%;
+        height: 90vh;
+        min-height: 420px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="layout">
+        <div id="graph-wrap">
+          <div id="chart"></div>
+        </div>
+
+        <div id="interpretation">
+          <strong>Interpretation</strong><br /><br />
+          <ul>
+            <li>
+              Dissolved Oxygen (DO) drops steadily over time and falls below typical
+              operating targets for nitrification.
+            </li>
+            <li>
+              As DO declines, effluent ammonia rises sharply, showing an inverse
+              relationship between oxygen availability and ammonia removal.
+            </li>
+            <li>
+              By the end of the trend, DO is critically low while ammonia is high,
+              indicating a severe process performance issue.
+            </li>
+            <li>
+              The likely deduction is insufficient oxygen transfer/availability,
+              with worsening effluent performance that requires high-priority
+              attention and close monitoring.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const chartEl = document.getElementById("chart");
+
+      // X-axis (Time)
+      const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+      // Dissolved Oxygen (Left Y-axis) - adjusted to land on clean tick marks
+      const doTrace = {
+        x: days,
+        y: [2.5, 2.0, 1.5, 1.0, 0.5, 0.4, 0.3, 0.2, 0.1, 0.0],
+        name: "Dissolved Oxygen (mg/L)",
+        type: "scatter",
+        mode: "lines+markers",
+        line: { width: 3, color: "#ff4500" },
+        marker: { size: 8, color: "#ff4500" },
+        hovertemplate:
+          "<b>DO</b><br>" +
+          "Day: %{x}<br>" +
+          "DO: %{y:.1f} mg/L<extra></extra>",
+      };
+
+      // Effluent Ammonia (Right Y-axis) - adjusted to land on clean tick marks
+      const nh3Trace = {
+        x: days,
+        y: [1, 2, 3, 5, 7, 9, 11, 13, 15, 17],
+        name: "Effluent Ammonia (mg/L)",
+        type: "scatter",
+        mode: "lines+markers",
+        yaxis: "y2",
+        line: { width: 3, color: "#8da2db" },
+        marker: { size: 8, color: "#8da2db" },
+        hovertemplate:
+          "<b>Effluent Ammonia</b><br>" +
+          "Day: %{x}<br>" +
+          "Ammonia: %{y:.1f} mg/L<extra></extra>",
+      };
+
+      const layout = {
+        title: { text: "<b>DO and Effluent Ammonia Trends Over Time</b>", x: 0.5 },
+
+        hovermode: "x unified",
+        hoverlabel: {
+          bgcolor: "white",
+          bordercolor: "black",
+          font: { size: 13, color: "black" },
+        },
+
+        margin: { l: 80, r: 80, t: 150, b: 100 },
+
+        plot_bgcolor: "#ffffff",
+        paper_bgcolor: "#ffffff",
+        font: { color: "#000000" },
+
+        xaxis: {
+          title: { text: "Time (Days)", standoff: 12 },
+          dtick: 1,
+          showline: true,
+          linewidth: 2,
+          automargin: true,
+        },
+
+        yaxis: {
+          title: { text: "Dissolved Oxygen (mg/L)", standoff: 12 },
+          showline: true,
+          showgrid: false,
+          linewidth: 2,
+          automargin: true,
+
+          /* makes the axis labels match the values cleanly */
+          tick0: 0,
+          dtick: 0.5,
+          range: [0, 2.7],
+        },
+
+        yaxis2: {
+          title: { text: "Effluent Ammonia (mg/L)", standoff: 12 },
+          overlaying: "y",
+          side: "right",
+          showline: true,
+          showgrid: false,
+          linewidth: 2,
+          automargin: true,
+
+          /* makes the axis labels match the values cleanly */
+          tick0: 0,
+          dtick: 1,
+          range: [0, 19],
+        },
+
+        // Default: legend ABOVE (desktop)
+        legend: {
+          orientation: "h",
+          x: 0.5,
+          xanchor: "center",
+          y: 1.1,
+          yanchor: "bottom",
+          yref: "paper",
+        },
+      };
+
+      const config = {
+        responsive: true,
+        displayModeBar: true,
+      };
+
+      function updateLegendPosition() {
+        const isSmallScreen = window.innerWidth <= 1000;
+
+        Plotly.relayout(chartEl, {
+          legend: isSmallScreen
+            ? {
+                orientation: "h",
+                x: 0.5,
+                xanchor: "center",
+                y: -0.25,
+                yanchor: "top",
+              }
+            : {
+                orientation: "h",
+                x: 0.5,
+                xanchor: "center",
+                y: 1.1,
+                yanchor: "bottom",
+              },
+
+          title: isSmallScreen
+            ? {
+                text: "<b>DO and Effluent Ammonia Trends Over Time</b>",
+                x: 0.5,
+                y: 0.65,
+              }
+            : {
+                text: "<b>DO and Effluent Ammonia Trends Over Time</b>",
+                x: 0.5,
+                y: 0.95,
+              },
+
+          margin: isSmallScreen
+            ? { l: 80, r: 80, t: 250, b: 120 }
+            : { l: 80, r: 80, t: 150, b: 100 },
+        });
+      }
+
+      function stabilizeLayout() {
+        Plotly.Plots.resize(chartEl);
+        updateLegendPosition();
+      }
+
+      Plotly.newPlot(chartEl, [doTrace, nh3Trace], layout, config).then(() => {
+        setTimeout(stabilizeLayout, 0);
+        setTimeout(stabilizeLayout, 120);
+        setTimeout(stabilizeLayout, 400);
+        setTimeout(stabilizeLayout, 900);
+      });
+
+      // Resize handling (RISE-safe)
+      window.addEventListener("resize", stabilizeLayout);
+
+      const ro = new ResizeObserver(() => stabilizeLayout());
+      ro.observe(document.getElementById("container"));
+    </script>
+  </body>
+</html>
