@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Click to Add Points → Join</title>
+
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background: #ffffff;
+      }
+
+      #wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 12px;
+        box-sizing: border-box;
+      }
+
+      #controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 8px 12px;
+        border: 1px solid #ff4500;
+        background: #ffece6;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #ff4500;
+      }
+
+      button:active {
+        transform: translateY(1px);
+      }
+
+      .pill {
+        padding: 6px 10px;
+        border: 1px solid #ff4500;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-size: 13px;
+        display: inline-flex;
+        background-color: #ffece6;
+        color: #ff4500;
+        gap: 8px;
+        align-items: center;
+      }
+
+      label {
+        cursor: pointer;
+        user-select: none;
+      }
+
+      #chart {
+        width: 100%;
+        height: 72vh;
+        min-height: 460px;
+      }
+
+      #hint {
+        margin-top: 8px;
+        font-size: 13px;
+        color: #000000;
+      }
+
+      code {
+        background: #ffece6;
+        padding: 2px 6px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrap">
+      <div id="controls">
+        <button id="joinBtn">Join Points</button>
+        <button id="pointsBtn">Points Only</button>
+        <button id="undoBtn">Undo</button>
+        <button id="clearBtn">Clear</button>
+
+        <div class="pill">
+          <label>
+            <input id="snapToggle" type="checkbox" checked />
+            Snap to grid
+          </label>
+        </div>
+
+        <div class="pill">
+          <span>Y step:</span>
+          <select id="yStep">
+            <option value="0.5">0.5</option>
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <div class="pill">
+          <span>X step:</span>
+          <select id="xStep">
+            <option value="1" selected>1</option>
+            <option value="0.5">0.5</option>
+            <option value="2">2</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="chart"></div>
+
+      <div id="hint">
+        Click inside the plot area to add points. Press
+        <code>Join Points</code> to connect them.
+      </div>
+    </div>
+
+    <script>
+      const chartId = "chart";
+      const chartDiv = document.getElementById(chartId);
+
+      let pts = [];
+      let joined = false;
+
+      function roundToStep(val, step) {
+        return Math.round(val / step) * step;
+      }
+
+      function getSteps() {
+        return {
+          snap: document.getElementById("snapToggle").checked,
+          xs: parseFloat(document.getElementById("xStep").value),
+          ys: parseFloat(document.getElementById("yStep").value),
+        };
+      }
+
+      function updatePlot() {
+        const trace = {
+          x: pts.map((p) => p.x),
+          y: pts.map((p) => p.y),
+          type: "scatter",
+          mode: joined ? "lines+markers" : "markers",
+          marker: { size: 10, color: "#ff4500" },
+          line: { width: 3, color: "#ff4500" },
+          hovertemplate: "x-value: %{x}<br>y-value: %{y}<extra></extra>",
+        };
+
+        Plotly.react(chartId, [trace], layout, config);
+      }
+
+      const layout = {
+        margin: { l: 60, r: 20, t: 60, b: 60 },
+        title: "Plot and Join Data Points",
+        titlefont:{weight: 'bold', size:20, color: '#000000'},
+        
+        dragmode: false, // IMPORTANT
+        clickmode: "none",
+        xaxis: {
+          title: "x-axis (Independent Variable)",
+          range: [0, 10],
+          dtick: 1,
+          zeroline: false,
+          showline: true,
+          gridcolor: "#ffefe6",
+          linewidth: 2,
+        },
+        yaxis: {
+          title: "y-axis (Dependent Variable)",
+          range: [0, 10],
+          dtick: 1,
+          zeroline: false,
+          showline: true,
+          gridcolor: "#ffefe6",
+          linewidth: 2,
+        },
+      };
+
+      const config = {
+        responsive: true,
+        displayModeBar: true,
+        displaylogo: false,
+        doubleClick: false,
+        scrollZoom: false,
+        modeBarButtonsToRemove: [
+          "select2d", // box select
+          "lasso2d", // lasso select
+        ],
+      };
+
+      Plotly.newPlot(
+        chartId,
+        [
+          {
+            x: [],
+            y: [],
+            type: "scatter",
+            mode: "markers",
+            marker: { size: 10 },
+          },
+        ],
+        layout,
+        config
+      );
+
+      // === CLICK ANYWHERE TO ADD POINT ===
+      chartDiv.addEventListener("click", (e) => {
+        const gd = chartDiv;
+        if (!gd._fullLayout) return;
+
+        const fl = gd._fullLayout;
+        const size = fl._size;
+
+        const rect = gd.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const plotX = mouseX - size.l;
+        const plotY = mouseY - size.t;
+
+        if (plotX < 0 || plotX > size.w || plotY < 0 || plotY > size.h) return;
+
+        const xa = fl.xaxis;
+        const ya = fl.yaxis;
+
+        let x = xa.p2d(plotX);
+        let y = ya.p2d(plotY);
+
+        const { snap, xs, ys } = getSteps();
+        if (snap) {
+          x = roundToStep(x, xs);
+          y = roundToStep(y, ys);
+        }
+
+        pts.push({ x, y });
+        updatePlot();
+      });
+
+      // Buttons
+      document.getElementById("joinBtn").onclick = () => {
+        joined = true;
+        updatePlot();
+      };
+
+      document.getElementById("pointsBtn").onclick = () => {
+        joined = false;
+        updatePlot();
+      };
+
+      document.getElementById("undoBtn").onclick = () => {
+        pts.pop();
+        updatePlot();
+      };
+
+      document.getElementById("clearBtn").onclick = () => {
+        pts = [];
+        joined = false;
+        updatePlot();
+      };
+
+      function syncTicks() {
+        const { xs, ys } = getSteps();
+        layout.xaxis.dtick = xs;
+        layout.yaxis.dtick = ys;
+        updatePlot();
+      }
+
+      document.getElementById("snapToggle").onchange = syncTicks;
+      document.getElementById("xStep").onchange = syncTicks;
+      document.getElementById("yStep").onchange = syncTicks;
+    </script>
+  </body>
+</html>
