@@ -11,7 +11,7 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        margin-top: 5em;
+        margin-top: 3rem;
       }
       p {
         text-align: center; /* Centers the paragraph */
@@ -130,6 +130,22 @@
         .legend-container {
           width: 90%;
           margin-top: 20px;
+        }
+      }
+      /* MOBILE PORTRAIT – allow horizontal scroll for readability */
+      @media (max-width: 480px) {
+        .table-container {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+          min-width: 600px; /* forces scroll instead of ugly wrapping */
+        }
+
+        td,
+        th {
+          white-space: nowrap !important; /* stop letter-by-letter wrapping */
         }
       }
     </style>
