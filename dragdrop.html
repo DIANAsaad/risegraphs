@@ -103,11 +103,16 @@
         min-height: 320px;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
         position: relative;
+        text-align: center; /* Center the stack title */
       }
 
+      /* Card stack title centering */
       .stack-title {
         font-weight: 700;
         margin-bottom: 6px;
+        word-wrap: break-word; /* Ensure title wraps properly */
+        white-space: normal; /* Make sure text wraps */
+        overflow: visible; /* Allow the title to wrap */
       }
 
       .stack-subtitle {
@@ -279,7 +284,7 @@
         <!-- Categories Row -->
         <div class="col-lg-6">
           <div class="drop-zone" id="linearZone" data-category="linear">
-            <h4>Linear Relationships</h4>
+            <h4><b>Linear Relationships</b></h4>
             <p class="zone-description">Variable has a power of 1</p>
             <div class="drop-list" id="linearList"></div>
           </div>
@@ -287,7 +292,7 @@
 
         <div class="col-lg-6">
           <div class="drop-zone" id="nonlinearZone" data-category="nonlinear">
-            <h4>Nonlinear Relationships</h4>
+            <h4><b>Nonlinear Relationships</b></h4>
             <p class="zone-description">
               Variable has a power different from 1
             </p>
@@ -516,7 +521,7 @@
           activeCard.classList.add("correct-card");
           flashZone(zoneElement, "correct-flash");
           await setStatus(
-            `Correct: ${currentCard.text} is <strong>${zoneCategory}</strong>. ${currentCard.note}`,
+            `Correct: ${currentCard.text} is <strong>${zoneCategory}</strong>. ${currentCard.note}`
           );
 
           setTimeout(async () => {
@@ -530,7 +535,7 @@
           activeCard.classList.add("wrong-card");
           flashZone(zoneElement, "wrong-flash");
           await setStatus(
-            `Incorrect: ${currentCard.text} does not belong in <strong>${zoneCategory}</strong>. ${currentCard.note}`,
+            `Incorrect: ${currentCard.text} does not belong in <strong>${zoneCategory}</strong>. ${currentCard.note}`
           );
 
           setTimeout(async () => {
