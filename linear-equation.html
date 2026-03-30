@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Linear vs Nonlinear Drag and Drop</title>
+    <title>Linear Equation Forms Drag and Drop</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -33,14 +33,18 @@
         background: white;
         font-family: Arial, sans-serif;
         padding: 30px 0;
+        margin: 0;
       }
 
       .activity-wrap {
         max-width: 1100px;
         margin: 0 auto;
+        width: 100%;
       }
-
-      /* Center the h4 and p inside drop-zone */
+      .derscription-zone {
+        font-size: 0.5rem;
+      }
+      /* Ensure equal-width columns */
       .drop-zone {
         min-height: 220px;
         border: 2px dashed #ff4500;
@@ -53,21 +57,22 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center; /* Center content horizontally and vertically */
-        text-align: center; /* Ensure text inside is centered */
-        word-wrap: break-word; /* Allow text to wrap onto the next line if it’s too long */
+        align-items: center;
+        text-align: center;
+        word-wrap: break-word;
+        flex: 1;
+        margin: 0 10px;
       }
 
-      /* Allow text to wrap in h4 and p */
       .drop-zone h4,
       .drop-zone p {
-        word-wrap: break-word; /* Allow text to break and wrap onto the next line */
-        white-space: normal; /* Ensure text wraps normally */
-        overflow: visible; /* Allow the text to overflow but it will wrap */
+        word-wrap: break-word;
+        white-space: normal;
+        overflow: visible;
       }
 
       .zone-description {
-        font-size: 0.95rem;
+        font-size: 0.7rem;
         color: #555;
         margin-bottom: 12px;
       }
@@ -103,16 +108,15 @@
         min-height: 320px;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
         position: relative;
-        text-align: center; /* Center the stack title */
+        text-align: center;
       }
 
-      /* Card stack title centering */
       .stack-title {
         font-weight: 700;
         margin-bottom: 6px;
-        word-wrap: break-word; /* Ensure title wraps properly */
-        white-space: normal; /* Make sure text wraps */
-        overflow: visible; /* Allow the title to wrap */
+        word-wrap: break-word;
+        white-space: normal;
+        overflow: visible;
       }
 
       .stack-subtitle {
@@ -240,31 +244,29 @@
         width: 80%;
       }
 
-      /* General Layout Fix */
+      /* Updated layout to remove horizontal scrolling */
       .row.g-4 {
         display: flex;
-        flex-wrap: nowrap; /* Prevents wrapping of columns */
-        justify-content: space-between; /* Ensures spacing between the columns */
+        flex-wrap: wrap;
+        justify-content: space-between;
       }
 
       .col-lg-6 {
         flex: 1;
-        min-width: 48%; /* Ensures both columns don't shrink too much */
+        min-width: 32%; /* Make sure all columns fit without scrolling */
       }
 
-      /* Mobile Layout Fix */
       @media (max-width: 700px) {
         .row.g-4 {
           display: flex;
-          flex-wrap: nowrap; /* Keep both columns beside each other on smaller screens */
           justify-content: space-between;
         }
 
         .col-lg-6 {
-          min-width: 48%; /* Ensure columns stay side by side */
+          flex: 1;
+          min-width: 32%; /* Ensure columns stay side by side */
         }
 
-        /* Ensure the card stack area spans full width on small screens */
         .stack-area {
           margin-top: 20px;
           width: 100%;
@@ -275,6 +277,19 @@
           max-width: 280px;
           margin: 0 auto;
         }
+
+        .zone-description {
+          font-size: 0.5rem;
+          color: #555;
+          margin-bottom: 12px;
+        }
+        .status-box {
+          font-size: 0.7rem;
+          text-align: center;
+          margin-top: 24px;
+          font-weight: 600;
+          min-height: 48px;
+        }
       }
     </style>
   </head>
@@ -283,20 +298,34 @@
       <div class="row g-4 align-items-stretch">
         <!-- Categories Row -->
         <div class="col-lg-6">
-          <div class="drop-zone" id="linearZone" data-category="linear">
-            <h4><b>Linear Relationships</b></h4>
-            <p class="zone-description">Variable has a power of 1</p>
-            <div class="drop-list" id="linearList"></div>
+          <div class="drop-zone" id="pointSlope" data-category="point-slope">
+            <h4><b>Point Slope Form</b></h4>
+            <p class="zone-description">\( y - y_1 = m(x - x_1) \)</p>
+            <div class="drop-list" id="pointSlopeList"></div>
           </div>
         </div>
 
         <div class="col-lg-6">
-          <div class="drop-zone" id="nonlinearZone" data-category="nonlinear">
-            <h4><b>Nonlinear Relationships</b></h4>
-            <p class="zone-description">
-              Variable has a power different from 1
-            </p>
-            <div class="drop-list" id="nonlinearList"></div>
+          <div
+            class="drop-zone"
+            id="slopeIntercept"
+            data-category="slope-intercept"
+          >
+            <h4><b>Slope Intercept Form</b></h4>
+            <p class="zone-description">\( y = mx + b \)</p>
+            <div class="drop-list" id="slopeInterceptList"></div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div
+            class="drop-zone"
+            id="standardForm"
+            data-category="standard-form"
+          >
+            <h4><b>Standard Form</b></h4>
+            <p class="zone-description">\( Ax + By = C \)</p>
+            <div class="drop-list" id="standardFormList"></div>
           </div>
         </div>
       </div>
@@ -329,75 +358,57 @@
       const originalCards = [
         {
           id: 1,
-          text: "\\(3x + 2\\)",
-          note: "Variable has power \\(1\\).",
-          category: "linear",
+          text: "\\( y - 2 = 3(x - 1) \\)",
+          category: "point-slope",
+          note: "\\( y - y_1 = m(x - x_1) \\Rightarrow m = 3,\\ (x_1, y_1) = (1, 2) \\)",
         },
         {
           id: 2,
-          text: "\\(x^2 + 1\\)",
-          note: "Contains \\(x^2\\).",
-          category: "nonlinear",
+          text: "\\( y - 4 = -2(x - 5) \\)",
+          category: "point-slope",
+          note: "\\( y - y_1 = m(x - x_1) \\Rightarrow m = -2,\\ (x_1, y_1) = (5, 4) \\)",
         },
         {
           id: 3,
-          text: "\\(-4x\\)",
-          note: "Variable has power \\(1\\).",
-          category: "linear",
+          text: "\\( y + 3 = 2(x - 2) \\)",
+          category: "point-slope",
+          note: "\\( y - (-3) = 2(x - 2) \\Rightarrow m = 2,\\ (x_1, y_1) = (2, -3) \\)",
         },
         {
           id: 4,
-          text: "\\(\\sqrt{x}\\)",
-          note: "Variable has power \\(\\dfrac{1}{2}\\), since \\(\\sqrt{x}=x^{\\frac{1}{2}}\\).",
-          category: "nonlinear",
+          text: "\\( y = 3x + 2 \\)",
+          category: "slope-intercept",
+          note: "\\( y = mx + b \\Rightarrow m = 3,\\ b = 2 \\)",
         },
         {
           id: 5,
-          text: "\\(0.5x - 7\\)",
-          note: "Variable has power \\(1\\).",
-          category: "linear",
+          text: "\\( y = -2x - 1 \\)",
+          category: "slope-intercept",
+          note: "\\( y = mx + b \\Rightarrow m = -2,\\ b = -1 \\)",
         },
         {
           id: 6,
-          text: "\\(2^x\\)",
-          note: "Variable is in the exponent.",
-          category: "nonlinear",
+          text: "\\( y = \\frac{1}{2}x + 4 \\)",
+          category: "slope-intercept",
+          note: "\\( y = mx + b \\Rightarrow m = \\frac{1}{2},\\ b = 4 \\)",
         },
         {
           id: 7,
-          text: "\\(-x + 9\\)",
-          note: "Variable has power \\(1\\).",
-          category: "linear",
+          text: "\\( 2x + 3y = 6 \\)",
+          category: "standard-form",
+          note: "\\( Ax + By = C \\Rightarrow A = 2,\\ B = 3,\\ C = 6 \\)",
         },
         {
           id: 8,
-          text: "\\(x^3\\)",
-          note: "Variable has power \\(3\\).",
-          category: "nonlinear",
+          text: "\\( x - 4y = 8 \\)",
+          category: "standard-form",
+          note: "\\( Ax + By = C \\Rightarrow A = 1,\\ B = -4,\\ C = 8 \\)",
         },
         {
           id: 9,
-          text: "\\(x^3+y\\)",
-          note: "Highest power is \\(3\\).",
-          category: "nonlinear",
-        },
-        {
-          id: 10,
-          text: "\\(x-\\dfrac{1}{2}y\\)",
-          note: "Highest power is \\(1\\).",
-          category: "linear",
-        },
-        {
-          id: 11,
-          text: "\\(x+z+y^2\\)",
-          note: "Highest power is \\(2\\).",
-          category: "nonlinear",
-        },
-        {
-          id: 12,
-          text: "\\(-x-2z+y\\)",
-          note: "Highest power is \\(1\\).",
-          category: "linear",
+          text: "\\( 5x + 2y = 10 \\)",
+          category: "standard-form",
+          note: "\\( Ax + By = C \\Rightarrow A = 5,\\ B = 2,\\ C = 10 \\)",
         },
       ];
 
@@ -406,10 +417,9 @@
       let sortedCount = 0;
 
       const cardStack = document.getElementById("cardStack");
-      const linearZone = document.getElementById("linearZone");
-      const nonlinearZone = document.getElementById("nonlinearZone");
-      const linearList = document.getElementById("linearList");
-      const nonlinearList = document.getElementById("nonlinearList");
+      const pointSlopeList = document.getElementById("pointSlopeList");
+      const slopeInterceptList = document.getElementById("slopeInterceptList");
+      const standardFormList = document.getElementById("standardFormList");
       const statusBox = document.getElementById("statusBox");
       const counterBox = document.getElementById("counterBox");
       const resetBtn = document.getElementById("resetBtn");
@@ -442,8 +452,9 @@
       }
 
       function clearPlacedCards() {
-        linearList.innerHTML = "";
-        nonlinearList.innerHTML = "";
+        pointSlopeList.innerHTML = "";
+        slopeInterceptList.innerHTML = "";
+        standardFormList.innerHTML = "";
       }
 
       function clearTopCard() {
@@ -469,9 +480,9 @@
         card.dataset.category = currentCard.category;
 
         card.innerHTML = `
-        <div class="expression-label">Expression</div>
-        <div class="expression-text">${currentCard.text}</div>
-      `;
+          <div class="expression-label">Expression</div>
+          <div class="expression-text">${currentCard.text}</div>
+        `;
 
         card.addEventListener("dragstart", handleDragStart);
         card.addEventListener("dragend", handleDragEnd);
@@ -487,8 +498,9 @@
 
       function handleDragEnd(e) {
         e.target.classList.remove("dragging");
-        linearZone.classList.remove("drag-over");
-        nonlinearZone.classList.remove("drag-over");
+        document
+          .querySelectorAll(".drop-zone")
+          .forEach((zone) => zone.classList.remove("drag-over"));
       }
 
       function flashZone(zone, className) {
@@ -572,14 +584,25 @@
         await renderNextCard();
       }
 
-      addZoneEvents(linearZone, "linear", linearList);
-      addZoneEvents(nonlinearZone, "nonlinear", nonlinearList);
+      addZoneEvents(
+        document.getElementById("pointSlope"),
+        "point-slope",
+        pointSlopeList,
+      );
+      addZoneEvents(
+        document.getElementById("slopeIntercept"),
+        "slope-intercept",
+        slopeInterceptList,
+      );
+      addZoneEvents(
+        document.getElementById("standardForm"),
+        "standard-form",
+        standardFormList,
+      );
+
       resetBtn.addEventListener("click", resetActivity);
 
       window.addEventListener("load", async () => {
-        if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
-          await MathJax.startup.promise;
-        }
         await resetActivity();
       });
     </script>
