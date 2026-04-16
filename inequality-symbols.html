@@ -19,13 +19,14 @@
         max-width: 900px;
         margin: 0 auto;
       }
-
       .sentence-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         margin-bottom: 20px;
-      overflow-y: auto; /* Enable vertical scrolling */
+        height: 480px; /* Set the container height to match your Rise block */
+        overflow-y: auto; /* Enable vertical scrolling */
+        padding: 10px; /* Optional, for better spacing inside the container */
       }
 
       .sentence {
@@ -202,106 +203,112 @@
       </div>
     </div>
 
-   <script>
-  const symbols = [">", "<", ">=", "<="];
-  const dropAreas = document.querySelectorAll(".drop-area");
-  let scrollTimeout;
+    <script>
+      const symbols = [">", "<", ">=", "<="];
+      const dropAreas = document.querySelectorAll(".drop-area");
+      let scrollTimeout;
 
-  // Create the draggable symbols
-  symbols.forEach((symbol) => {
-    const symbolElement = document.getElementById(
-      `symbol${symbols.indexOf(symbol) + 1}`
-    );
-    symbolElement.addEventListener("dragstart", dragStart);
-  });
+      // Create the draggable symbols
+      symbols.forEach((symbol) => {
+        const symbolElement = document.getElementById(
+          `symbol${symbols.indexOf(symbol) + 1}`,
+        );
+        symbolElement.addEventListener("dragstart", dragStart);
+      });
 
-  dropAreas.forEach((area) => {
-    area.addEventListener("dragover", dragOver);
-    area.addEventListener("drop", dropSymbol);
-    area.addEventListener("dragover", (event) => {
-      event.preventDefault();
-      handleScroll(event);
-    });
-  });
+      dropAreas.forEach((area) => {
+        area.addEventListener("dragover", dragOver);
+        area.addEventListener("drop", dropSymbol);
+        area.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          handleScroll(event);
+        });
+      });
 
-  function dragStart(event) {
-    event.dataTransfer.setData("text", event.target.textContent);
-  }
+      function dragStart(event) {
+        event.dataTransfer.setData("text", event.target.textContent);
+      }
 
-  function dragOver(event) {
-    event.preventDefault();
-  }
+      function dragOver(event) {
+        event.preventDefault();
+      }
 
-  function dropSymbol(event) {
-    event.preventDefault();
-    const symbol = event.dataTransfer.getData("text");
-    event.target.textContent = symbol;
-    checkAnswer(event.target);
-  }
+      function dropSymbol(event) {
+        event.preventDefault();
+        const symbol = event.dataTransfer.getData("text");
+        event.target.textContent = symbol;
+        checkAnswer(event.target);
+      }
 
-  function checkAnswer(target) {
-    // Reset all feedbacks first
-    document
-      .querySelectorAll(".feedback")
-      .forEach((feedback) => (feedback.style.display = "none"));
+      function checkAnswer(target) {
+        // Reset all feedbacks first
+        document
+          .querySelectorAll(".feedback")
+          .forEach((feedback) => (feedback.style.display = "none"));
 
-    // Define correct answers for each drop area dynamically
-    const correctAnswers = {
-      "drop-1": ">",
-      "drop-2": ">",
-      "drop-3": "<",
-      "drop-4": ">",
-      "drop-5": "≥",
-      "drop-6": "≤",
-    };
+        // Define correct answers for each drop area dynamically
+        const correctAnswers = {
+          "drop-1": ">",
+          "drop-2": ">",
+          "drop-3": "<",
+          "drop-4": ">",
+          "drop-5": "≥",
+          "drop-6": "≤",
+        };
 
-    // Check if the dropped symbol is correct for the corresponding drop area
-    const dropAreaId = target.id;
-    const correctAnswer = correctAnswers[dropAreaId];
+        // Check if the dropped symbol is correct for the corresponding drop area
+        const dropAreaId = target.id;
+        const correctAnswer = correctAnswers[dropAreaId];
 
-    if (target.textContent === correctAnswer) {
-      // If the answer is correct, show success feedback
-      document.getElementById(
-        `feedback-${dropAreaId.split("-")[1]}`
-      ).textContent = "Correct!";
-      document.getElementById(
-        `feedback-${dropAreaId.split("-")[1]}`
-      ).style.display = "block";
-    } else {
-      // If the answer is incorrect, show "Try again" only for the wrong drop area
-      document.getElementById(
-        `feedback-${dropAreaId.split("-")[1]}`
-      ).textContent = "Try again.";
-      document.getElementById(
-        `feedback-${dropAreaId.split("-")[1]}`
-      ).style.display = "block";
-    }
-  }
+        if (target.textContent === correctAnswer) {
+          // If the answer is correct, show success feedback
+          document.getElementById(
+            `feedback-${dropAreaId.split("-")[1]}`,
+          ).textContent = "Correct!";
+          document.getElementById(
+            `feedback-${dropAreaId.split("-")[1]}`,
+          ).style.display = "block";
+        } else {
+          // If the answer is incorrect, show "Try again" only for the wrong drop area
+          document.getElementById(
+            `feedback-${dropAreaId.split("-")[1]}`,
+          ).textContent = "Try again.";
+          document.getElementById(
+            `feedback-${dropAreaId.split("-")[1]}`,
+          ).style.display = "block";
+        }
+      }
 
-  function handleScroll(event) {
-    const scrollOffset = 300; // Adjust this value for smoother scrolling
-    const container = document.querySelector(".sentence-container");
+      function handleScroll(event) {
+        const scrollOffset = 300; // Adjust this value for smoother scrolling
+        const container = document.querySelector(".sentence-container");
 
-    if (event.clientY > container.getBoundingClientRect().bottom - scrollOffset) {
-      scrollDown();
-    } else if (event.clientY < container.getBoundingClientRect().top + scrollOffset) {
-      scrollUp();
-    }
-  }
+        if (
+          event.clientY >
+          container.getBoundingClientRect().bottom - scrollOffset
+        ) {
+          scrollDown();
+        } else if (
+          event.clientY <
+          container.getBoundingClientRect().top + scrollOffset
+        ) {
+          scrollUp();
+        }
+      }
 
-  function scrollDown() {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      window.scrollBy(0, 20); // Adjust the scroll speed here
-    }, 10);
-  }
+      function scrollDown() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          window.scrollBy(0, 20); // Adjust the scroll speed here
+        }, 10);
+      }
 
-  function scrollUp() {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      window.scrollBy(0, -20); // Adjust the scroll speed here
-    }, 10);
-  }
-</script>
+      function scrollUp() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          window.scrollBy(0, -20); // Adjust the scroll speed here
+        }, 10);
+      }
+    </script>
   </body>
 </html>
