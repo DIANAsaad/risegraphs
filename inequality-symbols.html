@@ -19,14 +19,12 @@
         max-width: 900px;
         margin: 0 auto;
       }
+
       .sentence-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         margin-bottom: 20px;
-    
-        overflow-y: auto; /* Enable vertical scrolling */
- 
       }
 
       .sentence {
@@ -59,17 +57,24 @@
         padding: 8px 16px;
         background-color: #ff4500;
         border-radius: 10px;
-        cursor: pointer;
+        cursor: grab;
         margin-right: 10px;
         margin-bottom: 10px;
         color: white;
         transition: background-color 0.3s;
         font-size: 1.2rem;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
       }
 
       .word:hover {
         background-color: #d13e08;
         color: white;
+      }
+
+      .word:active {
+        cursor: grabbing;
       }
 
       .drop-area {
@@ -81,7 +86,15 @@
         text-align: center;
         font-size: 1.2rem;
         border-radius: 10px;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+      }
+
+      .drop-area.active-drop {
+        background-color: #fff0e8;
+        border-style: solid;
       }
 
       .feedback {
@@ -89,7 +102,7 @@
         font-weight: bold;
         margin-top: 10px;
         color: #ff4500;
-        display: none; /* Hidden by default */
+        display: none;
         padding: 5px;
         border-radius: 5px;
       }
@@ -102,23 +115,49 @@
         flex-wrap: wrap;
       }
 
-      .sentence span {
-        font-size: 1.5rem;
-        margin: 0 15px;
+      .drag-proxy {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        pointer-events: none;
+        opacity: 0.9;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 12px;
+        }
+
+        .sentence-container {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .word-bank {
+          gap: 10px;
+        }
+
+        .word {
+          margin-right: 0;
+        }
+
+        .sentence {
+          padding: 14px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <!-- Word Bank -->
       <div class="word-bank">
-        <div class="word" draggable="true" id="symbol1">&gt;</div>
-        <div class="word" draggable="true" id="symbol2">&lt;</div>
-        <div class="word" draggable="true" id="symbol3">&ge;</div>
-        <div class="word" draggable="true" id="symbol4">&le;</div>
+        <div class="word" id="symbol1">&gt;</div>
+        <div class="word" id="symbol2">&lt;</div>
+        <div class="word" id="symbol3">&ge;</div>
+        <div class="word" id="symbol4">&le;</div>
       </div>
 
-      <!-- Sentences with drop areas -->
       <div class="sentence-container">
         <div class="sentence">
           <div class="sentence-body">
@@ -204,110 +243,219 @@
     </div>
 
     <script>
-      const symbols = [">", "<", ">=", "<="];
-      const dropAreas = document.querySelectorAll(".drop-area");
-      let scrollTimeout;
+      const symbolElements = document.querySelectorAll(".word");
+      const correctAnswers = {
+        "drop-1": ">",
+        "drop-2": ">",
+        "drop-3": "<",
+        "drop-4": ">",
+        "drop-5": "\u2265",
+        "drop-6": "\u2264",
+      };
+      let scrollInterval = null;
+      let currentScrollAmount = 0;
+      const dragState = {
+        active: false,
+        pointerId: null,
+        symbol: "",
+        proxy: null,
+        hoveredDropArea: null,
+        offsetX: 0,
+        offsetY: 0,
+        lastClientX: 0,
+        lastClientY: 0,
+      };
 
-      // Create the draggable symbols
-      symbols.forEach((symbol) => {
-        const symbolElement = document.getElementById(
-          `symbol${symbols.indexOf(symbol) + 1}`,
-        );
-        symbolElement.addEventListener("dragstart", dragStart);
+      symbolElements.forEach((symbolElement) => {
+        symbolElement.addEventListener("pointerdown", startDrag);
+        symbolElement.addEventListener("dragstart", preventNativeDrag);
       });
 
-      dropAreas.forEach((area) => {
-        area.addEventListener("dragover", dragOver);
-        area.addEventListener("drop", dropSymbol);
-        area.addEventListener("dragover", (event) => {
-          event.preventDefault();
-          handleScroll(event);
-        });
-      });
-
-      function dragStart(event) {
-        event.dataTransfer.setData("text", event.target.textContent);
-      }
-
-      function dragOver(event) {
+      function preventNativeDrag(event) {
         event.preventDefault();
       }
 
-      function dropSymbol(event) {
+      function startDrag(event) {
         event.preventDefault();
-        const symbol = event.dataTransfer.getData("text");
-        event.target.textContent = symbol;
-        checkAnswer(event.target);
+
+        const rect = event.currentTarget.getBoundingClientRect();
+
+        dragState.active = true;
+        dragState.pointerId = event.pointerId;
+        dragState.symbol = event.currentTarget.textContent.trim();
+        dragState.offsetX = event.clientX - rect.left;
+        dragState.offsetY = event.clientY - rect.top;
+        dragState.lastClientX = event.clientX;
+        dragState.lastClientY = event.clientY;
+        dragState.proxy = createDragProxy(event.currentTarget);
+
+        event.currentTarget.setPointerCapture(event.pointerId);
+
+        document.addEventListener("pointermove", handlePointerMove);
+        document.addEventListener("pointerup", endDrag);
+        document.addEventListener("pointercancel", cancelDrag);
+
+        updateDragPosition(event.clientX, event.clientY);
+      }
+
+      function handlePointerMove(event) {
+        if (!dragState.active || event.pointerId !== dragState.pointerId) {
+          return;
+        }
+
+        event.preventDefault();
+        updateDragPosition(event.clientX, event.clientY);
+      }
+
+      function endDrag(event) {
+        if (!dragState.active || event.pointerId !== dragState.pointerId) {
+          return;
+        }
+
+        event.preventDefault();
+        const dropArea = getDropAreaAtPoint(event.clientX, event.clientY);
+
+        if (dropArea) {
+          dropArea.textContent = dragState.symbol;
+          checkAnswer(dropArea);
+        }
+
+        clearDragState();
+      }
+
+      function cancelDrag(event) {
+        if (!dragState.active || event.pointerId !== dragState.pointerId) {
+          return;
+        }
+
+        clearDragState();
+      }
+
+      function updateDragPosition(clientX, clientY) {
+        if (!dragState.proxy) {
+          return;
+        }
+
+        dragState.lastClientX = clientX;
+        dragState.lastClientY = clientY;
+        dragState.proxy.style.transform = `translate(${clientX - dragState.offsetX}px, ${clientY - dragState.offsetY}px)`;
+        updateHoveredDropArea(clientX, clientY);
+        handleScroll(clientY);
+      }
+
+      function updateHoveredDropArea(clientX, clientY) {
+        const dropArea = getDropAreaAtPoint(clientX, clientY);
+
+        if (dragState.hoveredDropArea === dropArea) {
+          return;
+        }
+
+        if (dragState.hoveredDropArea) {
+          dragState.hoveredDropArea.classList.remove("active-drop");
+        }
+
+        dragState.hoveredDropArea = dropArea;
+
+        if (dragState.hoveredDropArea) {
+          dragState.hoveredDropArea.classList.add("active-drop");
+        }
+      }
+
+      function getDropAreaAtPoint(clientX, clientY) {
+        const element = document.elementFromPoint(clientX, clientY);
+        return element ? element.closest(".drop-area") : null;
+      }
+
+      function createDragProxy(sourceElement) {
+        const proxy = sourceElement.cloneNode(true);
+        proxy.classList.add("drag-proxy");
+        document.body.appendChild(proxy);
+        return proxy;
       }
 
       function checkAnswer(target) {
-        // Reset all feedbacks first
         document
           .querySelectorAll(".feedback")
           .forEach((feedback) => (feedback.style.display = "none"));
 
-        // Define correct answers for each drop area dynamically
-        const correctAnswers = {
-          "drop-1": ">",
-          "drop-2": ">",
-          "drop-3": "<",
-          "drop-4": ">",
-          "drop-5": "≥",
-          "drop-6": "≤",
-        };
-
-        // Check if the dropped symbol is correct for the corresponding drop area
         const dropAreaId = target.id;
         const correctAnswer = correctAnswers[dropAreaId];
+        const feedback = document.getElementById(
+          `feedback-${dropAreaId.split("-")[1]}`,
+        );
 
         if (target.textContent === correctAnswer) {
-          // If the answer is correct, show success feedback
-          document.getElementById(
-            `feedback-${dropAreaId.split("-")[1]}`,
-          ).textContent = "Correct!";
-          document.getElementById(
-            `feedback-${dropAreaId.split("-")[1]}`,
-          ).style.display = "block";
+          feedback.textContent = "Correct!";
+          feedback.style.display = "block";
         } else {
-          // If the answer is incorrect, show "Try again" only for the wrong drop area
-          document.getElementById(
-            `feedback-${dropAreaId.split("-")[1]}`,
-          ).textContent = "Try again.";
-          document.getElementById(
-            `feedback-${dropAreaId.split("-")[1]}`,
-          ).style.display = "block";
+          feedback.textContent = "Try again.";
+          feedback.style.display = "block";
         }
       }
 
-      function handleScroll(event) {
-        const scrollOffset = 300; // Adjust this value for smoother scrolling
-        const container = document.querySelector(".sentence-container");
+      function handleScroll(clientY) {
+        const scrollOffset = 120;
+        const scrollStep = 20;
 
-        if (
-          event.clientY >
-          container.getBoundingClientRect().bottom - scrollOffset
-        ) {
-          scrollDown();
-        } else if (
-          event.clientY <
-          container.getBoundingClientRect().top + scrollOffset
-        ) {
-          scrollUp();
+        if (clientY > window.innerHeight - scrollOffset) {
+          startScrolling(scrollStep);
+        } else if (clientY < scrollOffset) {
+          startScrolling(-scrollStep);
+        } else {
+          stopScrolling();
         }
       }
 
-      function scrollDown() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-          window.scrollBy(0, 20); // Adjust the scroll speed here
-        }, 10);
+      function startScrolling(scrollAmount) {
+        if (scrollInterval && currentScrollAmount === scrollAmount) {
+          return;
+        }
+
+        stopScrolling();
+
+        scrollInterval = setInterval(() => {
+          window.scrollBy(0, scrollAmount);
+
+          if (dragState.active) {
+            updateHoveredDropArea(
+              dragState.lastClientX,
+              dragState.lastClientY,
+            );
+          }
+        }, 16);
+        currentScrollAmount = scrollAmount;
       }
 
-      function scrollUp() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-          window.scrollBy(0, -20); // Adjust the scroll speed here
-        }, 10);
+      function stopScrolling() {
+        clearInterval(scrollInterval);
+        scrollInterval = null;
+        currentScrollAmount = 0;
+      }
+
+      function clearDragState() {
+        stopScrolling();
+
+        if (dragState.proxy) {
+          dragState.proxy.remove();
+        }
+
+        if (dragState.hoveredDropArea) {
+          dragState.hoveredDropArea.classList.remove("active-drop");
+        }
+
+        dragState.active = false;
+        dragState.pointerId = null;
+        dragState.symbol = "";
+        dragState.proxy = null;
+        dragState.hoveredDropArea = null;
+        dragState.offsetX = 0;
+        dragState.offsetY = 0;
+        dragState.lastClientX = 0;
+        dragState.lastClientY = 0;
+
+        document.removeEventListener("pointermove", handlePointerMove);
+        document.removeEventListener("pointerup", endDrag);
+        document.removeEventListener("pointercancel", cancelDrag);
       }
     </script>
   </body>
