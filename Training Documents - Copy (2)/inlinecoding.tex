@@ -1,0 +1,786 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{ulem}
+\usepackage[most]{tcolorbox}
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{textpos}
+\usepackage{lipsum}
+\usepackage{longdivision}
+\usepackage{polynom}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{pgf-pie}
+\usepackage[labelformat=empty]{caption}
+\usepackage[a4paper, left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\hypersetup{
+    hidelinks
+}
+
+\input{MyCommands}
+
+% Set IBM Plex Sans as the main font
+\setmainfont{IBM Plex Sans}
+
+% Set Bitter as the serif font
+\newfontface\Bitter{Bitter}
+
+\color{morado}
+
+\title{\textcolor{naranja}{\Bitter Intro to HTML, CSS, and JavaScript}}
+
+% Remove paragraph indentation and add soft spacing between paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+
+\begin{document}
+
+
+% ------------------------------------------------------------
+% Cover Page
+% ------------------------------------------------------------
+\begin{titlepage}
+  \centering
+  \vspace*{\fill}
+
+  {\Huge\Bitter\textcolor{naranja}{Intro to HTML, CSS, and JS}\par}
+
+  \vspace{0.4cm}
+
+  {\Large\textcolor{morado}{A Beginner-Friendly Guide to Reading Web Code}\par}
+
+  \vspace*{\fill}
+\end{titlepage}
+
+% ------------------------------------------------------------
+% Lesson Syllabus
+% ------------------------------------------------------------
+\vspace{-0.5cm}
+
+\section*{\Bitter\textcolor{naranja}{Document Syllabus}}
+
+This document is organized into two main sections. We begin with a simple introduction to HTML, CSS, and JavaScript, then move into the basic syntax we need to read and understand simple web code.
+
+\vspace{0.25cm}
+
+\begin{enumerate}[leftmargin=1.2cm, itemsep=8pt]
+
+  \item \hyperref[sec:introduction]{\textbf{\Bitter\textcolor{naranja}{Introduction}}}
+  
+  \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+    \item What HTML, CSS, and JavaScript are
+    \item How the three languages work together
+    \item The body analogy: structure, appearance, and behavior
+    \item A simple visual example
+  \end{itemize}
+
+  \item \hyperref[sec:basic-syntax]{\textbf{\Bitter\textcolor{naranja}{Understanding the Basic Syntax}}}
+
+  \begin{itemize}[leftmargin=0.8cm, itemsep=6pt]
+
+    \item \hyperref[subsec:html-syntax]{\textbf{HTML Syntax: Creating the Parts}}
+    \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+      \item Definition of HTML syntax
+      \item Common HTML tags
+      \item A simple HTML activity example
+      \item Default HTML layout
+      \item Block-level and inline-level elements
+      \item The \inlinehtmltag{<br>} tag
+      \item Tag attributes: adding extra details
+    \end{itemize}
+
+    \item \hyperref[subsec:css-syntax]{\textbf{CSS Syntax: Styling the Parts}}
+    \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+      \item Definition of CSS syntax
+      \item CSS selectors, properties, and values
+      \item Common CSS properties
+      \item How HTML class names connect to CSS selectors
+      \item Comments in HTML, CSS, and JavaScript
+      \item Adding CSS to a mini activity
+      \item Two ways to add CSS: inline CSS and style block CSS
+    \end{itemize}
+
+  \end{itemize}
+
+\end{enumerate}
+
+\vspace{0.25cm}
+
+
+\pagebreak
+
+\phantomsection
+\label{sec:introduction}
+
+\maketitle
+\vspace{-0.6cm}
+
+In today's digital world, creating interactive and visually appealing content for the web requires
+knowledge of three core technologies: HTML, CSS, and JavaScript.
+These three building blocks work together to form the structure, style, and interactivity of web pages and
+applications.
+
+\vspace{0.35cm}
+
+\noindent
+\begin{minipage}[t]{0.31\textwidth}
+  \begin{center}
+    \includegraphics[width=0.9cm]{images/html.png}
+
+    \vspace{0.15cm}
+
+    \textbf{\Bitter\textcolor{naranja}{HTML}}
+
+    \vspace{0.1cm}
+
+    \textbf{HyperText Markup Language}
+  \end{center}
+
+  HTML creates the \textbf{structure} of web pages and interactive activities.
+  It organizes the main parts of the page, such as text, images, buttons, questions,
+  answer choices, links, and sections.
+
+  \vspace{0.1cm}
+
+  In simple terms, HTML is the \textbf{skeleton} of the page.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  \begin{center}
+    \includegraphics[width=0.9cm]{images/css-logo.png}
+
+    \vspace{0.15cm}
+
+    \textbf{\Bitter\textcolor{naranja}{CSS}}
+
+    \vspace{0.1cm}
+
+    \textbf{Cascading Style Sheets}
+  \end{center}
+
+  CSS controls the \textbf{appearance} of a page or activity.
+  It changes visual details such as colors, fonts, spacing, borders, layout,
+  and animations.
+
+  \vspace{0.1cm}
+
+  In simple terms, CSS is the \textbf{clothing} of the page.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  \begin{center}
+    \includegraphics[width=0.9cm]{images/js.png}
+
+    \vspace{0.15cm}
+
+    \textbf{\Bitter\textcolor{naranja}{JavaScript}}
+
+    \vspace{0.1cm}
+
+    \textbf{Programming Language}
+  \end{center}
+
+  JavaScript adds \textbf{behavior and functionality} to web pages and activities.
+  It makes the page respond when we click, type, select an answer, drag an item,
+  or complete an action.
+
+  \vspace{0.1cm}
+
+  In simple terms, JavaScript is the \textbf{brain and nerves} of the page.
+\end{minipage}
+
+\vspace{0.4cm}
+
+To visualize the concepts of HTML, CSS, and JavaScript, we can use the analogy of a human body.
+
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{images/body.png}
+\end{center}
+
+Let's take a closer look with a simple example.
+
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{images/close-up.png}
+\end{center}
+
+\vspace{0.3cm}
+
+The close-up image shows the same idea in a smaller example.
+
+\vspace{0.3cm}
+
+\noindent
+\begin{minipage}[t]{0.31\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{HTML: The Structure}}
+
+  \vspace{0.15cm}
+
+  HTML creates the parts of the activity. In this example, it gives us the face, the eyes, and the mouth. These parts exist before we style them or make them move.
+
+  \vspace{0.2cm}
+
+  \begin{lstlisting}
+(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"face"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"hair"}@*)(*@\htmltag{></div>}@*)
+  (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"eye"}@*)(*@\htmltag{></div>}@*)
+  (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"nose"}@*)(*@\htmltag{></div>}@*)
+  (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"mouth"}@*)(*@\htmltag{></div>}@*)
+(*@\htmltag{</div>}@*)
+\end{lstlisting}
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{CSS: The Appearance}}
+
+  \vspace{0.15cm}
+
+  CSS changes how the parts look. It can give the face skin color, add hair color, make the eye blue, and shape the mouth.
+
+  \vspace{0.2cm}
+
+  \begin{lstlisting}
+(*@\cssselector{.face}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{\#ffd1b7}@*);
+  (*@\cssprop{border-radius}@*): (*@\cssvalue{50\%}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.hair}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{brown}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.eye}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{blue}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.mouth}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{border-radius}@*): (*@\cssvalue{50\%}@*);
+(*@\csspunct{\}}@*)
+\end{lstlisting}
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{JavaScript: The Behavior}}
+
+  \vspace{0.15cm}
+
+  In this example, a JavaScript function can change the mouth when we click the face or press a button, making it look like the face is laughing.
+
+  \vspace{0.2cm}
+
+  \begin{lstlisting}
+function laugh() {
+  document
+    .querySelector(".mouth")
+    .classList.add("laugh");
+}
+\end{lstlisting}
+
+\end{minipage}
+
+\vspace{0.7cm}
+
+\phantomsection
+\section*{\Bitter\textcolor{naranja}{Understanding the Basic Syntax}}
+\label{sec:basic-syntax}
+
+Before we start building small activities, it helps to understand the basic pattern behind the code.
+We do not need to memorize everything. Instead, we want to recognize what each part is doing so we can read AI-generated code, adjust it when needed, and explain what we want more clearly.
+
+\vspace{0.3cm}
+
+\phantomsection
+\subsection*{\Bitter\textcolor{naranja}{HTML Syntax: Creating the Parts}}
+\label{subsec:html-syntax}
+
+We can think of HTML as the part of the code that answers the question:
+\textbf{What do we want to place on the screen?}
+
+For example, if we want a paragraph, a button, an image, a table, a choice, or a feedback box, HTML is what creates those pieces.
+CSS can style them later, and JavaScript can make them respond, but HTML gives us the actual elements to work with.
+
+Most HTML elements are written using \textbf{tags}.
+A tag tells the browser what type of element we are creating.
+
+\vspace{0.2cm}
+
+\begin{lstlisting}
+(*@\htmltag{<p>}@*)(*@\codetext{This is a paragraph.}@*)(*@\htmltag{</p>}@*)
+\end{lstlisting}
+
+In this example, \inlinehtmltag{<p>} opens the paragraph, and \inlinehtmltag{</p>} closes it.
+The text between the opening and closing tags is \textbf{the content that appears on the page.}
+
+\vspace{0.2cm}
+
+\begin{lstlisting}
+(*@\htmltag{<tag>}@*)(*@\textbf{Content that appears on the page}@*)(*@\htmltag{</tag>}@*)
+\end{lstlisting}
+
+\vspace{0.4cm}
+
+\textbf{\Bitter\textcolor{naranja}{Common HTML Tags for Small Activities}}
+
+\vspace{0.1cm}
+
+\begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+  \item \inlinehtmltag{<div>} creates a general block or container. We often use it to group parts of an activity.
+  \item \inlinehtmltag{<h1>}, \inlinehtmltag{<h2>}, \inlinehtmltag{<h3>} create headings with different sizes.
+  \item \inlinehtmltag{<p>} creates a paragraph of text.
+  \item \inlinehtmltag{<button>} creates a clickable button.
+  \item \inlinehtmltag{<input>} creates a field or choice we can interact with, such as a text box, checkbox, or radio button.
+  \item \inlinehtmltag{<label>} adds readable text beside an input. It helps us understand what each choice means.
+  \item \inlinehtmltag{<img>} adds an image.
+  \item \inlinehtmltag{<table>} creates a table for rows and columns.
+  \item \inlinehtmltag{<tr>} creates a table row.
+  \item \inlinehtmltag{<td>} creates a table cell.
+  \item \inlinehtmltag{<span>} targets a small piece of text inside a line.
+  \item \inlinehtmltag{<br>} creates a line break.
+\end{itemize}
+
+\vspace{0.4cm}
+
+Here is a small example that uses a few common HTML tags together.
+This example only uses HTML, so it creates the content, but it does not style it yet.
+
+\vspace{0.2cm}
+
+\noindent
+\begin{minipage}[t]{0.52\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{HTML Code}}
+
+  \vspace{0.15cm}
+
+  \begin{lstlisting}
+(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<h2}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-title"}@*)(*@\htmltag{>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
+  (*@\htmltag{<p}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-question"}@*)(*@\htmltag{>}@*)(*@\codetext{Which language creates the structure?}@*)(*@\htmltag{</p>}@*)
+
+  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"html"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)(*@\codetext{HTML}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"css"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)(*@\codetext{CSS}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"js"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)(*@\codetext{JavaScript}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+  (*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+(*@\htmltag{</div>}@*)
+\end{lstlisting}
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.42\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{Browser Output}}
+
+  \vspace{0.15cm}
+
+  \begin{center}
+    \href{https://dianasaad.github.io/risegraphs/test.html}{
+      \includegraphics[width=\linewidth]{images/html-output.png}
+    }
+  \end{center}
+
+  \vspace{0.05cm}
+
+  {\scriptsize Click the image to open the live HTML page.}
+
+\end{minipage}
+
+\vspace{0.3cm}
+
+When the browser reads plain HTML, it displays the elements in their default layout.
+
+\begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+  \item The browser reads the code in the order it is written, from \textbf{top to bottom}.
+  \item Some elements, such as \inlinehtmltag{<div>}, \inlinehtmltag{<h2>}, and \inlinehtmltag{<p>}, are \textbf{block-level elements}.
+  \item Block-level elements usually start on a \textbf{new line}, so they appear under each other.
+  \item Other elements, such as \inlinehtmltag{<input>}, \inlinehtmltag{<label>}, and \inlinehtmltag{<button>}, are \textbf{inline-level elements}.
+  \item Inline-level elements usually stay on the same line and render from \textbf{left to right}, as long as there is enough space.
+  \item However, the \inlinehtmltag{<br>} tag creates a line break, so it forces the next element to move to the next line.
+\end{itemize}
+
+In our example, each answer choice uses an \inlinehtmltag{<input>} and a \inlinehtmltag{<label>}. These two appear beside each other because they are inline-level elements. But after each label, we added \inlinehtmltag{<br>}, so the next answer choice starts on a new line.
+
+
+
+\vspace{0.2cm}
+
+In this example:
+
+\begin{enumerate}[leftmargin=1.2cm, itemsep=4pt]
+  \item The \inlinehtmltag{<div>} groups the activity into one block.
+  \item The \inlinehtmltag{<h2>} creates the heading.
+  \item The \inlinehtmltag{<p>} creates the question text.
+  \item The \inlinehtmltag{<input>} creates each answer choice as a radio button.
+  \item The \inlinehtmltag{<label>} adds the visible answer text beside each radio button.
+  \item The \inlinehtmltag{<br>} moves each answer choice to a new line.
+  \item The \inlinehtmltag{<button>} creates something we can click.
+\end{enumerate}
+
+\vspace{0.2cm}
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Attention Please!}}
+
+  The \inlinehtmltag{<br>} tag is different from tags like \inlinehtmltag{<p>} or \inlinehtmltag{<div>} because it does not hold content.
+  It only creates a line break. That is why we write \inlinehtmltag{<br>} by itself, without a closing tag.
+\end{attentionbox}
+
+This simple activity appears at the top-left of the browser without any special spacing, color, or positioning.
+This is where CSS becomes useful. HTML creates the parts, but CSS helps us move them, style them, space them, and make the activity look more polished.
+
+\vspace{0.4cm}
+
+\textbf{\Bitter\textcolor{naranja}{Tag Attributes: Adding Extra Details}}
+
+\vspace{0.1cm}
+
+Some HTML tags can include extra information called \textbf{attributes}.
+Attributes help describe how an element should behave, how it should be identified, or how it should connect to other parts of the activity.
+
+We write attributes inside the opening tag.
+
+\vspace{0.2cm}
+
+\begin{lstlisting}
+(*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"html"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)
+\end{lstlisting}
+
+In this example, the \inlinehtmltag{<input>} tag creates a choice.
+The attributes give that choice more meaning:
+
+\begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+  \item \textbf{\inlineattr{class}=\inlineattrvalue{"answer-input"}} gives the input a class name we can style with CSS.
+  \item \textbf{\inlineattr{type}=\inlineattrvalue{"radio"}} tells the browser this input is a radio button.
+  \item \textbf{\inlineattr{id}=\inlineattrvalue{"html"}} gives this specific choice a unique identifier.
+  \item \textbf{\inlineattr{name}=\inlineattrvalue{"language"}} groups the answer choices together.
+  \item \textbf{\inlineattr{value}=\inlineattrvalue{"html"}} stores the value of the selected answer.
+\end{itemize}
+
+A simple way to remember this is: the \textbf{tag} creates the element, and the \textbf{attributes} give it extra details.
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Attention Please!}}
+
+  Different HTML tags can have different attributes, and some attributes are valid for certain tags but not for
+  others. For example, the \inlineattr{type} attribute is valid for \inlinehtmltag{<input>}
+  but not for \inlinehtmltag{<p>}.
+\end{attentionbox}
+
+
+\vspace{0.3cm}
+
+
+\phantomsection
+\subsection*{\Bitter\textcolor{naranja}{CSS Syntax: Styling the Parts}}
+\label{subsec:css-syntax}
+
+After HTML creates the parts of the activity, CSS helps us decide how those parts should look.
+We can think of CSS as the part of the code that answers the question:
+\textbf{How should this appear on the screen?}
+
+CSS can control colors, spacing, borders, fonts, size, alignment, and layout.
+This is why plain HTML can look very simple at first, but the same HTML can look polished once CSS is added.
+
+\vspace{0.2cm}
+
+CSS usually follows this pattern:
+
+\begin{lstlisting}
+(*@\cssselector{selector}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{property}@*): (*@\cssvalue{value}@*);
+(*@\csspunct{\}}@*)
+\end{lstlisting}
+
+\begin{enumerate}
+  \item The \textbf{selector} chooses the HTML element we want to style.
+  \item The \textbf{property} tells the browser what visual feature we want to change.
+  \item The \textbf{value} tells the browser how we want that feature to look.
+\end{enumerate}
+
+\vspace{0.3cm}
+
+\textbf{\Bitter\textcolor{naranja}{A Small CSS Example}}
+
+\vspace{0.1cm}
+
+\begin{lstlisting}
+(*@\cssselector{.activity-card}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{\#ffefe9}@*);
+  (*@\cssprop{border}@*): (*@\cssvalue{2px solid \#ff4500}@*);
+  (*@\cssprop{border-radius}@*): (*@\cssvalue{12px}@*);
+  (*@\cssprop{padding}@*): (*@\cssvalue{16px}@*);
+  (*@\cssprop{width}@*): (*@\cssvalue{300px}@*);
+(*@\csspunct{\}}@*)
+\end{lstlisting}
+
+In this example, \inlinecssselector{.activity-card} selects the HTML element with the class name \inlineattrvalue{activity-card}.
+The lines inside the curly braces style that activity card.
+
+\begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+  \item \inlinecssprop{background-color} changes the background color.
+  \item \inlinecssprop{border} adds a border around the card.
+  \item \inlinecssprop{border-radius} rounds the corners.
+  \item \inlinecssprop{padding} adds space inside the card.
+  \item \inlinecssprop{width} controls how wide the card is.
+\end{itemize}
+
+\vspace{0.3cm}
+
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Attention Please!}}
+
+  The reason CSS knows which part to style is because the HTML has an attribute called \textbf{\inlineattr{class}}.
+
+  \begin{lstlisting}
+(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
+\end{lstlisting}
+
+  Then CSS uses that class name with a dot:
+
+  \begin{lstlisting}
+(*@\cssselector{.activity-card}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{padding}@*): (*@\cssvalue{16px}@*);
+(*@\csspunct{\}}@*)
+\end{lstlisting}
+
+  The dot before \inlinecssselector{.activity-card} means we are selecting a class.
+  So, \inlineattr{class}=\inlineattrvalue{"activity-card"} in HTML connects to \inlinecssselector{.activity-card} in CSS.
+
+  Other selectors can target elements by their tag name, id, or other attributes.
+  For now, we are using class names because they are a common and simple way to style specific parts of an activity.
+
+  \vspace{0.15cm}
+
+  Here is the basic idea:
+
+  \begin{lstlisting}
+(*@\cssselector{.activity-card{}}@*) (*@\csscomment{/* targets class="activity-card" */}@*)
+(*@\cssselector{\#main-title{}}@*) (*@\csscomment{/* targets id="main-title" */}@*)
+(*@\cssselector{button{}}@*) (*@\csscomment{/* targets every <button> tag */}@*)
+\end{lstlisting}
+
+\end{attentionbox}
+
+\vspace{0.4cm}
+
+\textbf{\Bitter\textcolor{naranja}{Common CSS Properties We May Use}}
+
+\vspace{0.1cm}
+
+\begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+  \item \inlinecssprop{color} changes the text color.
+  \item \inlinecssprop{background-color} changes the background color.
+  \item \inlinecssprop{font-size} changes the size of the text.
+  \item \inlinecssprop{font-family} changes the style of the font.
+  \item \inlinecssprop{padding} adds space inside an element.
+  \item \inlinecssprop{margin} adds space outside an element.
+  \item \inlinecssprop{border} adds a border around an element.
+  \item \inlinecssprop{border-radius} rounds the corners.
+  \item \inlinecssprop{text-align} aligns text to the left, center, or right.
+  \item \inlinecssprop{display}: \inlinecssvalue{flex} lets us arrange items more easily.
+  \item \inlinecssprop{justify-content} controls horizontal alignment when we use flex.
+  \item \inlinecssprop{align-items} controls vertical alignment when we use flex.
+  \item \inlinecssselector{:hover} lets us change the style when we move the mouse over an element.
+\end{itemize}
+
+\vspace{0.4cm}
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Attention Please!}}
+
+  The green lines in the CSS block are called \textbf{comments}. A comment is a note that does not get executed when the code runs. Its main purpose is to document the code and make it easier for teammates to understand.
+
+  \vspace{0.15cm}
+
+  Different languages write comments in different ways:
+
+  \begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+    \item HTML comment: \texttt{\textcolor{csscommentgreen}{<!-- This is a comment -->}}
+    \item CSS comment: \texttt{\textcolor{csscommentgreen}{/* This is a comment */}}
+    \item JavaScript comment: \texttt{\textcolor{csscommentgreen}{// This is a comment}}
+  \end{itemize}
+\end{attentionbox}
+
+\vspace{0.4cm}
+
+
+\textbf{\Bitter\textcolor{naranja}{Adding CSS to Our Mini Activity}}
+
+\vspace{0.1cm}
+
+Now we can return to the same HTML activity and add CSS to it.
+The HTML still creates the parts, but the CSS makes the activity card look more organized and polished.
+
+\vspace{0.3cm}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{HTML with Class Names}}
+
+  \vspace{0.15cm}
+
+  \begin{lstlisting}
+(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<h2}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-title"}@*)(*@\htmltag{>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
+  (*@\htmltag{<p}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-question"}@*)(*@\htmltag{>}@*)(*@\codetext{Which language creates the structure?}@*)(*@\htmltag{</p>}@*)
+
+  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"html"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)(*@\codetext{HTML}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"css"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)(*@\codetext{CSS}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"js"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)(*@\codetext{JavaScript}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+  (*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+(*@\htmltag{</div>}@*)
+\end{lstlisting}
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{CSS Style Block}}
+
+  \vspace{0.15cm}
+
+  \begin{lstlisting}
+(*@\htmltag{<style>}@*)
+(*@\cssselector{.activity-card}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{\#ffefe9}@*);
+  (*@\cssprop{border}@*): (*@\cssvalue{2px solid \#ff4500}@*);
+  (*@\cssprop{border-radius}@*): (*@\cssvalue{12px}@*);
+  (*@\cssprop{padding}@*): (*@\cssvalue{20px}@*);
+  (*@\cssprop{margin}@*): (*@\cssvalue{20px auto}@*);
+  (*@\cssprop{width}@*): (*@\cssvalue{300px}@*);
+  (*@\cssprop{text-align}@*): (*@\cssvalue{center}@*);
+  (*@\cssprop{color}@*): (*@\cssvalue{\#2d1559}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.activity-title}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{color}@*): (*@\cssvalue{\#ff4500}@*);
+  (*@\cssprop{margin-bottom}@*): (*@\cssvalue{10px}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.activity-question}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{color}@*): (*@\cssvalue{\#2d1559}@*);
+  (*@\cssprop{font-size}@*): (*@\cssvalue{16px}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.answer-input}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{margin}@*): (*@\cssvalue{6px}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.answer-label}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{color}@*): (*@\cssvalue{\#2d1559}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.custom-button}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{\#ff4500}@*);
+  (*@\cssprop{color}@*): (*@\cssvalue{white}@*);
+  (*@\cssprop{border}@*): (*@\cssvalue{none}@*);
+  (*@\cssprop{border-radius}@*): (*@\cssvalue{8px}@*);
+  (*@\cssprop{padding}@*): (*@\cssvalue{8px 14px}@*);
+  (*@\cssprop{margin-top}@*): (*@\cssvalue{12px}@*);
+(*@\csspunct{\}}@*)
+
+(*@\csscomment{/* This is the same class, but this rule applies when we hover over the button. */}@*)
+(*@\cssselector{.custom-button:hover}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{\#2d1559}@*);
+(*@\csspunct{\}}@*)
+(*@\htmltag{</style>}@*)
+\end{lstlisting}
+
+\end{minipage}
+
+\vspace{0.4cm}
+
+In this version, we are still using the same HTML structure.
+The difference is that CSS now gives the card a background color, border, rounded corners, spacing, centered text, and a styled button.
+
+\vspace{0.3cm}
+\pagebreak
+\textbf{\Bitter\textcolor{naranja}{Styled Browser Output}}
+
+\vspace{0.15cm}
+
+\begin{center}
+  \href{https://dianasaad.github.io/risegraphs/testcss.html}{
+    \includegraphics[width=0.65\textwidth]{images/css-output.png}
+  }
+\end{center}
+
+{\scriptsize Click the image to open the live styled activity.}
+
+\vspace{0.5cm}
+
+\textbf{\Bitter\textcolor{naranja}{Two Ways to Add CSS}}
+
+\vspace{0.1cm}
+
+When we add CSS, we can write it in more than one way.
+For now, we will focus on two simple options: \textbf{inline CSS} and a \textbf{style block}.
+
+\begin{itemize}
+\item Inline CSS is written directly inside the HTML tag.
+\item A style block keeps the CSS in one place, which is usually cleaner when we are building a full activity.
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{Inline CSS}}
+
+  \vspace{0.1cm}
+
+  Inline CSS uses the \inlineattr{style} attribute inside the HTML tag.
+
+  \begin{lstlisting}
+(*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*) (*@\attrname{style}@*)=(*@\attrvalue{"background-color: \#ff4500; color: white;"}@*)(*@\htmltag{>}@*)
+  (*@\codetext{Submit}@*)
+(*@\htmltag{</button>}@*)
+\end{lstlisting}
+
+  This works for quick changes, but it can become harder to manage when we have many elements.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{Style Block CSS}}
+
+  \vspace{0.1cm}
+
+  A style block keeps the CSS separate from the HTML structure.
+
+  \begin{lstlisting}
+(*@\htmltag{<style>}@*)
+(*@\cssselector{.custom-button}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{\#ff4500}@*);
+  (*@\cssprop{color}@*): (*@\cssvalue{white}@*);
+(*@\csspunct{\}}@*)
+(*@\htmltag{</style>}@*)
+
+(*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+\end{lstlisting}
+
+  This is cleaner because the HTML creates the button, and the CSS controls how the button looks.
+\end{minipage}
+
+\vspace{0.5cm}
+
+\end{document}

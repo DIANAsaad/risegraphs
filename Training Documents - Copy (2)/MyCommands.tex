@@ -1,0 +1,276 @@
+\usepackage{xcolor}
+\usepackage{graphicx}   % For including images
+\usepackage{adjustbox}  % For adjusting image properties
+
+% Define custom colors with unique names to avoid conflicts
+\definecolor{morado}{HTML}{2d1559}
+\definecolor{naranja}{HTML}{ff4500}
+\definecolor{orangelight}{RGB}{255, 209, 183}
+\definecolor{myorange}{RGB}{255, 119, 0}
+\definecolor{pinkish}{HTML}{ffefe9}
+\definecolor{orange2}{RGB}{255, 209, 183}
+% Custom color commands (unique names)
+\newcommand{\pinkish}[1]{\textcolor{pinkish}{#1}}
+\newcommand{\morado}[1]{\textcolor{morado}{#1}}
+\newcommand{\naranja}[1]{\textcolor{naranja}{#1}}
+\newcommand{\lightorange}[1]{\textcolor{orangelight}{#1}}
+\newcommand{\myorange}[1]{\textcolor{myorange}{#1}}
+\newcommand{\orangeTwo}[1]{\textcolor{orange2}{#1}}
+
+\newcommand{\blueish}[1]{\textcolor{blue!60!white}{#1}}
+\newcommand{\whiteish}[1]{\textcolor{white}{#1}}
+\newcommand{\yellowish}[1]{\textcolor{yellow}{#1}}
+\newcommand{\greenish}[1]{\textcolor{green}{#1}}
+\newcommand{\purpleish}[1]{\textcolor{purple!30!blue}{#1}}
+\newcommand{\redish}[1]{\textcolor{red}{#1}}
+\newcommand{\grey}[1]{\textcolor{gray}{#1}}
+\newcommand{\black}[1]{\textcolor{black}{#1}}
+
+% Atom-style code colors for light PDF background
+\definecolor{htmltagblue}{HTML}{0077B6}
+\definecolor{attrblue}{HTML}{00A6D6}
+\definecolor{attrorange}{HTML}{C65D32}
+\definecolor{codemorado}{HTML}{2d1559}
+
+% ------------------------------------------------------------
+% HTML and CSS syntax-color helper commands
+% ------------------------------------------------------------
+
+% HTML / Atom-like colors adjusted for a white PDF background
+\definecolor{htmltagblue}{HTML}{0077B6}
+\definecolor{attrblue}{HTML}{0086B3}
+\definecolor{attrorange}{HTML}{C65D32}
+\definecolor{codemorado}{HTML}{2d1559}
+
+% CSS syntax colors adjusted for a white PDF background
+\definecolor{cssselectorblue}{HTML}{0077B6}
+\definecolor{csspropertygold}{HTML}{A66A00}
+\definecolor{cssvalueorange}{HTML}{C65D32}
+\definecolor{csscommentgreen}{HTML}{5B7F5B}
+\definecolor{csspunctpurple}{HTML}{2d1559}
+
+% HTML syntax commands for code listings
+\newcommand{\htmltag}[1]{\textbf{\textcolor{htmltagblue}{\texttt{#1}}}}
+\newcommand{\attrname}[1]{\textcolor{attrblue}{\texttt{#1}}}
+\newcommand{\attrvalue}[1]{\textcolor{attrorange}{\texttt{#1}}}
+\newcommand{\codetext}[1]{\textcolor{codemorado}{\texttt{#1}}}
+
+% CSS syntax commands for code listings
+\newcommand{\cssselector}[1]{\textbf{\textcolor{cssselectorblue}{\texttt{#1}}}}
+\newcommand{\cssprop}[1]{\textcolor{csspropertygold}{\texttt{#1}}}
+\newcommand{\cssvalue}[1]{\textcolor{cssvalueorange}{\texttt{#1}}}
+\newcommand{\csscomment}[1]{\textit{\textcolor{csscommentgreen}{\texttt{#1}}}}
+\newcommand{\csspunct}[1]{\textcolor{csspunctpurple}{\texttt{#1}}}
+
+% Inline HTML commands for normal lesson text
+\newcommand{\inlinehtmltag}[1]{\textbf{\textcolor{htmltagblue}{\texttt{#1}}}}
+\newcommand{\inlineattr}[1]{\textcolor{attrblue}{\texttt{#1}}}
+\newcommand{\inlineattrvalue}[1]{\textcolor{attrorange}{\texttt{#1}}}
+
+% Inline CSS commands for normal lesson text
+\newcommand{\inlinecssselector}[1]{\textbf{\textcolor{cssselectorblue}{\texttt{#1}}}}
+\newcommand{\inlinecssprop}[1]{\textcolor{csspropertygold}{\texttt{#1}}}
+\newcommand{\inlinecssvalue}[1]{\textcolor{cssvalueorange}{\texttt{#1}}}
+
+% Custom tcolorbox using unique color names
+\newcommand{\orangeboxA}[1]{%
+    \begin{tcolorbox}[colframe=myorange, colback=white, width=1.82cm, arc=0.6mm, boxsep=0mm, enhanced, height=0.7cm ]
+        #1
+    \end{tcolorbox}%
+}
+
+\newenvironment{indented}{\begin{quote}}{\end{quote}}
+\newcommand{\pmstacked}{\stackrel{+}{-}}
+
+% Title with custom color
+\title{\includegraphics[width=0.7cm, height=0.5cm]{Spain.png} \hspace{0.2em}\textbf{\myorange{Spanish Comprehension}} \hspace{0.01em} \includegraphics[width=0.7cm, height=0.5cm]{Spain.png}}
+\author{}
+\date{}
+
+% Background image commands
+\newcommand{\setbackgroundimage}[1]{
+    \backgroundsetup{
+        scale=1,
+        color=gray, % Change to your preferred color
+        opacity=0.3, % Change opacity as needed
+        angle=0,
+        position=current page.south,
+        vshift=15cm,
+        hshift=0cm,
+        contents={\includegraphics[width=\paperwidth,height=\paperheight]{#1}}
+    }
+}
+
+\newcommand{\setoriginal}[1]{
+    \backgroundsetup{
+        scale=1,
+        color=gray, % Change to your preferred color
+        opacity=1, % Change opacity as needed
+        angle=0,
+        position=current page.south,
+        vshift=15cm,
+        hshift=0cm,
+        contents={\includegraphics[width=\paperwidth,height=\paperheight]{#1}}
+    }
+}
+
+% Reminder box
+\newcommand{\Solution}[1]{
+    \begin{tcolorbox}[
+            colback=pinkish, % Background color 
+            colframe=white,     % No border color
+            boxrule=0pt,   % No overall border
+            width= 15cm,
+            left=2mm,          % Left padding
+            right=2mm,         % Right padding
+            top=1mm,           % Top padding
+            bottom=1mm,        % Bottom padding
+            before skip=2pt,  % Space before the box
+            after skip=3pt,   % Space after the box
+        ]
+        \begin{minipage}[t]{\linewidth}
+            \color{naranja}\rule{2pt}{\ht\strutbox} % Left border
+            \hspace{1mm} % Space between the border and text
+            \textbf{Solution:} \morado{#1}
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+% Reminder box
+\newcommand{\Question}[1]{
+    \begin{tcolorbox}[
+            colback=white, % Background color 
+            colframe=white,     % No border color
+            boxrule=0pt,   % No overall border
+            width= 15cm,
+            left=2mm,          % Left padding
+            right=2mm,         % Right padding
+            top=1mm,           % Top padding
+            bottom=1mm,        % Bottom padding
+            before skip=2pt,  % Space before the box
+            after skip=3pt,   % Space after the box
+        ]
+        \begin{minipage}[t]{\linewidth}
+            \color{naranja}\rule{2pt}{\ht\strutbox} % Left border
+            \hspace{1mm} % Space between the border and text
+            \textbf{} \morado{#1}
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+% Reminder box
+\newcommand{\html}[1]{
+    \begin{tcolorbox}[
+            colback=pinkish, % Background color 
+            colframe=white,     % No border color
+            boxrule=0pt,   % No overall border
+            width= 15cm,           % Adjust the width to suit your content
+            left=2mm,          % Left padding
+            right=2mm,         % Right padding
+            top=1mm,           % Top padding
+            bottom=1mm,        % Bottom padding
+            before skip=2pt,  % Space before the box
+            after skip=3pt,   % Space after the box
+            sharp corners,    % Optional: makes the box corners sharp for a clean look
+            enlarge left by=2mm,  % Optional: ensures left padding is respected
+        ]
+        \begin{minipage}[t]{\linewidth}
+            % Include an image as an icon (replace with your image path)
+            \includegraphics[width=0.4cm, height=0.4cm]{images/html.png}
+            \hspace{0.5mm} % Space between the image and the text
+            \raggedright % Aligns text to the left
+            \morado{#1}  % The passed text
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+% Reminder box
+\newcommand{\js}[1]{
+    \begin{tcolorbox}[
+            colback=pinkish, % Background color 
+            colframe=white,     % No border color
+            boxrule=0pt,   % No overall border
+            width= 15cm,           % Adjust the width to suit your content
+            left=2mm,          % Left padding
+            right=2mm,         % Right padding
+            top=1mm,           % Top padding
+            bottom=1mm,        % Bottom padding
+            before skip=2pt,  % Space before the box
+            after skip=3pt,   % Space after the box
+            sharp corners,    % Optional: makes the box corners sharp for a clean look
+            enlarge left by=2mm,  % Optional: ensures left padding is respected
+        ]
+        \begin{minipage}[t]{\linewidth}
+            % Include an image as an icon (replace with your image path)
+            \includegraphics[width=0.4cm, height=0.4cm]{images/js.png}
+            \hspace{0.5mm} % Space between the image and the text
+            \raggedright % Aligns text to the left
+            \morado{#1}  % The passed text
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+
+% Reminder box
+\newcommand{\css}[1]{
+    \begin{tcolorbox}[
+            colback=pinkish, % Background color 
+            colframe=white,     % No border color
+            boxrule=0pt,   % No overall border
+            width= 15cm,           % Adjust the width to suit your content
+            left=2mm,          % Left padding
+            right=2mm,         % Right padding
+            top=1mm,           % Top padding
+            bottom=1mm,        % Bottom padding
+            before skip=2pt,  % Space before the box
+            after skip=3pt,   % Space after the box
+            sharp corners,    % Optional: makes the box corners sharp for a clean look
+            enlarge left by=2mm,  % Optional: ensures left padding is respected
+        ]
+        \begin{minipage}[t]{\linewidth}
+            % Include an image as an icon (replace with your image path)
+            \includegraphics[width=0.4cm, height=0.4cm]{images/css-logo.png}
+            \hspace{0.5mm} % Space between the image and the text
+            \raggedright % Aligns text to the left
+            \morado{#1}  % The passed text
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+% Code block style
+\lstset{
+    basicstyle=\ttfamily\scriptsize,
+    breaklines=true,
+    columns=fullflexible,
+    frame=single,
+    rulecolor=\color{naranja},
+    showstringspaces=false,
+    keepspaces=true,
+    xleftmargin=4pt,
+    xrightmargin=4pt,
+    aboveskip=8pt,
+    belowskip=8pt,
+    escapeinside={(*@}{@*)}
+}
+
+
+% Attention Box
+\newtcolorbox{attentionbox}{
+    enhanced,
+    colback=pinkish,
+    colframe=naranja,
+    boxrule=1pt,
+    sharp corners,
+    left=4mm,
+    right=4mm,
+    top=3mm,
+    bottom=3mm,
+    before skip=10pt,
+    after skip=10pt,
+    fontupper=\color{morado},
+    before upper={
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{6pt}
+        \linespread{1.08}\selectfont
+    }
+}
