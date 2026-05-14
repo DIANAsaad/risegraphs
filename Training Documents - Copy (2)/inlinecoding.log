@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2026.5.7)  12 MAY 2026 19:54
+This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2026.5.7)  14 MAY 2026 19:58
  restricted system commands enabled.
 **inlinecoding.tex
 (./inlinecoding.tex
@@ -1354,7 +1354,7 @@ Underfull \hbox (badness 1226) in paragraph at lines 278--279
 <images/html-output.png, id=117, 963.6pt x 472.76625pt>
 File: images/html-output.png Graphic file (type png)
 <use images/html-output.png>
-Package luatex.def Info: images/html-output.png  used on input line 393.
+Package luatex.def Info: images/html-output.png  used on input line 397.
 (luatex.def)             Requested size: 190.24568pt x 93.33965pt.
 
 
@@ -1367,14 +1367,41 @@ Package luatex.def Info: images/html-output.png  used on input line 393.
 [7]
 
 [8]
-<images/css-output.png, id=261, 950.04938pt x 471.26062pt>
+
+[9]
+<images/css-output.png, id=289, 950.04938pt x 471.26062pt>
 File: images/css-output.png Graphic file (type png)
 <use images/css-output.png>
-Package luatex.def Info: images/css-output.png  used on input line 725.
+Package luatex.def Info: images/css-output.png  used on input line 748.
 (luatex.def)             Requested size: 294.42636pt x 146.04613pt.
 
 
-[9<./images/css-output.png>] (./inlinecoding.aux)
+[10<./images/css-output.png>]
+<images/Hello.png, id=312, 963.6pt x 226.8475pt>
+File: images/Hello.png Graphic file (type png)
+<use images/Hello.png>
+Package luatex.def Info: images/Hello.png  used on input line 883.
+(luatex.def)             Requested size: 339.72592pt x 79.97586pt.
+
+
+[11<./images/Hello.png>]
+File: images/css-output.png Graphic file (type png)
+<use images/css-output.png>
+Package luatex.def Info: images/css-output.png  used on input line 994.
+(luatex.def)             Requested size: 217.42265pt x 107.84834pt.
+
+
+[12]
+
+[13]
+
+[14]
+
+[15]
+
+[16]
+
+[17] (./inlinecoding.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-05-26>
@@ -1388,16 +1415,16 @@ Package rerunfilecheck Info: File `inlinecoding.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 35139 strings out of 470203
- 244174,1373583 words of node,token memory allocated
- 1300 words of node memory still in use:
-   30 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 81 attribute, 55 glue_sp
-ec, 81 attribute_list, 2 write, 24 pdf_literal, 1 pdf_action, 24 pdf_colorstack 
+ 35389 strings out of 470203
+ 381565,1373583 words of node,token memory allocated
+ 1310 words of node memory still in use:
+   30 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 82 attribute, 55 glue_sp
+ec, 82 attribute_list, 2 write, 24 pdf_literal, 2 pdf_action, 24 pdf_colorstack 
 nodes
-   avail lists: 1:2,2:3636,3:575,4:1648,5:7563,6:152,7:8167,8:2,9:12552,10:12,11
-:500
- 62398 multiletter control sequences out of 65536+600000
- 78 fonts using 6873031 bytes
+   avail lists: 1:1,2:4667,3:527,4:2294,5:11057,6:176,7:11267,8:2,9:18654,10:15,
+11:638
+ 62434 multiletter control sequences out of 65536+600000
+ 80 fonts using 7157751 bytes
  98i,7n,97p,441b,926s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/users/lenovo/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10
 -italic.otf><c:/users/lenovo/appdata/local/programs/miktex/fonts/opentype/public
@@ -1408,9 +1435,9 @@ Programs/MiKTeX/fonts/opentype/ibm/plex/ibmplexsans-bold.otf><C:/Users/Lenovo/Ap
 pData/Local/Programs/MiKTeX/fonts/opentype/ibm/plex/ibmplexsans-regular.otf><C:/
 Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/truetype/huerta/bitter/bitter-r
 egular.ttf>
-Output written on inlinecoding.pdf (10 pages, 3412483 bytes).
+Output written on inlinecoding.pdf (18 pages, 3489229 bytes).
 
-PDF statistics: 332 PDF objects out of 1000 (max. 8388607)
- 178 named destinations out of 1000 (max. 131072)
+PDF statistics: 578 PDF objects out of 1000 (max. 8388607)
+ 386 named destinations out of 1000 (max. 131072)
  256 words of extra memory for PDF output out of 10000 (max. 100000000)
 

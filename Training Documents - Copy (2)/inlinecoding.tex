@@ -57,7 +57,7 @@
 
   \vspace{0.4cm}
 
-  {\Large\textcolor{morado}{A Beginner-Friendly Guide to Reading Web Code}\par}
+  {\Large\textcolor{morado}{An Overview to Reading Web Code}\par}
 
   \vspace*{\fill}
 \end{titlepage}
@@ -76,41 +76,41 @@ This document is organized into two main sections. We begin with a simple introd
 \begin{enumerate}[leftmargin=1.2cm, itemsep=8pt]
 
   \item \hyperref[sec:introduction]{\textbf{\Bitter\textcolor{naranja}{Introduction}}}
-  
-  \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
-    \item What HTML, CSS, and JavaScript are
-    \item How the three languages work together
-    \item The body analogy: structure, appearance, and behavior
-    \item A simple visual example
-  \end{itemize}
+
+        \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+          \item What HTML, CSS, and JavaScript are
+          \item How the three languages work together
+          \item The body analogy: structure, appearance, and behavior
+          \item A simple visual example
+        \end{itemize}
 
   \item \hyperref[sec:basic-syntax]{\textbf{\Bitter\textcolor{naranja}{Understanding the Basic Syntax}}}
 
-  \begin{itemize}[leftmargin=0.8cm, itemsep=6pt]
+        \begin{itemize}[leftmargin=0.8cm, itemsep=6pt]
 
-    \item \hyperref[subsec:html-syntax]{\textbf{HTML Syntax: Creating the Parts}}
-    \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
-      \item Definition of HTML syntax
-      \item Common HTML tags
-      \item A simple HTML activity example
-      \item Default HTML layout
-      \item Block-level and inline-level elements
-      \item The \inlinehtmltag{<br>} tag
-      \item Tag attributes: adding extra details
-    \end{itemize}
+          \item \hyperref[subsec:html-syntax]{\textbf{HTML Syntax: Creating the Parts}}
+                \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+                  \item Definition of HTML syntax
+                  \item Common HTML tags
+                  \item A simple HTML activity example
+                  \item Default HTML layout
+                  \item Block-level and inline-level elements
+                  \item The \inlinehtmltag{<br>} tag
+                  \item Tag attributes: adding extra details
+                \end{itemize}
 
-    \item \hyperref[subsec:css-syntax]{\textbf{CSS Syntax: Styling the Parts}}
-    \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
-      \item Definition of CSS syntax
-      \item CSS selectors, properties, and values
-      \item Common CSS properties
-      \item How HTML class names connect to CSS selectors
-      \item Comments in HTML, CSS, and JavaScript
-      \item Adding CSS to a mini activity
-      \item Two ways to add CSS: inline CSS and style block CSS
-    \end{itemize}
+          \item \hyperref[subsec:css-syntax]{\textbf{CSS Syntax: Styling the Parts}}
+                \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+                  \item Definition of CSS syntax
+                  \item CSS selectors, properties, and values
+                  \item Common CSS properties
+                  \item How HTML class names connect to CSS selectors
+                  \item Comments in HTML, CSS, and JavaScript
+                  \item Adding CSS to a mini activity
+                  \item Two ways to add CSS: inline CSS and style block CSS
+                \end{itemize}
 
-  \end{itemize}
+        \end{itemize}
 
 \end{enumerate}
 
@@ -280,11 +280,11 @@ The close-up image shows the same idea in a smaller example.
   \vspace{0.2cm}
 
   \begin{lstlisting}
-function laugh() {
-  document
-    .querySelector(".mouth")
-    .classList.add("laugh");
-}
+(*@\jskeyword{function}@*) (*@\jsfunction{laugh}@*)(*@\jspunct{()}@*) (*@\jspunct{\{}@*)
+  (*@\jsobject{document}@*)
+    (*@\jspunct{.}@*)(*@\jsmethod{querySelector}@*)(*@\jspunct{(}@*)(*@\jsstring{".mouth"}@*)(*@\jspunct{)}@*)
+    (*@\jspunct{.}@*)(*@\jsobject{classList}@*)(*@\jspunct{.}@*)(*@\jsmethod{add}@*)(*@\jspunct{(}@*)(*@\jsstring{"laugh"}@*)(*@\jspunct{)}@*);
+(*@\jspunct{\}}@*)
 \end{lstlisting}
 
 \end{minipage}
@@ -362,21 +362,25 @@ This example only uses HTML, so it creates the content, but it does not style it
 
   \vspace{0.15cm}
 
-  \begin{lstlisting}
-(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
-  (*@\htmltag{<h2}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-title"}@*)(*@\htmltag{>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
-  (*@\htmltag{<p}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-question"}@*)(*@\htmltag{>}@*)(*@\codetext{Which language creates the structure?}@*)(*@\htmltag{</p>}@*)
+\begin{lstlisting}
+(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"page-wrapper"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<h2}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-title"}@*)(*@\htmltag{>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
+    (*@\htmltag{<p}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-question"}@*)(*@\htmltag{>}@*)(*@\codetext{Which language creates the structure?}@*)(*@\htmltag{</p>}@*)
 
-  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"html"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)
-  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)(*@\codetext{HTML}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"html"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)(*@\codetext{HTML}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
 
-  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"css"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)
-  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)(*@\codetext{CSS}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"css"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)(*@\codetext{CSS}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
 
-  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"js"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)
-  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)(*@\codetext{JavaScript}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"js"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)(*@\codetext{JavaScript}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
 
-  (*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+    (*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+
+    (*@\htmltag{<p}@*) (*@\attrname{id}@*)=(*@\attrvalue{"feedback"}@*) (*@\attrname{class}@*)=(*@\attrvalue{"feedback-message"}@*)(*@\htmltag{></p>}@*)
+  (*@\htmltag{</div>}@*)
 (*@\htmltag{</div>}@*)
 \end{lstlisting}
 
@@ -401,6 +405,21 @@ This example only uses HTML, so it creates the content, but it does not style it
 
 \vspace{0.3cm}
 
+In this example:
+
+\begin{enumerate}[leftmargin=1.2cm, itemsep=4pt]
+  \item The \inlinehtmltag{<div>} groups the activity into one block.
+  \item The \inlinehtmltag{<h2>} creates the heading.
+  \item The \inlinehtmltag{<p>} creates the question text.
+  \item The \inlinehtmltag{<input>} creates each answer choice as a radio button.
+  \item The \inlinehtmltag{<label>} adds the visible answer text beside each radio button.
+  \item The \inlinehtmltag{<br>} moves each answer choice to a new line.
+  \item The \inlinehtmltag{<button>} creates something we can click.
+  \item The \inlinehtmltag{<p>} with id \inlineattrvalue{feedback} creates an empty paragraph where we can later add feedback messages.
+\end{enumerate}
+
+\vspace{0.3cm}
+
 When the browser reads plain HTML, it displays the elements in their default layout.
 
 \begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
@@ -413,22 +432,6 @@ When the browser reads plain HTML, it displays the elements in their default lay
 \end{itemize}
 
 In our example, each answer choice uses an \inlinehtmltag{<input>} and a \inlinehtmltag{<label>}. These two appear beside each other because they are inline-level elements. But after each label, we added \inlinehtmltag{<br>}, so the next answer choice starts on a new line.
-
-
-
-\vspace{0.2cm}
-
-In this example:
-
-\begin{enumerate}[leftmargin=1.2cm, itemsep=4pt]
-  \item The \inlinehtmltag{<div>} groups the activity into one block.
-  \item The \inlinehtmltag{<h2>} creates the heading.
-  \item The \inlinehtmltag{<p>} creates the question text.
-  \item The \inlinehtmltag{<input>} creates each answer choice as a radio button.
-  \item The \inlinehtmltag{<label>} adds the visible answer text beside each radio button.
-  \item The \inlinehtmltag{<br>} moves each answer choice to a new line.
-  \item The \inlinehtmltag{<button>} creates something we can click.
-\end{enumerate}
 
 \vspace{0.2cm}
 
@@ -451,7 +454,7 @@ This is where CSS becomes useful. HTML creates the parts, but CSS helps us move 
 Some HTML tags can include extra information called \textbf{attributes}.
 Attributes help describe how an element should behave, how it should be identified, or how it should connect to other parts of the activity.
 
-We write attributes inside the opening tag.
+We write attributes \textbf{inside the opening tag.}
 
 \vspace{0.2cm}
 
@@ -569,9 +572,9 @@ The lines inside the curly braces style that activity card.
   Here is the basic idea:
 
   \begin{lstlisting}
-(*@\cssselector{.activity-card{}}@*) (*@\csscomment{/* targets class="activity-card" */}@*)
-(*@\cssselector{\#main-title{}}@*) (*@\csscomment{/* targets id="main-title" */}@*)
-(*@\cssselector{button{}}@*) (*@\csscomment{/* targets every <button> tag */}@*)
+(*@\cssselector{.activity-card}@*) (*@\csspunct{\{}@*)(*@\csspunct{\}}@*) (*@\csscomment{/* targets class="activity-card" */}@*)
+(*@\cssselector{\#main-title}@*) (*@\csspunct{\{}@*)(*@\csspunct{\}}@*) (*@\csscomment{/* targets id="main-title" */}@*)
+(*@\cssselector{button}@*) (*@\csspunct{\{}@*)(*@\csspunct{\}}@*) (*@\csscomment{/* targets every <button> tag */}@*)
 \end{lstlisting}
 
 \end{attentionbox}
@@ -614,10 +617,10 @@ The lines inside the curly braces style that activity card.
     \item CSS comment: \texttt{\textcolor{csscommentgreen}{/* This is a comment */}}
     \item JavaScript comment: \texttt{\textcolor{csscommentgreen}{// This is a comment}}
   \end{itemize}
+
 \end{attentionbox}
 
-\vspace{0.4cm}
-
+\pagebreak
 
 \textbf{\Bitter\textcolor{naranja}{Adding CSS to Our Mini Activity}}
 
@@ -634,21 +637,25 @@ The HTML still creates the parts, but the CSS makes the activity card look more 
 
   \vspace{0.15cm}
 
-  \begin{lstlisting}
-(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
-  (*@\htmltag{<h2}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-title"}@*)(*@\htmltag{>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
-  (*@\htmltag{<p}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-question"}@*)(*@\htmltag{>}@*)(*@\codetext{Which language creates the structure?}@*)(*@\htmltag{</p>}@*)
+\begin{lstlisting}
+(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"page-wrapper"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<h2}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-title"}@*)(*@\htmltag{>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
+    (*@\htmltag{<p}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-question"}@*)(*@\htmltag{>}@*)(*@\codetext{Which language creates the structure?}@*)(*@\htmltag{</p>}@*)
 
-  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"html"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)
-  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)(*@\codetext{HTML}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"html"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)(*@\codetext{HTML}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
 
-  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"css"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)
-  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)(*@\codetext{CSS}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"css"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)(*@\codetext{CSS}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
 
-  (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"js"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)
-  (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)(*@\codetext{JavaScript}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"js"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)(*@\codetext{JavaScript}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
 
-  (*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+    (*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+
+    (*@\htmltag{<p}@*) (*@\attrname{id}@*)=(*@\attrvalue{"feedback"}@*) (*@\attrname{class}@*)=(*@\attrvalue{"feedback-message"}@*)(*@\htmltag{></p>}@*)
+  (*@\htmltag{</div>}@*)
 (*@\htmltag{</div>}@*)
 \end{lstlisting}
 
@@ -659,31 +666,43 @@ The HTML still creates the parts, but the CSS makes the activity card look more 
 
   \vspace{0.15cm}
 
-  \begin{lstlisting}
-(*@\htmltag{<style>}@*)
+\begin{lstlisting}
+(*@\cssselector{.page-wrapper}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{min-height}@*): (*@\cssvalue{100vh}@*);
+  (*@\cssprop{display}@*): (*@\cssvalue{flex}@*);
+  (*@\cssprop{justify-content}@*): (*@\cssvalue{center}@*);
+  (*@\cssprop{align-items}@*): (*@\cssvalue{center}@*);
+(*@\csspunct{\}}@*)
+
 (*@\cssselector{.activity-card}@*) (*@\csspunct{\{}@*)
   (*@\cssprop{background-color}@*): (*@\cssvalue{\#ffefe9}@*);
   (*@\cssprop{border}@*): (*@\cssvalue{2px solid \#ff4500}@*);
-  (*@\cssprop{border-radius}@*): (*@\cssvalue{12px}@*);
+  (*@\cssprop{border-radius}@*): (*@\cssvalue{14px}@*);
   (*@\cssprop{padding}@*): (*@\cssvalue{20px}@*);
-  (*@\cssprop{margin}@*): (*@\cssvalue{20px auto}@*);
-  (*@\cssprop{width}@*): (*@\cssvalue{300px}@*);
-  (*@\cssprop{text-align}@*): (*@\cssvalue{center}@*);
+  (*@\cssprop{width}@*): (*@\cssvalue{320px}@*);
   (*@\cssprop{color}@*): (*@\cssvalue{\#2d1559}@*);
 (*@\csspunct{\}}@*)
 
 (*@\cssselector{.activity-title}@*) (*@\csspunct{\{}@*)
   (*@\cssprop{color}@*): (*@\cssvalue{\#ff4500}@*);
+  (*@\cssprop{text-align}@*): (*@\cssvalue{center}@*);
   (*@\cssprop{margin-bottom}@*): (*@\cssvalue{10px}@*);
 (*@\csspunct{\}}@*)
 
 (*@\cssselector{.activity-question}@*) (*@\csspunct{\{}@*)
   (*@\cssprop{color}@*): (*@\cssvalue{\#2d1559}@*);
-  (*@\cssprop{font-size}@*): (*@\cssvalue{16px}@*);
+  (*@\cssprop{font-weight}@*): (*@\cssvalue{bold}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.answer-option}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{display}@*): (*@\cssvalue{flex}@*);
+  (*@\cssprop{align-items}@*): (*@\cssvalue{center}@*);
+  (*@\cssprop{gap}@*): (*@\cssvalue{8px}@*);
+  (*@\cssprop{margin}@*): (*@\cssvalue{8px 0}@*);
 (*@\csspunct{\}}@*)
 
 (*@\cssselector{.answer-input}@*) (*@\csspunct{\{}@*)
-  (*@\cssprop{margin}@*): (*@\cssvalue{6px}@*);
+  (*@\cssprop{accent-color}@*): (*@\cssvalue{\#ff4500}@*);
 (*@\csspunct{\}}@*)
 
 (*@\cssselector{.answer-label}@*) (*@\csspunct{\{}@*)
@@ -698,12 +717,15 @@ The HTML still creates the parts, but the CSS makes the activity card look more 
   (*@\cssprop{padding}@*): (*@\cssvalue{8px 14px}@*);
   (*@\cssprop{margin-top}@*): (*@\cssvalue{12px}@*);
 (*@\csspunct{\}}@*)
-
-(*@\csscomment{/* This is the same class, but this rule applies when we hover over the button. */}@*)
+ (*@\csscomment{This is the same class, but it is activated upon hovering}@*)
 (*@\cssselector{.custom-button:hover}@*) (*@\csspunct{\{}@*)
-  (*@\cssprop{background-color}@*): (*@\cssvalue{\#2d1559}@*);
+  (*@\cssprop{background-color}@*): (*@\cssvalue{\#ff4500}@*);
+  (*@\cssprop{opacity}@*): (*@\cssvalue{0.9}@*);
 (*@\csspunct{\}}@*)
-(*@\htmltag{</style>}@*)
+
+(*@\cssselector{.feedback-message}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{color}@*): (*@\cssvalue{\#ff4500}@*);
+(*@\csspunct{\}}@*)
 \end{lstlisting}
 
 \end{minipage}
@@ -711,16 +733,17 @@ The HTML still creates the parts, but the CSS makes the activity card look more 
 \vspace{0.4cm}
 
 In this version, we are still using the same HTML structure.
-The difference is that CSS now gives the card a background color, border, rounded corners, spacing, centered text, and a styled button.
+The difference is that CSS now gives the card a background color, border, rounded corners, spacing, centered text, and a styled button. 
+Let's see how this looks in the browser when we add the CSS.
 
-\vspace{0.3cm}
 \pagebreak
+
 \textbf{\Bitter\textcolor{naranja}{Styled Browser Output}}
 
 \vspace{0.15cm}
 
 \begin{center}
-  \href{https://dianasaad.github.io/risegraphs/testcss.html}{
+  \href{https://dianasaad.github.io/risegraphs/testcss.html?v=4}{
     \includegraphics[width=0.65\textwidth]{images/css-output.png}
   }
 \end{center}
@@ -737,8 +760,8 @@ When we add CSS, we can write it in more than one way.
 For now, we will focus on two simple options: \textbf{inline CSS} and a \textbf{style block}.
 
 \begin{itemize}
-\item Inline CSS is written directly inside the HTML tag.
-\item A style block keeps the CSS in one place, which is usually cleaner when we are building a full activity.
+  \item Inline CSS is written directly inside the HTML tag.
+  \item A style block keeps the CSS in one place, which is usually cleaner when we are building a full activity.
 \end{itemize}
 
 \vspace{0.3cm}
@@ -782,5 +805,525 @@ For now, we will focus on two simple options: \textbf{inline CSS} and a \textbf{
 \end{minipage}
 
 \vspace{0.5cm}
+
+
+\phantomsection
+\subsection*{\Bitter\textcolor{naranja}{JavaScript Syntax: Adding Behavior}}
+\label{subsec:javascript-syntax}
+
+JavaScript is a coding language that runs in the browser.
+It helps the browser do more than just show text and images.
+
+With JavaScript, we can target different parts of a web page and change what happens on the screen.
+For example, JavaScript can:
+
+\begin{itemize}
+  \item change text after someone clicks a button,
+  \item show or hide feedback,
+  \item check if an answer is correct,
+  \item change colors or classes,
+  \item respond when someone types, clicks, drags, or selects something.
+\end{itemize}
+
+In simple terms, HTML creates the parts, CSS styles the parts, and JavaScript helps the page \textbf{react}.
+\vspace{0.3cm}
+
+Before we go into the code, it is important to understand what a \textbf{function} is in coding.
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Attention Please!}}
+
+  A function is a set of instructions that we want to run together.
+  Instead of writing the same instructions many times, we can place them inside one function and reuse that function when we need it.
+\end{attentionbox}
+
+A simple JavaScript function follows this syntax:
+
+\begin{lstlisting}
+(*@\jskeyword{function}@*) (*@\jsfunction{functionName}@*)(*@\jspunct{()}@*) (*@\jspunct{\{}@*)
+  (*@\jscomment{// function instructions go here}@*)
+(*@\jspunct{\}}@*)
+\end{lstlisting}
+
+\begin{itemize}
+  \item The \inlinejskeyword{function} keyword tells JavaScript that we are creating a reusable action.
+  \item The \inlinejsfunction{functionName} tells us what the action is called.
+  \item The \inlinejsmethod{()} are part of the function structure. They can also hold parameters, which are extra pieces of information we can pass to the function when we run it.
+  \item The curly braces \inlinejsmethod{\{\}} tell JavaScript where the function starts and ends. The code inside the curly braces is what gets executed when we run the function.
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{\Bitter\textcolor{naranja}{A Very Simple Function Example}}
+
+\vspace{0.1cm}
+
+Here is a very simple JavaScript function:
+
+\begin{lstlisting}
+(*@\jskeyword{function}@*) (*@\jsfunction{sayHello}@*)(*@\jspunct{()}@*) (*@\jspunct{\{}@*)
+  (*@\jsmethod{alert}@*)(*@\jspunct{(}@*)(*@\jsstring{"Hello!"}@*)(*@\jspunct{)}@*);
+(*@\jspunct{\}}@*)
+\end{lstlisting}
+
+This function is called \inlinejsfunction{sayHello}.
+When the function runs, it shows a small message that says \inlinejsstring{"Hello!"} on the browser screen.
+
+\vspace{0.2cm}
+
+To run the function, we call it by writing its name followed by parentheses:
+
+\begin{lstlisting}
+(*@\jsfunction{sayHello}@*)(*@\jspunct{()}@*);
+\end{lstlisting}
+
+\vspace{0.15cm}
+
+\begin{center}
+  \includegraphics[width=0.75\textwidth]{images/Hello.png}
+\end{center}
+
+So, the full idea is:
+
+\begin{lstlisting}
+(*@\jskeyword{function}@*) (*@\jsfunction{sayHello}@*)(*@\jspunct{()}@*) (*@\jspunct{\{}@*)
+  (*@\jsmethod{alert}@*)(*@\jspunct{(}@*)(*@\jsstring{"Hello!"}@*)(*@\jspunct{)}@*);
+(*@\jspunct{\}}@*) (*@\jscomment{// function definition}@*)
+
+(*@\jsfunction{sayHello}@*)(*@\jspunct{()}@*); (*@\jscomment{// function call (execution)}@*)
+\end{lstlisting}
+
+\vspace{0.3cm}
+
+\textbf{\Bitter\textcolor{naranja}{Built-in Browser Tools We May See}}
+
+\vspace{0.1cm}
+
+When we write JavaScript for a web activity, we often need it to find something on the page first.
+For example, JavaScript may need to find a button, an answer choice, or a feedback message.
+
+To do this, it uses built-in browser tools such as \inlinejsobject{document}, \inlinejsmethod{querySelector()}, and \inlinejsmethod{getElementById()}.
+
+\vspace{0.2cm}
+
+Here are a few common ones we may see:
+
+\begin{itemize}
+  \item \inlinejsobject{document} represents the web page that the browser is showing.
+  \item \inlinejsmethod{querySelector()} finds the first HTML element that matches a CSS selector.
+  \item \inlinejsmethod{getElementById()} finds one HTML element by its unique \inlineattr{id}.
+  \item \inlinejsmethod{getElementsByClassName()} finds HTML elements that share the same \inlineattr{class}.
+  \item \inlinejsobject{value} lets JavaScript read the value stored inside an input.
+  \item \inlinejsobject{checked} tells JavaScript whether a radio button or checkbox is selected.
+\end{itemize}
+
+\vspace{0.2cm}
+
+\vspace{0.3cm}
+
+\textbf{\Bitter\textcolor{naranja}{Adding JavaScript to Our Mini Activity}}
+
+\vspace{0.1cm}
+
+Now that we have the HTML structure and CSS styling, we can add JavaScript to make the activity interactive.
+
+What we want is the following behavior:
+\begin{enumerate}
+  \item We select an answer choice by clicking on the radio button.
+  \item We click the submit button.
+  \item The JavaScript checks which answer we selected and compares it to the correct answer.
+  \item if the answer is correct, it shows a feedback message that says "Correct!".
+  \item Else, if the answer is incorrect, it shows a feedback message that says "Incorrect. Try again!".
+\end{enumerate}
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Attention Please!}}
+
+  Before we write JavaScript, we should always know what behavior we want.
+  This makes it easier to read the code, fix the code, or explain the code clearly in an AI prompt.
+\end{attentionbox}
+
+
+\vspace{0.3cm}
+
+\vspace{0.3cm}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{HTML and CSS Recap}}
+
+  \vspace{0.15cm}
+
+  \begin{lstlisting}
+(*@\htmltag{<style>}@*)
+  (*@\csscomment{/* CSS code for styling the activity goes here. */}@*)
+(*@\htmltag{</style>}@*)
+
+
+(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"page-wrapper"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<h2}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-title"}@*)(*@\htmltag{>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
+    (*@\htmltag{<p}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-question"}@*)(*@\htmltag{>}@*)(*@\codetext{Which language creates the structure?}@*)(*@\htmltag{</p>}@*)
+
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"html"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)(*@\codetext{HTML}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"css"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)(*@\codetext{CSS}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"js"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)(*@\codetext{JavaScript}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+    (*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+
+    (*@\htmltag{<p}@*) (*@\attrname{id}@*)=(*@\attrvalue{"feedback"}@*) (*@\attrname{class}@*)=(*@\attrvalue{"feedback-message"}@*)(*@\htmltag{></p>}@*)
+  (*@\htmltag{</div>}@*)
+(*@\htmltag{</div>}@*)
+
+\end{lstlisting}
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \textbf{\Bitter\textcolor{naranja}{Final HTML and CSS Output}}
+
+  \vspace{0.15cm}
+
+  \begin{center}
+    \href{https://dianasaad.github.io/risegraphs/testcss.html?v=4}{
+      \includegraphics[width=\linewidth]{images/css-output.png}}
+  \end{center}
+
+  \vspace{0.15cm}
+
+  At this stage, the activity has a question, answer choices, a submit button, and a feedback area.
+
+  \vspace{0.15cm}
+
+  However, the feedback area is still empty because we have not added the JavaScript logic yet.
+\end{minipage}
+
+\vspace{0.5cm}
+
+
+\textbf{\Bitter\textcolor{naranja}{Starting the Function}}
+
+\vspace{0.1cm}
+
+Now we can begin writing the function for our activity.
+Since the goal is to check the selected answer, we can name the function \inlinejsfunction{checkAnswer}.
+
+\vspace{0.2cm}
+
+\begin{lstlisting}
+(*@\jskeyword{function}@*) (*@\jsfunction{checkAnswer}@*)(*@\jspunct{()}@*) (*@\jspunct{\{}@*)
+  (*@\jscomment{// JavaScript instructions will go here.}@*)
+(*@\jspunct{\}}@*)
+\end{lstlisting}
+
+\vspace{0.2cm}
+
+At this point, the function is only an empty container.
+Next, we need to place the instructions inside it.
+
+\vspace{0.4cm}
+
+\textbf{\Bitter\textcolor{naranja}{Reading the Selected Answer}}
+
+\vspace{0.1cm}
+
+The first instruction we need is to find the answer that we selected.
+
+We can use \inlinejsobject{document} and \inlinejsmethod{querySelector()} to search inside the HTML page.
+
+\vspace{0.2cm}
+
+\begin{lstlisting}
+(*@\jskeyword{let}@*) (*@\jsobject{selectedAnswer}@*) = (*@\jsobject{document}@*)(*@\jspunct{.}@*)(*@\jsmethod{querySelector}@*)(*@\jspunct{(}@*)(*@\jsstring{'input[name="language"]:checked'}@*)(*@\jspunct{)}@*);
+\end{lstlisting}
+
+\vspace{0.2cm}
+
+This line means:
+
+\begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+  \item Look inside the \inlinejsobject{document}, which means the web page.
+  \item Find an \inlinehtmltag{<input>} with the \inlineattr{name} attribute \inlineattr{(name}=\inlineattrvalue{"language"}\inlineattr{)}.
+  \item Only choose the input that is currently \inlinejsobject{checked}.
+  \item Store that selected input inside a variable named \inlinejsobject{selectedAnswer}.
+\end{itemize}
+
+\vspace{0.3cm}
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Attention Please!}}
+
+  The word \inlinejskeyword{let} creates a variable.
+  A variable is like a small labeled box where JavaScript can store information in memory and use it later.
+\end{attentionbox}
+
+\vspace{0.4cm}
+
+\textbf{\Bitter\textcolor{naranja}{Introducing If and Else}}
+
+\vspace{0.1cm}
+
+After JavaScript finds the selected answer, it needs to make a decision.
+
+This is where we use an \inlinejskeyword{if} and \inlinejskeyword{else} block.
+
+An \inlinejskeyword{if} block checks a condition.
+If the condition is true, one set of instructions runs.
+If the condition is not true, the \inlinejskeyword{else} block runs instead.
+
+\vspace{0.2cm}
+
+The basic structure looks like this:
+
+\begin{lstlisting}
+(*@\jskeyword{if}@*) (*@\jspunct{(}@*)(*@\jscomment{// condition goes here}@*)(*@\jspunct{)}@*) (*@\jspunct{\{}@*)
+  (*@\jscomment{// code runs when the condition is true}@*)
+(*@\jspunct{\}}@*) (*@\jskeyword{else}@*) (*@\jspunct{\{}@*)
+  (*@\jscomment{// code runs when the condition is false}@*)
+(*@\jspunct{\}}@*)
+\end{lstlisting}
+
+\vspace{0.2cm}
+
+For our activity, the condition is:
+
+\vspace{0.1cm}
+
+\begin{lstlisting}
+(*@\jsobject{selectedAnswer}@*)(*@\jspunct{.}@*)(*@\jsobject{value}@*) === (*@\jsstring{"html"}@*)
+\end{lstlisting}
+
+\vspace{0.2cm}
+
+This means: check whether the value of the selected answer is equal to \inlinejsstring{"html"}.
+
+\vspace{0.3cm}
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Attention Please!}}
+
+  In JavaScript, \inlinejsmethod{===} is used to compare two values.
+  It asks: are these two things exactly the same?
+\end{attentionbox}
+
+\vspace{0.4cm}
+
+\textbf{\Bitter\textcolor{naranja}{Writing the Full JavaScript Function}}
+
+\vspace{0.1cm}
+
+Now we can place the logic inside the function.
+
+\vspace{0.2cm}
+
+\begin{lstlisting}
+(*@\jskeyword{function}@*) (*@\jsfunction{checkAnswer}@*)(*@\jspunct{()}@*) (*@\jspunct{\{}@*)
+  (*@\jskeyword{let}@*) (*@\jsobject{selectedAnswer}@*) = (*@\jsobject{document}@*)(*@\jspunct{.}@*)(*@\jsmethod{querySelector}@*)(*@\jspunct{(}@*)(*@\jsstring{'input[name="language"]:checked'}@*)(*@\jspunct{)}@*);
+
+  (*@\jskeyword{if}@*) (*@\jspunct{(}@*)(*@\jsobject{selectedAnswer}@*)(*@\jspunct{.}@*)(*@\jsobject{value}@*) === (*@\jsstring{"html"}@*)(*@\jspunct{)}@*) (*@\jspunct{\{}@*)
+    (*@\jsobject{document}@*)(*@\jspunct{.}@*)(*@\jsmethod{getElementById}@*)(*@\jspunct{(}@*)(*@\jsstring{"feedback"}@*)(*@\jspunct{)}@*)(*@\jspunct{.}@*)(*@\jsobject{textContent}@*) = (*@\jsstring{"Correct! HTML creates the structure."}@*);
+  (*@\jspunct{\}}@*) (*@\jskeyword{else}@*) (*@\jspunct{\{}@*)
+    (*@\jsobject{document}@*)(*@\jspunct{.}@*)(*@\jsmethod{getElementById}@*)(*@\jspunct{(}@*)(*@\jsstring{"feedback"}@*)(*@\jspunct{)}@*)(*@\jspunct{.}@*)(*@\jsobject{textContent}@*) = (*@\jsstring{"Incorrect. Try again!"}@*);
+  (*@\jspunct{\}}@*)
+(*@\jspunct{\}}@*)
+\end{lstlisting}
+
+\vspace{0.3cm}
+
+This function follows the logic we planned:
+
+\begin{enumerate}[leftmargin=1.2cm, itemsep=4pt]
+  \item We find the selected radio button.
+  \item We read the selected answer's value.
+  \item We compare that value to \inlinejsstring{"html"}.
+  \item We show feedback based on the result.
+\end{enumerate}
+
+\textbf{\Bitter\textcolor{naranja}{How the Feedback Appears}}
+
+\vspace{0.1cm}
+
+The feedback message appears inside this paragraph from the HTML:
+
+\vspace{0.1cm}
+
+\begin{lstlisting}
+(*@\htmltag{<p}@*) (*@\attrname{id}@*)=(*@\attrvalue{"feedback"}@*)(*@\htmltag{></p>}@*)
+\end{lstlisting}
+
+\vspace{0.2cm}
+
+JavaScript finds this paragraph by using its \inlineattr{id}:
+
+\vspace{0.1cm}
+
+\begin{lstlisting}
+(*@\jsobject{document}@*)(*@\jspunct{.}@*)(*@\jsmethod{getElementById}@*)(*@\jspunct{(}@*)(*@\jsstring{"feedback"}@*)(*@\jspunct{)}@*)
+\end{lstlisting}
+
+\vspace{0.2cm}
+
+Then it changes the text inside the paragraph using \inlinejsobject{textContent}.
+
+\vspace{0.3cm}
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Important Note}}
+
+  JavaScript does not create the feedback paragraph here.
+  The paragraph already exists in the HTML.
+  JavaScript only finds it and changes the text inside it.
+\end{attentionbox}
+
+\vspace{0.4cm}
+
+\textbf{\Bitter\textcolor{naranja}{Triggering the JavaScript Function}}
+
+\vspace{0.1cm}
+
+The last piece is triggering the JavaScript function.
+
+We want the \inlinejsfunction{checkAnswer} function to run when we click the Submit button.
+To make that happen, we need to connect the button to the function.
+
+In HTML, when we want something to happen after we click an element, we can use the \inlineattr{onclick} attribute.
+The \inlineattr{onclick} attribute tells the browser what JavaScript function should run when that element is clicked.
+
+\vspace{0.1cm}
+
+\begin{lstlisting}
+(*@\htmltag{<button}@*) (*@\attrname{onclick}@*)=(*@\attrvalue{"checkAnswer()"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+\end{lstlisting}
+
+\vspace{0.2cm}
+
+In this example, the button says \inlineattr{onclick}=\inlineattrvalue{"checkAnswer()"}.
+This means: when we click the Submit button, the browser runs the \inlinejsfunction{checkAnswer} function.
+
+\vspace{0.3cm}
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Attention Please!}}
+
+  The \inlineattr{onclick} attribute is commonly used with buttons because buttons are meant to be clicked.
+  In our activity, it is the bridge between the HTML button and the JavaScript behavior.
+\end{attentionbox}
+
+\vspace{0.4cm}
+
+\textbf{\Bitter\textcolor{naranja}{Overall Activity Code}}
+
+\vspace{0.1cm}
+
+Now that we understand the main pieces separately, we can look at the full activity code together.
+
+\vspace{0.4cm}
+
+\textbf{\Bitter\textcolor{naranja}{Javascript Script Block}}
+
+\vspace{0.1cm}
+
+Now that we understand the main pieces separately, we can look at the full activity code together.
+\pagebreak
+\tiny{\begin{lstlisting}
+(*@\htmltag{<style>}@*)
+(*@\cssselector{.page-wrapper}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{min-height}@*): (*@\cssvalue{100vh}@*);
+  (*@\cssprop{display}@*): (*@\cssvalue{flex}@*);
+  (*@\cssprop{justify-content}@*): (*@\cssvalue{center}@*);
+  (*@\cssprop{align-items}@*): (*@\cssvalue{center}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.activity-card}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{\#ffefe9}@*);
+  (*@\cssprop{border}@*): (*@\cssvalue{2px solid \#ff4500}@*);
+  (*@\cssprop{border-radius}@*): (*@\cssvalue{14px}@*);
+  (*@\cssprop{padding}@*): (*@\cssvalue{20px}@*);
+  (*@\cssprop{width}@*): (*@\cssvalue{320px}@*);
+  (*@\cssprop{color}@*): (*@\cssvalue{\#2d1559}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.activity-title}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{color}@*): (*@\cssvalue{\#ff4500}@*);
+  (*@\cssprop{text-align}@*): (*@\cssvalue{center}@*);
+  (*@\cssprop{margin-bottom}@*): (*@\cssvalue{10px}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.activity-question}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{color}@*): (*@\cssvalue{\#2d1559}@*);
+  (*@\cssprop{font-weight}@*): (*@\cssvalue{bold}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.answer-option}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{display}@*): (*@\cssvalue{flex}@*);
+  (*@\cssprop{align-items}@*): (*@\cssvalue{center}@*);
+  (*@\cssprop{gap}@*): (*@\cssvalue{8px}@*);
+  (*@\cssprop{margin}@*): (*@\cssvalue{8px 0}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.answer-input}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{accent-color}@*): (*@\cssvalue{\#ff4500}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.answer-label}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{color}@*): (*@\cssvalue{\#2d1559}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.custom-button}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{\#ff4500}@*);
+  (*@\cssprop{color}@*): (*@\cssvalue{white}@*);
+  (*@\cssprop{border}@*): (*@\cssvalue{none}@*);
+  (*@\cssprop{border-radius}@*): (*@\cssvalue{8px}@*);
+  (*@\cssprop{padding}@*): (*@\cssvalue{8px 14px}@*);
+  (*@\cssprop{margin-top}@*): (*@\cssvalue{12px}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.custom-button:hover}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{background-color}@*): (*@\cssvalue{\#ff4500}@*);
+  (*@\cssprop{opacity}@*): (*@\cssvalue{0.9}@*);
+(*@\csspunct{\}}@*)
+
+(*@\cssselector{.feedback-message}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{color}@*): (*@\cssvalue{\#ff4500}@*);
+(*@\csspunct{\}}@*)
+(*@\htmltag{</style>}@*)
+
+(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"page-wrapper"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<h2}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-title"}@*)(*@\htmltag{>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
+    (*@\htmltag{<p}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-question"}@*)(*@\htmltag{>}@*)(*@\codetext{Which language creates the structure?}@*)(*@\htmltag{</p>}@*)
+
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"html"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"html"}@*)(*@\htmltag{>}@*)(*@\codetext{HTML}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"css"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"css"}@*)(*@\htmltag{>}@*)(*@\codetext{CSS}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+    (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"js"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)
+    (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)(*@\codetext{JavaScript}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
+
+    (*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+
+    (*@\htmltag{<p}@*) (*@\attrname{id}@*)=(*@\attrvalue{"feedback"}@*) (*@\attrname{class}@*)=(*@\attrvalue{"feedback-message"}@*)(*@\htmltag{></p>}@*)
+  (*@\htmltag{</div>}@*)
+(*@\htmltag{</div>}@*)
+
+(*@\htmltag{<script>}@*)
+  (*@\jskeyword{function}@*) (*@\jsfunction{checkAnswer}@*)(*@\jspunct{()}@*) (*@\jspunct{\{}@*)
+    (*@\jskeyword{let}@*) (*@\jsobject{selectedAnswer}@*) = (*@\jsobject{document}@*)(*@\jspunct{.}@*)(*@\jsmethod{querySelector}@*)(*@\jspunct{(}@*)(*@\jsstring{'input[name="language"]:checked'}@*)(*@\jspunct{)}@*);
+
+    (*@\jskeyword{if}@*) (*@\jspunct{(}@*)(*@\jsobject{selectedAnswer}@*)(*@\jspunct{.}@*)(*@\jsobject{value}@*) === (*@\jsstring{"html"}@*)(*@\jspunct{)}@*) (*@\jspunct{\{}@*)
+      (*@\jsobject{document}@*)(*@\jspunct{.}@*)(*@\jsmethod{getElementById}@*)(*@\jspunct{(}@*)(*@\jsstring{"feedback"}@*)(*@\jspunct{)}@*)(*@\jspunct{.}@*)(*@\jsobject{textContent}@*) = (*@\jsstring{"Correct! HTML creates the structure."}@*);
+    (*@\jspunct{\}}@*) (*@\jskeyword{else}@*) (*@\jspunct{\{}@*)
+      (*@\jsobject{document}@*)(*@\jspunct{.}@*)(*@\jsmethod{getElementById}@*)(*@\jspunct{(}@*)(*@\jsstring{"feedback"}@*)(*@\jspunct{)}@*)(*@\jspunct{.}@*)(*@\jsobject{textContent}@*) = (*@\jsstring{"Incorrect. Try again!"}@*);
+    (*@\jspunct{\}}@*)
+  (*@\jspunct{\}}@*)
+(*@\htmltag{</script>}@*)
+\end{lstlisting}}
 
 \end{document}

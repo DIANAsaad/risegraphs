@@ -72,6 +72,32 @@
 \newcommand{\inlinecssprop}[1]{\textcolor{csspropertygold}{\texttt{#1}}}
 \newcommand{\inlinecssvalue}[1]{\textcolor{cssvalueorange}{\texttt{#1}}}
 
+% ------------------------------------------------------------
+% JavaScript syntax colors adjusted for a white PDF background
+% ------------------------------------------------------------
+\definecolor{jskeywordpurple}{HTML}{7B2CBF}
+\definecolor{jsfunctionyellow}{HTML}{A66A00}
+\definecolor{jsstringorange}{HTML}{C65D32}
+\definecolor{jsmethodblue}{HTML}{0077B6}
+\definecolor{jsobjectteal}{HTML}{008080}
+\definecolor{jscommentgreen}{HTML}{5B7F5B}
+\definecolor{jspunctpurple}{HTML}{2d1559}
+
+% JavaScript syntax commands for code listings
+\newcommand{\jskeyword}[1]{\textbf{\textcolor{jskeywordpurple}{\texttt{#1}}}}
+\newcommand{\jsfunction}[1]{\textbf{\textcolor{jsfunctionyellow}{\texttt{#1}}}}
+\newcommand{\jsstring}[1]{\textcolor{jsstringorange}{\texttt{#1}}}
+\newcommand{\jsmethod}[1]{\textcolor{jsmethodblue}{\texttt{#1}}}
+\newcommand{\jsobject}[1]{\textcolor{jsobjectteal}{\texttt{#1}}}
+\newcommand{\jscomment}[1]{\textit{\textcolor{jscommentgreen}{\texttt{#1}}}}
+\newcommand{\jspunct}[1]{\textcolor{jspunctpurple}{\texttt{#1}}}
+
+% Inline JavaScript commands for normal lesson text
+\newcommand{\inlinejskeyword}[1]{\textbf{\textcolor{jskeywordpurple}{\texttt{#1}}}}
+\newcommand{\inlinejsfunction}[1]{\textbf{\textcolor{jsfunctionyellow}{\texttt{#1}}}}
+\newcommand{\inlinejsstring}[1]{\textcolor{jsstringorange}{\texttt{#1}}}
+\newcommand{\inlinejsmethod}[1]{\textcolor{jsmethodblue}{\texttt{#1}}}
+\newcommand{\inlinejsobject}[1]{\textcolor{jsobjectteal}{\texttt{#1}}}
 % Custom tcolorbox using unique color names
 \newcommand{\orangeboxA}[1]{%
     \begin{tcolorbox}[colframe=myorange, colback=white, width=1.82cm, arc=0.6mm, boxsep=0mm, enhanced, height=0.7cm ]
