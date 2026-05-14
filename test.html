@@ -1,27 +1,42 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div>
-<div class="activity-card">
-  <h2>Quick Check</h2>
-  <p>Which language creates the structure?</p>
-
-  <input type="radio" id="html" name="language" value="html" />
-  <label for="html">HTML</label><br />
-
-  <input type="radio" id="css" name="language" value="css" />
-  <label for="css">CSS</label><br />
-
-  <input type="radio" id="js" name="language" value="js" />
-  <label for="js">JavaScript</label><br />
-
-  <button>Submit</button>
-</div></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="activity-card">
+        <h2 class="activity-title">Quick Check</h2>
+        <p class="activity-question">Which language creates the structure?</p>
+        <input
+          class="answer-input"
+          type="radio"
+          id="html"
+          name="language"
+          value="html"
+        />
+        <label class="answer-label" for="html">HTML</label><br />
+        <input
+          class="answer-input"
+          type="radio"
+          id="css"
+          name="language"
+          value="css"
+        />
+        <label class="answer-label" for="css">CSS</label><br />
+        <input
+          class="answer-input"
+          type="radio"
+          id="js"
+          name="language"
+          value="js"
+        />
+        <label class="answer-label" for="js">JavaScript</label><br />
+        <button class="custom-button">Submit</button>
+        <p id="feedback" class="feedback-message"></p>
+      </div>
+    </div>
+  </body>
 </html>

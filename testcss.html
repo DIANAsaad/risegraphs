@@ -1,93 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div class="page-wrapper">
-  <div class="activity-card">
-    <h2 class="activity-title">Quick Check</h2>
-    <p class="activity-question">
-      Which language creates the structure?
-    </p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="activity-card">
+        <h2 class="activity-title">Quick Check</h2>
+        <p class="activity-question">Which language creates the structure?</p>
 
-    <div class="answer-option">
-      <input class="answer-input" type="radio" id="html" name="language" value="html">
-      <label class="answer-label" for="html">HTML</label>
+        <div class="answer-option">
+          <input
+            class="answer-input"
+            type="radio"
+            id="html"
+            name="language"
+            value="html"
+          />
+          <label class="answer-label" for="html">HTML</label>
+        </div>
+
+        <div class="answer-option">
+          <input
+            class="answer-input"
+            type="radio"
+            id="css"
+            name="language"
+            value="css"
+          />
+          <label class="answer-label" for="css">CSS</label>
+        </div>
+
+        <div class="answer-option">
+          <input
+            class="answer-input"
+            type="radio"
+            id="js"
+            name="language"
+            value="js"
+          />
+          <label class="answer-label" for="js">JavaScript</label>
+        </div>
+
+        <button class="custom-button">Submit</button>
+        <p id="feedback" class="feedback-message"></p>
+      </div>
     </div>
 
-    <div class="answer-option">
-      <input class="answer-input" type="radio" id="css" name="language" value="css">
-      <label class="answer-label" for="css">CSS</label>
-    </div>
+    <style>
+      .page-wrapper {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-    <div class="answer-option">
-      <input class="answer-input" type="radio" id="js" name="language" value="js">
-      <label class="answer-label" for="js">JavaScript</label>
-    </div>
+      .activity-card {
+        background-color: #ffefe9;
+        border: 2px solid #ff4500;
+        border-radius: 14px;
+        padding: 20px;
+        width: 320px;
+        color: #2d1559;
+      }
 
-    <button class="custom-button">Submit</button>
-  </div>
-</div>
+      .activity-title {
+        color: #ff4500;
+        text-align: center;
+        margin-bottom: 10px;
+      }
 
-<style>
-.page-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+      .activity-question {
+        color: #2d1559;
+        font-weight: bold;
+      }
 
-.activity-card {
-  background-color: #ffefe9;
-  border: 2px solid #ff4500;
-  border-radius: 14px;
-  padding: 20px;
-  width: 320px;
-  color: #2d1559;
-}
+      .answer-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 8px 0;
+      }
 
-.activity-title {
-  color: #ff4500;
-  text-align: center;
-  margin-bottom: 10px;
-}
+      .answer-input {
+        accent-color: #ff4500;
+      }
 
-.activity-question {
-  color: #2d1559;
-  font-weight: bold;
-}
+      .answer-label {
+        color: #2d1559;
+      }
 
-.answer-option {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 8px 0;
-}
+      .custom-button {
+        background-color: #ff4500;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 14px;
+        margin-top: 12px;
+      }
 
-.answer-input {
-  accent-color: #ff4500;
-}
-
-.answer-label {
-  color: #2d1559;
-}
-
-.custom-button {
-  background-color: #ff4500;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 14px;
-  margin-top: 12px;
-}
-
-.custom-button:hover {
-  background-color: #ff4500;
-  opacity: 0.9;
-}
-</style>
-</body>
+      .custom-button:hover {
+        background-color: #ff4500;
+        opacity: 0.9;
+      }
+    </style>
+  </body>
 </html>
