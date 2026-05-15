@@ -1,5 +1,5 @@
 # Fdb version 4
-["lualatex"] 1778777892.47639 "inlinecoding.tex" "inlinecoding.pdf" "inlinecoding" 1778777909.60715 0
+["lualatex"] 1778852021.31611 "inlinecoding.tex" "inlinecoding.pdf" "inlinecoding" 1778852038.35163 0
   "C:/Users/Lenovo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1778168810 186418 c2ef317d086e4389047fb1e38c8a6d12 ""
   "C:/Users/Lenovo/AppData/Local/MiKTeX/luatex-cache/generic/fonts/otl/bitter-regular.luc" 1778165852 28446 8822922d4f5cde1f740eb36074d6245f ""
   "C:/Users/Lenovo/AppData/Local/MiKTeX/luatex-cache/generic/fonts/otl/ibmplexsans-bold.luc" 1778165851 436033 782a3b236d1108c8b2263d1b21d3f355 ""
@@ -281,7 +281,7 @@
   "C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/luatex/luaotfload/luaotfload-tounicode.lua" 1740607740 7529 21fe79d2526f3c3d789a9cc0366347ab ""
   "C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/luatex/luaotfload/luaotfload-unicode.lua" 1740607740 7918 4272855a25780b80472f3b58edd95e33 ""
   "C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/luatex/luaotfload/luaotfload.lua" 1740607740 13566 16df94dd2de231b2bca0aaa0190941fe ""
-  "MyCommands.tex" 1778686676 12075 201cda70baa791a96a28d65731710c88 ""
+  "MyCommands.tex" 1778851006 11895 3014c4b617f941e56a41ff12bc471a07 ""
   "c:/users/lenovo/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10-italic.otf" 1256929440 63584 4d362a77d55d0d8683d2b315bd34f34b ""
   "c:/users/lenovo/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10-regular.otf" 1256929440 64684 c6f5a48921f83c1a51d9384f785ddd5a ""
   "c:/users/lenovo/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono8-regular.otf" 1256929440 66268 16930241f9cd197293e24846cbca8778 ""
@@ -293,10 +293,11 @@
   "images/css-output.png" 1778602317 46227 504234b10c177487a1fb4e7fafb8c92f ""
   "images/html-output.png" 1778510844 41323 37dcd3d2bbab8aeda121db80f119ac1a ""
   "images/html.png" 1778168980 13734 62ad9a16cf309a8d07e7d7c14433b0c3 ""
+  "images/js-output.png" 1778847891 51742 7e997b5acea673b933f29954299f169a ""
   "images/js.png" 1778170560 531141 614abe0a2d0e0c104530b5860b208f78 ""
-  "inlinecoding.aux" 1778777908 759 150512b6356ed66e2fc7d7197bd3c4b3 "lualatex"
-  "inlinecoding.out" 1778777899 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
-  "inlinecoding.tex" 1778777881 55169 37e13597b33d4a24a2141b6f98c469d8 ""
+  "inlinecoding.aux" 1778852037 759 1ecb41fdbbed3761650bd064b22696cd "lualatex"
+  "inlinecoding.out" 1778852029 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
+  "inlinecoding.tex" 1778852016 57702 680ea7ddaf3792e35d857635e33bcb6f ""
   (generated)
   "inlinecoding.aux"
   "inlinecoding.log"

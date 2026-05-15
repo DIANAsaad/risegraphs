@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2026.5.7)  14 MAY 2026 19:58
+This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2026.5.7)  15 MAY 2026 16:33
  restricted system commands enabled.
 **inlinecoding.tex
 (./inlinecoding.tex
@@ -1400,8 +1400,16 @@ Package luatex.def Info: images/css-output.png  used on input line 994.
 [15]
 
 [16]
+<images/js-output.png, id=509, 948.54375pt x 467.24562pt>
+File: images/js-output.png Graphic file (type png)
+<use images/js-output.png>
+Package luatex.def Info: images/js-output.png  used on input line 1344.
+(luatex.def)             Requested size: 452.9679pt x 223.12747pt.
 
-[17] (./inlinecoding.aux)
+
+[17<./images/js-output.png>]
+
+[18] (./inlinecoding.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-05-26>
@@ -1415,15 +1423,15 @@ Package rerunfilecheck Info: File `inlinecoding.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 35389 strings out of 470203
+ 35414 strings out of 470203
  381565,1373583 words of node,token memory allocated
- 1310 words of node memory still in use:
-   30 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 82 attribute, 55 glue_sp
-ec, 82 attribute_list, 2 write, 24 pdf_literal, 2 pdf_action, 24 pdf_colorstack 
+ 1320 words of node memory still in use:
+   30 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 83 attribute, 55 glue_sp
+ec, 83 attribute_list, 2 write, 24 pdf_literal, 3 pdf_action, 24 pdf_colorstack 
 nodes
-   avail lists: 1:1,2:4667,3:527,4:2294,5:11057,6:176,7:11267,8:2,9:18654,10:15,
-11:638
- 62434 multiletter control sequences out of 65536+600000
+   avail lists: 1:1,2:4984,3:527,4:2499,5:11909,6:175,7:11236,8:2,9:20026,10:15,
+11:682
+ 62453 multiletter control sequences out of 65536+600000
  80 fonts using 7157751 bytes
  98i,7n,97p,441b,926s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/users/lenovo/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10
@@ -1435,9 +1443,9 @@ Programs/MiKTeX/fonts/opentype/ibm/plex/ibmplexsans-bold.otf><C:/Users/Lenovo/Ap
 pData/Local/Programs/MiKTeX/fonts/opentype/ibm/plex/ibmplexsans-regular.otf><C:/
 Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/truetype/huerta/bitter/bitter-r
 egular.ttf>
-Output written on inlinecoding.pdf (18 pages, 3489229 bytes).
+Output written on inlinecoding.pdf (19 pages, 3532605 bytes).
 
-PDF statistics: 578 PDF objects out of 1000 (max. 8388607)
- 386 named destinations out of 1000 (max. 131072)
+PDF statistics: 589 PDF objects out of 1000 (max. 8388607)
+ 389 named destinations out of 1000 (max. 131072)
  256 words of extra memory for PDF output out of 10000 (max. 100000000)
 

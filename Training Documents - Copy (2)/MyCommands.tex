@@ -161,29 +161,25 @@
         \end{minipage}
     \end{tcolorbox}
 }
-
-% Reminder box
-\newcommand{\Question}[1]{
-    \begin{tcolorbox}[
-            colback=white, % Background color 
-            colframe=white,     % No border color
-            boxrule=0pt,   % No overall border
-            width= 15cm,
-            left=2mm,          % Left padding
-            right=2mm,         % Right padding
-            top=1mm,           % Top padding
-            bottom=1mm,        % Bottom padding
-            before skip=2pt,  % Space before the box
-            after skip=3pt,   % Space after the box
-        ]
-        \begin{minipage}[t]{\linewidth}
-            \color{naranja}\rule{2pt}{\ht\strutbox} % Left border
-            \hspace{1mm} % Space between the border and text
-            \textbf{} \morado{#1}
-        \end{minipage}
-    \end{tcolorbox}
+% Question environment with left orange line aligned to first line of text
+\newtcolorbox{QuestionBox}[1][]{
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=white,
+    boxrule=0pt,
+    width=15cm,
+    left=2mm, right=2mm, top=1mm, bottom=1mm,
+    before skip=2pt, after skip=3pt,
+    overlay={
+        % Draw a vertical orange line aligned to the top of the content
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[naranja, line width=2pt] 
+                ([xshift=1mm]frame.north west) -- ([xshift=1mm]frame.south west);
+        \end{tikzpicture}
+    },
+    #1
 }
-
 % Reminder box
 \newcommand{\html}[1]{
     \begin{tcolorbox}[
@@ -300,3 +296,5 @@
         \linespread{1.08}\selectfont
     }
 }
+
+

@@ -362,7 +362,7 @@ This example only uses HTML, so it creates the content, but it does not style it
 
   \vspace{0.15cm}
 
-\begin{lstlisting}
+  \begin{lstlisting}
 (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"page-wrapper"}@*)(*@\htmltag{>}@*)
   (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
     (*@\htmltag{<h2}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-title"}@*)(*@\htmltag{>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
@@ -637,7 +637,7 @@ The HTML still creates the parts, but the CSS makes the activity card look more 
 
   \vspace{0.15cm}
 
-\begin{lstlisting}
+  \begin{lstlisting}
 (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"page-wrapper"}@*)(*@\htmltag{>}@*)
   (*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
     (*@\htmltag{<h2}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-title"}@*)(*@\htmltag{>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
@@ -666,7 +666,7 @@ The HTML still creates the parts, but the CSS makes the activity card look more 
 
   \vspace{0.15cm}
 
-\begin{lstlisting}
+  \begin{lstlisting}
 (*@\cssselector{.page-wrapper}@*) (*@\csspunct{\{}@*)
   (*@\cssprop{min-height}@*): (*@\cssvalue{100vh}@*);
   (*@\cssprop{display}@*): (*@\cssvalue{flex}@*);
@@ -733,7 +733,7 @@ The HTML still creates the parts, but the CSS makes the activity card look more 
 \vspace{0.4cm}
 
 In this version, we are still using the same HTML structure.
-The difference is that CSS now gives the card a background color, border, rounded corners, spacing, centered text, and a styled button. 
+The difference is that CSS now gives the card a background color, border, rounded corners, spacing, centered text, and a styled button.
 Let's see how this looks in the browser when we add the CSS.
 
 \pagebreak
@@ -1048,7 +1048,8 @@ This line means:
 
 \begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
   \item Look inside the \inlinejsobject{document}, which means the web page.
-  \item Find an \inlinehtmltag{<input>} with the \inlineattr{name} attribute \inlineattr{(name}=\inlineattrvalue{"language"}\inlineattr{)}.
+  \item Find an \inlinehtmltag{<input>} with the \inlineattr{name} attribute \inlineattr{(name}=\inlineattrvalue{"language"}\inlineattr{)}\\
+        (\htmltag{<input} \attrname{class}=\attrvalue{"answer-input"}... \attrname{name}=\attrvalue{"language"}\htmltag{...>})
   \item Only choose the input that is currently \inlinejsobject{checked}.
   \item Store that selected input inside a variable named \inlinejsobject{selectedAnswer}.
 \end{itemize}
@@ -1216,21 +1217,31 @@ This means: when we click the Submit button, the browser runs the \inlinejsfunct
 
 \vspace{0.4cm}
 
+\textbf{\Bitter\textcolor{naranja}{JavaScript Script Block}}
+
+\vspace{0.1cm}
+
+Just like we can include CSS directly in a page using a \inlinehtmltag{<style>} tag,
+we can include JavaScript directly in the same file using a \inlinehtmltag{<script>} tag.
+
+The \inlinehtmltag{<script>} tag tells the browser: everything inside here is JavaScript code
+that will run when the page is loaded or when we trigger it (for example, when a button is clicked).
+
+This is useful for small activities like ours because we can keep all the HTML, CSS, and
+JavaScript in a single file, making it easy to manage and test.
+
+\vspace{0.4cm}
+
 \textbf{\Bitter\textcolor{naranja}{Overall Activity Code}}
 
 \vspace{0.1cm}
 
 Now that we understand the main pieces separately, we can look at the full activity code together.
 
-\vspace{0.4cm}
 
-\textbf{\Bitter\textcolor{naranja}{Javascript Script Block}}
-
-\vspace{0.1cm}
-
-Now that we understand the main pieces separately, we can look at the full activity code together.
 \pagebreak
-\tiny{\begin{lstlisting}
+\tiny{
+  \begin{lstlisting}
 (*@\htmltag{<style>}@*)
 (*@\cssselector{.page-wrapper}@*) (*@\csspunct{\{}@*)
   (*@\cssprop{min-height}@*): (*@\cssvalue{100vh}@*);
@@ -1259,19 +1270,14 @@ Now that we understand the main pieces separately, we can look at the full activ
   (*@\cssprop{font-weight}@*): (*@\cssvalue{bold}@*);
 (*@\csspunct{\}}@*)
 
-(*@\cssselector{.answer-option}@*) (*@\csspunct{\{}@*)
-  (*@\cssprop{display}@*): (*@\cssvalue{flex}@*);
-  (*@\cssprop{align-items}@*): (*@\cssvalue{center}@*);
-  (*@\cssprop{gap}@*): (*@\cssvalue{8px}@*);
-  (*@\cssprop{margin}@*): (*@\cssvalue{8px 0}@*);
-(*@\csspunct{\}}@*)
-
 (*@\cssselector{.answer-input}@*) (*@\csspunct{\{}@*)
   (*@\cssprop{accent-color}@*): (*@\cssvalue{\#ff4500}@*);
+  (*@\cssprop{margin-right}@*): (*@\cssvalue{8px}@*);
 (*@\csspunct{\}}@*)
 
 (*@\cssselector{.answer-label}@*) (*@\csspunct{\{}@*)
   (*@\cssprop{color}@*): (*@\cssvalue{\#2d1559}@*);
+  (*@\cssprop{margin-right}@*): (*@\cssvalue{12px}@*);
 (*@\csspunct{\}}@*)
 
 (*@\cssselector{.custom-button}@*) (*@\csspunct{\{}@*)
@@ -1307,8 +1313,7 @@ Now that we understand the main pieces separately, we can look at the full activ
     (*@\htmltag{<input}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-input"}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{id}@*)=(*@\attrvalue{"js"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*) (*@\attrname{value}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)
     (*@\htmltag{<label}@*) (*@\attrname{class}@*)=(*@\attrvalue{"answer-label"}@*) (*@\attrname{for}@*)=(*@\attrvalue{"js"}@*)(*@\htmltag{>}@*)(*@\codetext{JavaScript}@*)(*@\htmltag{</label>}@*)(*@\htmltag{<br>}@*)
 
-    (*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
-
+    (*@\htmltag{<button}@*) (*@\attrname{class}@*)=(*@\attrvalue{"custom-button"}@*) (*@\attrname{onclick}@*)=(*@\attrvalue{"checkAnswer()"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
     (*@\htmltag{<p}@*) (*@\attrname{id}@*)=(*@\attrvalue{"feedback"}@*) (*@\attrname{class}@*)=(*@\attrvalue{"feedback-message"}@*)(*@\htmltag{></p>}@*)
   (*@\htmltag{</div>}@*)
 (*@\htmltag{</div>}@*)
@@ -1316,7 +1321,6 @@ Now that we understand the main pieces separately, we can look at the full activ
 (*@\htmltag{<script>}@*)
   (*@\jskeyword{function}@*) (*@\jsfunction{checkAnswer}@*)(*@\jspunct{()}@*) (*@\jspunct{\{}@*)
     (*@\jskeyword{let}@*) (*@\jsobject{selectedAnswer}@*) = (*@\jsobject{document}@*)(*@\jspunct{.}@*)(*@\jsmethod{querySelector}@*)(*@\jspunct{(}@*)(*@\jsstring{'input[name="language"]:checked'}@*)(*@\jspunct{)}@*);
-
     (*@\jskeyword{if}@*) (*@\jspunct{(}@*)(*@\jsobject{selectedAnswer}@*)(*@\jspunct{.}@*)(*@\jsobject{value}@*) === (*@\jsstring{"html"}@*)(*@\jspunct{)}@*) (*@\jspunct{\{}@*)
       (*@\jsobject{document}@*)(*@\jspunct{.}@*)(*@\jsmethod{getElementById}@*)(*@\jspunct{(}@*)(*@\jsstring{"feedback"}@*)(*@\jspunct{)}@*)(*@\jspunct{.}@*)(*@\jsobject{textContent}@*) = (*@\jsstring{"Correct! HTML creates the structure."}@*);
     (*@\jspunct{\}}@*) (*@\jskeyword{else}@*) (*@\jspunct{\{}@*)
@@ -1325,5 +1329,64 @@ Now that we understand the main pieces separately, we can look at the full activ
   (*@\jspunct{\}}@*)
 (*@\htmltag{</script>}@*)
 \end{lstlisting}}
+\pagebreak
 
+\normalsize
+\textbf{\Bitter\textcolor{naranja}{Overall Outcome}}
+
+\vspace{0.2cm}
+
+After coding the activity, we can see the final result.
+Below is an image showing the fully styled activity.
+
+\begin{center}
+  \href{https://dianasaad.github.io/risegraphs/jstst.html?v=4}{
+    \includegraphics[width=\linewidth]{images/js-output.png}}
+\end{center}
+
+\vspace{0.05cm}
+
+{\scriptsize Click the image to open the live final page.}
+
+\vspace{0.4cm}
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Important Note}}
+
+  Some spacing in the activity (for example, between radio button options) may look slightly different across browsers.
+  Even opening the same file with or without JavaScript can cause minor variations in spacing or layout.
+  This is normal behavior caused by how browsers render elements and reflow the page when scripts are loaded.
+\end{attentionbox}
+
+\vspace{0.5cm} % space after the attention box
+
+\textbf{Knowledge Check:} Which HTML tag is used to include JavaScript directly in the same file?
+
+\begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
+  \item \texttt{<style>}
+  \item \texttt{<script>}
+  \item \texttt{<link>}
+\end{enumerate}
+
+\vspace{0.5cm} % space between questions
+
+\textbf{Knowledge Check:} Which method is used in JavaScript to read the value of a selected radio button?
+
+\begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
+  \item \texttt{getElementById()}
+  \item \texttt{querySelector('input[name="..."]:checked')}
+  \item \texttt{getElementsByClassName()}
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\textbf{Knowledge Check:} If we have a JavaScript function named \texttt{sendMessage}, how can we make it run when a button is clicked?
+
+\begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
+  \item By adding \texttt{onclick="sendMessage()"} to the button element
+  \item By placing the button inside a \texttt{<script>} tag
+  \item By giving the button \texttt{id="sendMessage"} only
+\end{enumerate}
+
+\vspace{0.5cm}
 \end{document}
