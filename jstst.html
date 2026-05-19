@@ -82,5 +82,15 @@ color: #ff4500;
 <p id="feedback" class="feedback-message"></p>
 </div>
 </div>
+<script>
+function checkAnswer() {
+let selectedAnswer = document.querySelector('input[name="language"]:checked');
+if (selectedAnswer.value === "html") {
+document.getElementById("feedback").textContent = "Correct! HTML creates the structure.";
+} else {
+document.getElementById("feedback").textContent = "Incorrect. Try again!";
+}
+}
+</script>
 </body>
 </html>
