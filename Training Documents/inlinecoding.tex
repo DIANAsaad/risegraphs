@@ -21,6 +21,8 @@
 \usepackage[a4paper, left=1in, right=1in, top=1in, bottom=1in]{geometry}
 \usepackage{listings}
 \usepackage{hyperref}
+\usetikzlibrary{shapes.geometric}
+\usepackage[table]{xcolor}
 
 \hypersetup{
     hidelinks
@@ -57,7 +59,7 @@
 
   \vspace{0.4cm}
 
-  {\Large\textcolor{morado}{An Overview to Reading Web Code}\par}
+  {\Large\textcolor{morado}{A Beginner-Friendly Guide to Reading Web Code}\par}
 
   \vspace*{\fill}
 \end{titlepage}
@@ -69,7 +71,7 @@
 
 \section*{\Bitter\textcolor{naranja}{Document Syllabus}}
 
-This document is organized into two main sections. We begin with a simple introduction to HTML, CSS, and JavaScript, then move into the basic syntax we need to read and understand simple web code.
+This document is organized into four main sections. We begin with a simple introduction to HTML, CSS, and JavaScript, then move into the basic syntax we need to read and understand simple web code. After that, we look at how to place code inside Articulate Rise and how to prompt AI for creating or fixing simple Rise activities.
 
 \vspace{0.25cm}
 
@@ -97,6 +99,7 @@ This document is organized into two main sections. We begin with a simple introd
                   \item Block-level and inline-level elements
                   \item The \inlinehtmltag{<br>} tag
                   \item Tag attributes: adding extra details
+                  \item HTML knowledge checks
                 \end{itemize}
 
           \item \hyperref[subsec:css-syntax]{\textbf{CSS Syntax: Styling the Parts}}
@@ -106,17 +109,116 @@ This document is organized into two main sections. We begin with a simple introd
                   \item Common CSS properties
                   \item How HTML class names connect to CSS selectors
                   \item Comments in HTML, CSS, and JavaScript
+                  \item CSS knowledge checks
                   \item Adding CSS to a mini activity
                   \item Two ways to add CSS: inline CSS and style block CSS
                 \end{itemize}
 
+          \item \hyperref[subsec:javascript-syntax]{\textbf{JavaScript Syntax: Adding Behavior}}
+                \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+                  \item Definition of JavaScript
+                  \item Functions and function calls
+                  \item Built-in browser tools we may see
+                  \item Adding JavaScript to a mini activity
+                  \item Reading the selected answer
+                  \item Showing feedback
+                  \item Connecting the button to the function
+                  \item JavaScript knowledge checks
+                \end{itemize}
+
+        \end{itemize}
+
+  \item \hyperref[sec:rise-block-code]{\textbf{\Bitter\textcolor{naranja}{Rise Block Code}}}
+
+        \begin{itemize}[leftmargin=0.8cm, itemsep=6pt]
+
+          \item \hyperref[subsec:add-code-rise]{\textbf{Adding Code Directly in Rise}}
+                \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+                  \item Where to find the code option in Rise
+                  \item Adding code directly into the Rise editor
+                  \item Viewing the activity output in Rise
+                  \item Adjusting the CSS to match the lesson design
+                \end{itemize}
+
+          \item \hyperref[subsec:upload-project-rise]{\textbf{Uploading a Project File in Rise}}
+                \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+                  \item Uploading the activity as a project file
+                  \item Using \inlineattrvalue{index.html} as the main file
+                  \item When this option is useful
+                  \item Testing the project before uploading it to Rise
+                \end{itemize}
+
+        \end{itemize}
+
+  \item \hyperref[sec:prompting-ai]{\textbf{\Bitter\textcolor{naranja}{Prompting AI for Rise Activities}}}
+
+        \begin{itemize}[leftmargin=0.8cm, itemsep=6pt]
+
+          \item \hyperref[subsec:prompt-create-rise-activity]{\textbf{Prompt for Creating a Rise Activity}}
+                \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+                  \item Giving AI a clear role
+                  \item Explaining where the activity will be used
+                  \item Listing what the activity should do
+                  \item Providing colors and design preferences
+                  \item Asking for the full code
+                \end{itemize}
+
+          \item \hyperref[subsec:debugging-ai]{\textbf{Debugging With AI}}
+                \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+                  \item Asking AI to check code that is not working
+                  \item Looking for function name issues
+                  \item Checking matching \inlineattr{id} and \inlineattr{class} names
+                  \item Checking missing brackets, quotation marks, or parentheses
+                  \item Asking for the corrected full code
+                \end{itemize}
+
+          \item \hyperref[subsec:simple-checks-before-ai]{\textbf{Simple Things to Check Before Asking AI}}
+                \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+                  \item Checking matching function names
+                  \item Checking matching \inlineattr{id} names
+                  \item Checking matching \inlineattr{class} names
+                  \item Checking image names and file endings
+                  \item Checking missing symbols
+                \end{itemize}
+
+        \end{itemize}
+
+  \item \hyperref[sec:answers]{\textbf{\Bitter\textcolor{naranja}{Answers}}}
+
+        \begin{itemize}[leftmargin=0.8cm, itemsep=3pt]
+          \item Answer key for the knowledge checks
         \end{itemize}
 
 \end{enumerate}
 
 \vspace{0.25cm}
+\pagebreak
 
+\begin{tikzpicture}[remember picture, overlay]
+  \node[
+    anchor=center,
+    align=left
+  ] at (current page.center) {
+    \begin{minipage}{0.82\textwidth}
+      \begin{whythismattersbox}
+        \warningicon \hspace{0.15cm}
+        \textbf{\Bitter\textcolor{naranja}{Why Are We Learning This?}}
 
+        We do not need to become full developers to work with simple coded activities. However, knowing the basic terms helps us use code more confidently instead of blindly copying and pasting.
+
+        This gives us a clearer idea of how an activity is built, what each part controls, and how we can make small changes when needed.
+
+        \begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+          \item We can understand what AI-generated code is trying to do.
+          \item We can make small edits without feeling lost.
+          \item We can explain our requests to AI more clearly.
+          \item We can identify simple issues when something does not work.
+          \item We can adjust the structure, design, or behavior of an activity with more confidence.
+        \end{itemize}
+      \end{whythismattersbox}
+    \end{minipage}
+  };
+\end{tikzpicture}
 \pagebreak
 
 \phantomsection
@@ -483,9 +585,42 @@ A simple way to remember this is: the \textbf{tag} creates the element, and the 
   but not for \inlinehtmltag{<p>}.
 \end{attentionbox}
 
+\vspace{0.5cm}
 
-\vspace{0.3cm}
+\textbf{Knowledge Check:} We want to add a title, question text, answer choices, and a button to an activity. Which language creates these parts on the page?
 
+\begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
+  \item HTML
+  \item CSS
+  \item JavaScript
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\textbf{Knowledge Check:} We want to create a radio button for each answer choice. Which HTML tag can we use?
+
+\begin{lstlisting}
+(*@\htmltag{<input}@*) (*@\attrname{type}@*)=(*@\attrvalue{"radio"}@*) (*@\attrname{name}@*)=(*@\attrvalue{"language"}@*)(*@\htmltag{>}@*)
+\end{lstlisting}
+
+What does the \inlineattr{type} attribute tell the browser?
+\begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
+  \item It tells the browser what the input nature should be.
+  \item It groups all answer choices into the same question.
+  \item It gives the answer choice the value that gets stored.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\textbf{Knowledge Check:} We want each answer choice to appear on a new line. Which HTML tag can create a line break?
+
+\begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
+  \item \texttt{<img>}
+  \item \texttt{<span>}
+  \item \texttt{<br>}
+\end{enumerate}
+
+\pagebreak
 
 \phantomsection
 \subsection*{\Bitter\textcolor{naranja}{CSS Syntax: Styling the Parts}}
@@ -619,6 +754,63 @@ The lines inside the curly braces style that activity card.
   \end{itemize}
 
 \end{attentionbox}
+
+\vspace{0.5cm}
+
+\textbf{Knowledge Check:} We added this CSS rule to an activity:
+
+\begin{lstlisting}
+(*@\cssselector{.activity-card}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{padding}@*): (*@\cssvalue{20px}@*);
+  (*@\cssprop{border-radius}@*): (*@\cssvalue{14px}@*);
+(*@\csspunct{\}}@*)
+\end{lstlisting}
+
+Which HTML element will this rule style?
+
+\begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
+  \item Any element with \inlineattr{id}=\inlineattrvalue{"activity-card"}
+  \item Every \inlinehtmltag{<div>} element in the activity
+  \item Any element with \inlineattr{class}=\inlineattrvalue{"activity-card"}
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\textbf{Knowledge Check:} We added this CSS rule:
+
+\begin{lstlisting}
+(*@\cssselector{.custom-button:hover}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{opacity}@*): (*@\cssvalue{0.9}@*);
+(*@\csspunct{\}}@*)
+\end{lstlisting}
+
+When will this style apply?
+
+\begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
+  \item When the button is first created in HTML.
+  \item When we move the mouse over the button.
+  \item When the button is placed inside a \inlinehtmltag{<div>}.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\textbf{Knowledge Check:} We added this CSS rule:
+
+\begin{lstlisting}
+(*@\cssselector{.activity-title}@*) (*@\csspunct{\{}@*)
+  (*@\cssprop{color}@*): (*@\cssvalue{\#ff4500}@*);
+(*@\csspunct{\}}@*)
+\end{lstlisting}
+
+But the title color does not change. What is the most likely issue?
+
+\begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
+  \item The HTML title may not have \inlineattr{class}=\inlineattrvalue{"activity-title"}.
+  \item The color value \inlinecssvalue{\#ff4500} can only be used for borders.
+  \item CSS cannot change the color of headings.
+\end{enumerate}
+
+\vspace{0.5cm}
 
 \pagebreak
 
@@ -1144,7 +1336,7 @@ This function follows the logic we planned:
   \item We compare that value to \inlinejsstring{"html"}.
   \item We show feedback based on the result.
 \end{enumerate}
-
+\pagebreak
 \textbf{\Bitter\textcolor{naranja}{How the Feedback Appears}}
 
 \vspace{0.1cm}
@@ -1358,35 +1550,375 @@ Below is an image showing the fully styled activity.
   This is normal behavior caused by how browsers render elements and reflow the page when scripts are loaded.
 \end{attentionbox}
 
-\vspace{0.5cm} % space after the attention box
+\vspace{0.5cm}
 
 \textbf{Knowledge Check:} Which HTML tag is used to include JavaScript directly in the same file?
 
 \begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
-  \item \texttt{<style>}
-  \item \texttt{<script>}
-  \item \texttt{<link>}
+  \item \inlinehtmltag{<style>}
+  \item \inlinehtmltag{<script>}
+  \item \inlinehtmltag{<link>}
 \end{enumerate}
 
-\vspace{0.5cm} % space between questions
+\vspace{0.5cm}
 
 \textbf{Knowledge Check:} Which method is used in JavaScript to read the value of a selected radio button?
 
 \begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
-  \item \texttt{getElementById()}
-  \item \texttt{querySelector('input[name="..."]:checked')}
-  \item \texttt{getElementsByClassName()}
+  \item \inlinejsmethod{getElementById()}
+  \item \inlinejsmethod{querySelector('input[name="..."]:checked')}
+  \item \inlinejsmethod{getElementsByClassName()}
 \end{enumerate}
 
 \vspace{0.5cm}
 
-\textbf{Knowledge Check:} If we have a JavaScript function named \texttt{sendMessage}, how can we make it run when a button is clicked?
+\textbf{Knowledge Check:} If we have a JavaScript function named \inlinejsfunction{sendMessage}, how can we make it run when a button is clicked?
 
 \begin{enumerate}[label=\Alph*), topsep=4pt, itemsep=2pt, partopsep=0pt]
-  \item By adding \texttt{onclick="sendMessage()"} to the button element
-  \item By placing the button inside a \texttt{<script>} tag
-  \item By giving the button \texttt{id="sendMessage"} only
+  \item By adding \inlineattr{onclick}=\inlineattrvalue{"sendMessage()"} to the button element
+  \item By placing the button inside a \inlinehtmltag{<script>} tag
+  \item By giving the button \inlineattr{id}=\inlineattrvalue{"sendMessage"} only
 \end{enumerate}
 
 \vspace{0.5cm}
+
+\section*{\Bitter\textcolor{naranja}{Rise Block Code}}
+\label{sec:rise-block-code}
+
+Rise gives us more than one way to add custom code. The two main options we may use are:
+
+\begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+  \item adding code directly into a Rise code block,
+  \item uploading a complete project file, usually named \inlineattrvalue{index.html}.
+\end{itemize}
+
+For shorter activities, adding the code directly into Rise is usually the easiest option. For longer or more complex activities, uploading an \inlineattrvalue{index.html} file can be cleaner because we do not have to copy and paste a large amount of code into the editor.
+
+In this section, we will start with the simpler option: adding code directly into a Rise block.
+
+\vspace{0.3cm}
+
+\subsection*{\Bitter\textcolor{naranja}{Adding Code Directly in Rise}}
+\label{subsec:add-code-rise}
+
+The \textbf{Add Code} option lets us place HTML, CSS, and JavaScript directly inside a Rise lesson. This is useful when the activity is small enough to manage in one code block.
+
+After we choose the code block, we can paste our code into the editor. Rise will then display the activity directly inside the lesson.
+
+\vspace{0.2cm}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{images/rise-code-opt.png}
+
+    \vspace{0.1cm}
+
+    {\scriptsize Select the Code option in Rise.}
+  \end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{images/addcode.png}
+
+    \vspace{0.1cm}
+
+    {\scriptsize Paste the code into the Rise code editor.}
+  \end{center}
+\end{minipage}
+
+\vspace{0.3cm}
+
+A simple Rise code block may look like this:
+
+\pagebreak
+
+\begin{lstlisting}
+(*@\htmltag{<style>}@*)
+  (*@\csscomment{/* CSS styling goes here */}@*)
+(*@\htmltag{</style>}@*)
+
+(*@\htmltag{<div}@*) (*@\attrname{class}@*)=(*@\attrvalue{"activity-card"}@*)(*@\htmltag{>}@*)
+  (*@\htmltag{<h2>}@*)(*@\codetext{Quick Check}@*)(*@\htmltag{</h2>}@*)
+  (*@\htmltag{<p>}@*)(*@\codetext{Which language creates the structure of a page?}@*)(*@\htmltag{</p>}@*)
+  (*@\htmltag{<button}@*) (*@\attrname{onclick}@*)=(*@\attrvalue{"checkAnswer()"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+(*@\htmltag{</div>}@*)
+
+(*@\htmltag{<script>}@*)
+  (*@\jskeyword{function}@*) (*@\jsfunction{checkAnswer}@*)(*@\jspunct{()}@*) (*@\jspunct{\{}@*)
+    (*@\jsmethod{alert}@*)(*@\jspunct{(}@*)(*@\jsstring{"Button clicked!"}@*)(*@\jspunct{)}@*);
+  (*@\jspunct{\}}@*)
+(*@\htmltag{</script>}@*)
+\end{lstlisting}
+
+If we copy and paste this activity into the Rise code block, we can test it directly inside the lesson. The activity will appear in Rise like this:
+
+\vspace{0.2cm}
+
+\begin{center}
+  \includegraphics[width=0.75\textwidth]{images/rise-result.png}
+\end{center}
+
+\vspace{0.1cm}
+
+{\scriptsize This is how the activity appears after the code is added to the Rise block.}
+
+\vspace{0.3cm}
+
+The look of the activity can be adjusted by changing the CSS. For example, we can change the colors, spacing, button style, border, width, or font size to match the design of the lesson.
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Important Note}}
+
+  When we add code directly into Rise, the activity should be able to work by itself inside the Rise block.
+
+  This means the code should not depend on another website, another file, or another system to make the activity work.
+
+  For example, we should avoid code that says things like:
+
+  \begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+    \item go to another website to get information,
+    \item call another file outside Rise,
+    \item connect to a database,
+    \item pull questions or answers from another system,
+    \item use outside scripts that Rise may not load correctly.
+  \end{itemize}
+
+  For our Rise activities, it is safer to keep everything the activity needs inside the same code block. That way, Rise can display and run the activity without needing to connect to anything else.
+\end{attentionbox}
+
+This makes the activity easier to manage, easier to test, and less likely to break when it is placed inside the Rise lesson.
+
+\vspace{0.4cm}
+
+\subsection*{\Bitter\textcolor{naranja}{Uploading a Project File in Rise}}
+\label{subsec:upload-project-rise}
+
+The second option is to upload the activity as a project file.
+
+This option is useful when the code is long or when the activity has many parts. Instead of copying a large amount of code into the Rise editor, we can place the full activity inside an \inlineattrvalue{index.html} file, compress it into a ZIP file, and upload it to Rise.
+
+For Rise, the main file should be named \inlineattrvalue{index.html}. The file should then be uploaded as a ZIP file.
+
+\vspace{0.2cm}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{images/upload-opt.png}
+
+    \vspace{0.1cm}
+
+    {\scriptsize Select the Code option in Rise.}
+  \end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{images/upload-project.png}
+
+    \vspace{0.1cm}
+
+    {\scriptsize Choose the Upload Project option.}
+  \end{center}
+\end{minipage}
+
+\vspace{0.3cm}
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Why do we use the name index.html?}}
+
+  The file name \inlineattrvalue{index.html} tells Rise which file to open first.
+
+  A simple way to think about it is this: \inlineattrvalue{index.html} is the starting page of the activity. When Rise opens the uploaded project, it looks for this file so it knows where the activity begins.
+\end{attentionbox}
+
+\vspace{0.3cm}
+
+Before uploading the project to Rise, we should make sure the activity opens correctly on its own. A simple way to test it is to open the \inlineattrvalue{index.html} file in a browser.
+
+If the activity works in the browser, then we can compress the \inlineattrvalue{index.html} file into a ZIP file and upload it into Rise.
+
+\pagebreak
+
+\subsection*{\Bitter\textcolor{naranja}{Prompt for Creating a Rise Activity}}
+\label{subsec:prompt-create-rise-activity}
+
+A useful prompt can look like this:
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Example Prompt}}
+
+  You are a front-end developer.
+
+  I want to create an interactive activity that will be embedded into the code block of Articulate Rise.
+
+  The activity should:
+
+  \begin{itemize}[leftmargin=1.2cm, itemsep=3pt]
+    \item action 1,
+    \item action 2,
+    \item action 3...
+  \end{itemize}
+
+  Use HTML, CSS, and JavaScript in one complete code block.
+
+  Use these colors in the CSS:
+
+  \begin{itemize}[leftmargin=1.2cm, itemsep=3pt]
+    \item orange: \#FF4500
+    \item dark purple: \#2d1559
+    \item light peach: \#ffefe9
+  \end{itemize}
+
+  Keep the design clean and simple.
+
+  Send me the full code back so I can copy and paste it directly into Rise.
+\end{attentionbox}
+
+\vspace{0.3cm}
+
+This prompt works because it gives the AI the important details:
+
+\begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+  \item the role: front-end developer,
+  \item the platform: Articulate Rise,
+  \item the format: one complete code block,
+  \item the activity behavior,
+  \item the design colors,
+  \item the final output needed.
+\end{itemize}
+
+\vspace{0.4cm}
+
+\subsection*{\Bitter\textcolor{naranja}{Debugging With AI}}
+\label{subsec:debugging-ai}
+
+If the activity does not work after we paste it into Rise, we can ask AI to check the code instead of rebuilding everything from scratch.
+
+A useful debugging prompt can look like this:
+
+\begin{attentionbox}
+  \textbf{\Bitter\textcolor{naranja}{Debugging Prompt}}
+
+  I copied this HTML, CSS, and JavaScript activity into Articulate Rise, but the functionality is not working.
+
+  Please check the code and explain what is wrong in simple language.
+
+  Look especially for:
+
+  \begin{itemize}[leftmargin=1.2cm, itemsep=3pt]
+    \item a button that is not connected to the correct JavaScript function,
+    \item a function name that does not match,
+    \item an \inlineattr{id} name that is different in the HTML and JavaScript,
+    \item a \inlineattr{class} name that is different in the HTML and CSS,
+    \item a missing bracket, parenthesis, quotation mark, or semicolon,
+    \item an image name that does not match the file name exactly.
+  \end{itemize}
+
+  Fix only what needs to be fixed.
+
+  Send me the corrected full code back.
+
+  Here is my code:
+\end{attentionbox}
+
+\vspace{0.3cm}
+
+After this line, we paste the code that is not working.
+
+\vspace{0.3cm}
+
+\subsection*{\Bitter\textcolor{naranja}{Simple Things to Check Before Asking AI}}
+\label{subsec:simple-checks-before-ai}
+
+Before asking AI to fix the activity, it helps to check a few simple things first. Many coding issues happen because one small name, symbol, or file reference does not match.
+
+Here are a few things we can look for:
+
+\begin{itemize}[leftmargin=1.2cm, itemsep=4pt]
+  \item Check that the function name in the button matches the function name in JavaScript.
+  \item Check that the \inlineattr{id} name in HTML matches the name used in JavaScript.
+  \item Check that the \inlineattr{class} name in HTML matches the name used in CSS.
+  \item Check that opening and closing brackets match.
+  \item Check that quotation marks are not missing.
+  \item Check that image names match exactly.
+  \item Check that image file endings are correct, such as \inlineattrvalue{.png}, \inlineattrvalue{.jpg}, or \inlineattrvalue{.jpeg}.
+  \item Check that there are no extra spaces in image names or file names.
+\end{itemize}
+
+\vspace{0.2cm}
+
+For example, this button calls a function named \inlinejsfunction{checkAnswer()}:
+
+\begin{lstlisting}
+(*@\htmltag{<button}@*) (*@\attrname{onclick}@*)=(*@\attrvalue{"checkAnswer()"}@*)(*@\htmltag{>}@*)(*@\codetext{Submit}@*)(*@\htmltag{</button>}@*)
+\end{lstlisting}
+
+So the JavaScript function must use the same name:
+
+\begin{lstlisting}
+(*@\jskeyword{function}@*) (*@\jsfunction{checkAnswer}@*)(*@\jspunct{()}@*) (*@\jspunct{\{}@*)
+  (*@\jsmethod{alert}@*)(*@\jspunct{(}@*)(*@\jsstring{"Submitted!"}@*)(*@\jspunct{)}@*);
+(*@\jspunct{\}}@*)
+\end{lstlisting}
+
+If the button says \inlinejsfunction{checkAnswer()} but the function is named \inlinejsfunction{checkAnswers()}, the activity will not work because the names do not match.
+
+\vspace{0.2cm}
+
+The same idea applies to \inlineattr{id} names, \inlineattr{class} names, and image names. They need to match exactly.
+
+\pagebreak
+
+\pagebreak
+
+\section*{\Bitter\textcolor{naranja}{Answers}}
+\label{sec:answers}
+
+\vspace{0.3cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{|>{\centering\arraybackslash}p{7cm}|>{\centering\arraybackslash}p{4cm}|}
+\hline
+\rowcolor{naranja}
+\textbf{\textcolor{white}{\Bitter Knowledge Check}} & 
+\textbf{\textcolor{white}{\Bitter Correct Answer}} \\
+\hline
+HTML Knowledge Check 1 & A \\
+\hline
+HTML Knowledge Check 2 & A \\
+\hline
+HTML Knowledge Check 3 & C \\
+\hline
+CSS Knowledge Check 1 & C \\
+\hline
+CSS Knowledge Check 2 & B \\
+\hline
+CSS Knowledge Check 3 & A \\
+\hline
+JavaScript Knowledge Check 1 & B \\
+\hline
+JavaScript Knowledge Check 2 & B \\
+\hline
+JavaScript Knowledge Check 3 & A \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \node[
+    anchor=south east,
+    align=right,
+    xshift=-0.5in,
+    yshift=0.65in
+  ] at (current page.south east) {
+    {\small\textcolor{morado}{Developed by: \textbf{Diana Abou Saad}}}\\[2pt]
+    {\small\textcolor{morado}{Date: May 19, 2026}}
+  };
+\end{tikzpicture}
+
 \end{document}

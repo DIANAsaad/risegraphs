@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2026.5.7)  15 MAY 2026 16:33
+This is LuaHBTeX, Version 1.22.0 (MiKTeX 25.4) (format=lualatex 2026.5.7)  20 MAY 2026 18:31
  restricted system commands enabled.
 **inlinecoding.tex
 (./inlinecoding.tex
@@ -1003,6 +1003,20 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 85.
 )
 \Hy@SectionHShift=\skip65
+)
+(C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/generic/pgf/frontendlayer/ti
+kz/libraries/tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/generic/pgf/libraries/shapes
+/pgflibraryshapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
+\everycr=\toks47
+\minrowclearance=\skip66
+\rownum=\count392
 ) (./MyCommands.tex
 (C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/latex/adjustbox/adjustbox.st
 y
@@ -1012,10 +1026,10 @@ Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 
 (C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/generic/xkeyval/xkeyval.tex
 (C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks47
-\XKV@tempa@toks=\toks48
+\XKV@toks=\toks48
+\XKV@tempa@toks=\toks49
 )
-\XKV@depth=\count392
+\XKV@depth=\count393
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 (C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/latex/adjustbox/adjcalc.sty
@@ -1056,12 +1070,12 @@ File: tc-pdftex.def 2025/02/26 v2.3 Clipping driver for pdftex
 (C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/latex/ifoddpage/ifoddpage.st
 y
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
-\c@checkoddpage=\count393
+\c@checkoddpage=\count394
 )
 (C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box91
-\sift@deathcycles=\count394
+\sift@deathcycles=\count395
 \@vwid@loff=\dimen323
 \@vwid@roff=\dimen324
 )
@@ -1101,26 +1115,26 @@ Package fontspec Info:
  (./inlinecoding.aux)
 \openout1 = inlinecoding.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
 
 Package fontspec Info: 
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
@@ -1128,78 +1142,78 @@ Package fontspec Info:
 
 \symlegacymaths=\mathgroup9
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 46.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 46.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 46.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 46.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 46.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 46.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 46.
-LaTeX Font Info:    Redeclaring math accent \check on input line 46.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 46.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 46.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 46.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 46.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 46.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 48.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 48.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 48.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 48.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 48.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 48.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 48.
+LaTeX Font Info:    Redeclaring math accent \check on input line 48.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 48.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 48.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 48.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 48.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 46.
+(Font)              `operators' in the math version `normal' on input line 48.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/IBMPlexSans(0)/m/n on input line 46.
+(Font)                  OT1/cmr/m/n --> TU/IBMPlexSans(0)/m/n on input line 48.
 
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 46.
+(Font)              `operators' in the math version `bold' on input line 48.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/IBMPlexSans(0)/m/n on input line 46
+(Font)                  OT1/cmr/bx/n --> TU/IBMPlexSans(0)/m/n on input line 48
 .
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  TU/IBMPlexSans(0)/m/n --> TU/IBMPlexSans(0)/m/n on inpu
-t line 46.
+t line 48.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/IBMPlexSans(0)/m/it on input line 4
-6.
+8.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/IBMPlexSans(0)/b/n on input line 46
+(Font)                  OT1/cmr/bx/n --> TU/IBMPlexSans(0)/b/n on input line 48
 .
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 46.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 48.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 46.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 48.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  TU/IBMPlexSans(0)/m/n --> TU/IBMPlexSans(0)/b/n on inpu
-t line 46.
+t line 48.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/IBMPlexSans(0)/b/it on input line 
-46.
+48.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 46.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 48.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 46.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 48.
 
 (C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.m
 kii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count395
+\scratchcounter=\count396
 \scratchdimen=\dimen325
 \scratchbox=\box92
-\nofMPsegments=\count396
-\nofMParguments=\count397
-\everyMPshowfont=\toks49
-\MPscratchCnt=\count398
+\nofMPsegments=\count397
+\nofMParguments=\count398
+\everyMPshowfont=\toks50
+\MPscratchCnt=\count399
 \MPscratchDim=\dimen326
-\MPnumerator=\count399
-\makeMPintoPDFobject=\count400
-\everyMPtoPDFconversion=\toks50
+\MPnumerator=\count400
+\makeMPintoPDFobject=\count401
+\everyMPtoPDFconversion=\toks51
 )
 (C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-
 base.sty
@@ -1211,7 +1225,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count401
+\c@lstlisting=\count402
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -1240,176 +1254,223 @@ Package caption Info: End \AtBeginDocument code.
 * \marginparwidth=65.0pt
 * \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-Package hyperref Info: Link coloring OFF on input line 46.
-(./inlinecoding.out) (./inlinecoding.out)
-\@outlinefile=\write4
-
-\openout4 = inlinecoding.out
-
-
-[1
-
-{C:/Users/Lenovo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+* \skip\footins=9.0pt plus 4.0pdftex.map}]
 
 LaTeX Font Warning: Font shape `TU/Bitter(0)/b/n' undefined
-(Font)              using `TU/Bitter(0)/m/n' instead on input line 70.
+(Font)              using `TU/Bitter(0)/m/n' instead on input line 71.
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 98.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 99.
 
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 [1]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 126
+
+LaTeX Warning: Hyper reference `sec:prompting-ai' on page 2 undefined on input 
+line 152.
+
+
+
+[2]
+
+! Package pgfkeys Error: I do not know the key '/tcb/dashed' and I am going to 
+ignore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.196 \begin{whythismattersbox}
+                               
+? 153.
+
+
+
+[2]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 219
 .
  (C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 126
+LaTeX Font Info:    Trying to load font information for U+msb on input line 219
 .
 
 (C:/Users/Lenovo/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<images/html.png, id=66, 411.136pt x 411.136pt>
+
+[3]
+<images/html.png, id=95, 411.136pt x 411.136pt>
 File: images/html.png Graphic file (type png)
 <use images/html.png>
-Package luatex.def Info: images/html.png  used on input line 138.
+Package luatex.def Info: images/html.png  used on input line 240.
 (luatex.def)             Requested size: 25.6073pt x 25.60182pt.
 
-Underfull \hbox (badness 1394) in paragraph at lines 149--152
+Underfull \hbox (badness 1394) in paragraph at lines 251--254
 \TU/IBMPlexSans(0)/m/n/10 swer choices, links, and sec-
  []
 
-<images/css-logo.png, id=67, 495.8525pt x 506.89375pt>
+<images/css-logo.png, id=96, 495.8525pt x 506.89375pt>
 File: images/css-logo.png Graphic file (type png)
 <use images/css-logo.png>
-Package luatex.def Info: images/css-logo.png  used on input line 160.
+Package luatex.def Info: images/css-logo.png  used on input line 262.
 (luatex.def)             Requested size: 25.6073pt x 26.17377pt.
 
-Underfull \hbox (badness 2158) in paragraph at lines 171--174
+Underfull \hbox (badness 2158) in paragraph at lines 273--276
 \TU/IBMPlexSans(0)/m/n/10 vi-sual de-tails such as col-ors,
  []
 
 
-Underfull \hbox (badness 3439) in paragraph at lines 177--178
+Underfull \hbox (badness 3439) in paragraph at lines 279--280
 []\TU/IBMPlexSans(0)/m/n/10 In sim-ple terms, CSS is the
  []
 
-<images/js.png, id=68, 1330.21968pt x 1367.8603pt>
+<images/js.png, id=97, 1330.21968pt x 1367.8603pt>
 File: images/js.png Graphic file (type png)
 <use images/js.png>
-Package luatex.def Info: images/js.png  used on input line 182.
+Package luatex.def Info: images/js.png  used on input line 284.
 (luatex.def)             Requested size: 25.6073pt x 26.31938pt.
 
-Underfull \hbox (badness 2229) in paragraph at lines 199--200
+Underfull \hbox (badness 2229) in paragraph at lines 301--302
 \TU/IBMPlexSans(0)/m/n/10 the \TU/IBMPlexSans(0)/b/n/10 brain and nerves \TU/IB
 MPlexSans(0)/m/n/10 of the
  []
 
-<images/body.png, id=69, 1453.43pt x 1090.0725pt>
+<images/body.png, id=98, 1453.43pt x 1090.0725pt>
 File: images/body.png Graphic file (type png)
 <use images/body.png>
-Package luatex.def Info: images/body.png  used on input line 207.
+Package luatex.def Info: images/body.png  used on input line 309.
 (luatex.def)             Requested size: 362.37569pt x 271.76897pt.
-<images/close-up.png, id=70, 1258.7025pt x 536.0025pt>
+<images/close-up.png, id=99, 1258.7025pt x 536.0025pt>
 File: images/close-up.png Graphic file (type png)
 <use images/close-up.png>
-Package luatex.def Info: images/close-up.png  used on input line 213.
+Package luatex.def Info: images/close-up.png  used on input line 315.
 (luatex.def)             Requested size: 362.37569pt x 154.30807pt.
 
 
-[2<./images/html.png><./images/css-logo.png><./images/js.png><./images/body.png>
+[4<./images/html.png><./images/css-logo.png><./images/js.png><./images/body.png>
 ]
-Underfull \hbox (badness 2809) in paragraph at lines 228--229
+Underfull \hbox (badness 2809) in paragraph at lines 330--331
 \TU/IBMPlexSans(0)/m/n/10 ac-tiv-ity. In this ex-am-ple, it
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <7> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 233.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 335.
 
-Underfull \hbox (badness 6641) in paragraph at lines 248--249
+Underfull \hbox (badness 6641) in paragraph at lines 350--351
 []\TU/IBMPlexSans(0)/m/n/10 CSS changes how the parts
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 278--279
+Underfull \hbox (badness 1226) in paragraph at lines 380--381
 []\TU/IBMPlexSans(0)/m/n/10 In this ex-am-ple, a JavaScript
  []
 
 
 
-[3<./images/close-up.png>]
-<images/html-output.png, id=117, 963.6pt x 472.76625pt>
+[5<./images/close-up.png>]
+<images/html-output.png, id=146, 963.6pt x 472.76625pt>
 File: images/html-output.png Graphic file (type png)
 <use images/html-output.png>
-Package luatex.def Info: images/html-output.png  used on input line 397.
+Package luatex.def Info: images/html-output.png  used on input line 499.
 (luatex.def)             Requested size: 190.24568pt x 93.33965pt.
 
 
-[4<./images/html-output.png>]
-
-[5]
-
-[6]
+[6<./images/html-output.png>]
 
 [7]
 
 [8]
 
 [9]
-<images/css-output.png, id=289, 950.04938pt x 471.26062pt>
+
+[10]
+
+[11]
+
+[12]
+<images/css-output.png, id=355, 950.04938pt x 471.26062pt>
 File: images/css-output.png Graphic file (type png)
 <use images/css-output.png>
-Package luatex.def Info: images/css-output.png  used on input line 748.
+Package luatex.def Info: images/css-output.png  used on input line 940.
 (luatex.def)             Requested size: 294.42636pt x 146.04613pt.
 
 
-[10<./images/css-output.png>]
-<images/Hello.png, id=312, 963.6pt x 226.8475pt>
+[13<./images/css-output.png>]
+<images/Hello.png, id=376, 963.6pt x 226.8475pt>
 File: images/Hello.png Graphic file (type png)
 <use images/Hello.png>
-Package luatex.def Info: images/Hello.png  used on input line 883.
+Package luatex.def Info: images/Hello.png  used on input line 1075.
 (luatex.def)             Requested size: 339.72592pt x 79.97586pt.
 
 
-[11<./images/Hello.png>]
+[14<./images/Hello.png>]
 File: images/css-output.png Graphic file (type png)
 <use images/css-output.png>
-Package luatex.def Info: images/css-output.png  used on input line 994.
+Package luatex.def Info: images/css-output.png  used on input line 1186.
 (luatex.def)             Requested size: 217.42265pt x 107.84834pt.
 
-
-[12]
-
-[13]
-
-[14]
 
 [15]
 
 [16]
-<images/js-output.png, id=509, 948.54375pt x 467.24562pt>
+
+[17]
+
+[18]
+
+[19]
+<images/js-output.png, id=573, 948.54375pt x 467.24562pt>
 File: images/js-output.png Graphic file (type png)
 <use images/js-output.png>
-Package luatex.def Info: images/js-output.png  used on input line 1344.
+Package luatex.def Info: images/js-output.png  used on input line 1536.
 (luatex.def)             Requested size: 452.9679pt x 223.12747pt.
 
 
-[17<./images/js-output.png>]
+[20<./images/js-output.png>]
+<images/rise-code-opt.png, id=590, 427.09563pt x 438.63875pt>
+File: images/rise-code-opt.png Graphic file (type png)
+<use images/rise-code-opt.png>
+Package luatex.def Info: images/rise-code-opt.png  used on input line 1613.
+(luatex.def)             Requested size: 217.42265pt x 223.29451pt.
+<images/addcode.png, id=591, 469.25313pt x 433.62pt>
+File: images/addcode.png Graphic file (type png)
+<use images/addcode.png>
+Package luatex.def Info: images/addcode.png  used on input line 1623.
+(luatex.def)             Requested size: 217.42265pt x 200.91002pt.
 
-[18] (./inlinecoding.aux)
+
+[21<./images/rise-code-opt.png><./images/addcode.png>]
+<images/rise-result.png, id=599, 933.98938pt x 323.70938pt>
+File: images/rise-result.png Graphic file (type png)
+<use images/rise-result.png>
+Package luatex.def Info: images/rise-result.png  used on input line 1660.
+(luatex.def)             Requested size: 339.72592pt x 117.74544pt.
+
+
+[22<./images/rise-result.png>]
+<images/upload-opt.png, id=621, 429.605pt x 442.15187pt>
+File: images/upload-opt.png Graphic file (type png)
+<use images/upload-opt.png>
+Package luatex.def Info: images/upload-opt.png  used on input line 1709.
+(luatex.def)             Requested size: 217.42265pt x 223.77406pt.
+<images/upload-project.png, id=622, 445.16313pt x 430.60875pt>
+File: images/upload-project.png Graphic file (type png)
+<use images/upload-project.png>
+Package luatex.def Info: images/upload-project.png  used on input line 1719.
+(luatex.def)             Requested size: 217.42265pt x 210.31679pt.
+
+
+[23<./images/upload-opt.png><./images/upload-project.png>]
+
+[24]
+
+[25]
+
+[26]
+
+[27] (./inlinecoding.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-05-26>
@@ -1418,34 +1479,37 @@ L3 programming layer <2025-05-26>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `inlinecoding.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 )
 
 Here is how much of LuaTeX's memory you used:
- 35414 strings out of 470203
- 381565,1373583 words of node,token memory allocated
- 1320 words of node memory still in use:
-   30 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 83 attribute, 55 glue_sp
-ec, 83 attribute_list, 2 write, 24 pdf_literal, 3 pdf_action, 24 pdf_colorstack 
+ 36236 strings out of 470203
+ 381545,1373583 words of node,token memory allocated
+ 1321 words of node memory still in use:
+   30 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 82 attribute, 56 glue_sp
+ec, 82 attribute_list, 2 write, 24 pdf_literal, 3 pdf_action, 24 pdf_colorstack 
 nodes
-   avail lists: 1:1,2:4984,3:527,4:2499,5:11909,6:175,7:11236,8:2,9:20026,10:15,
+   avail lists: 1:2,2:4986,3:527,4:2499,5:11916,6:175,7:11434,8:1,9:20026,10:15,
 11:682
- 62453 multiletter control sequences out of 65536+600000
- 80 fonts using 7157751 bytes
- 98i,7n,97p,441b,926s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 63167 multiletter control sequences out of 65536+600000
+ 109 fonts using 9150543 bytes
+ 98i,13n,97p,441b,1502s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/users/lenovo/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10
 -italic.otf><c:/users/lenovo/appdata/local/programs/miktex/fonts/opentype/public
-/lm/lmmono10-regular.otf><c:/users/lenovo/appdata/local/programs/miktex/fonts/op
-entype/public/lm/lmmono8-regular.otf><c:/users/lenovo/appdata/local/programs/mik
+/lm/lmmono8-regular.otf><c:/users/lenovo/appdata/local/programs/miktex/fonts/ope
+ntype/public/lm/lmmono10-regular.otf><c:/users/lenovo/appdata/local/programs/mik
 tex/fonts/opentype/public/lm/lmmonolt10-bold.otf><C:/Users/Lenovo/AppData/Local/
 Programs/MiKTeX/fonts/opentype/ibm/plex/ibmplexsans-bold.otf><C:/Users/Lenovo/Ap
 pData/Local/Programs/MiKTeX/fonts/opentype/ibm/plex/ibmplexsans-regular.otf><C:/
 Users/Lenovo/AppData/Local/Programs/MiKTeX/fonts/truetype/huerta/bitter/bitter-r
 egular.ttf>
-Output written on inlinecoding.pdf (19 pages, 3532605 bytes).
+Output written on inlinecoding.pdf (28 pages, 3800722 bytes).
 
-PDF statistics: 589 PDF objects out of 1000 (max. 8388607)
- 389 named destinations out of 1000 (max. 131072)
+PDF statistics: 712 PDF objects out of 1000 (max. 8388607)
+ 463 named destinations out of 1000 (max. 131072)
  256 words of extra memory for PDF output out of 10000 (max. 100000000)
 

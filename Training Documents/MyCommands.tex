@@ -113,6 +113,43 @@
 \author{}
 \date{}
 
+% Warning triangle icon
+\newcommand{\warningicon}{%
+  \tikz[baseline=-0.6ex]{
+    \node[
+      draw=naranja,
+      fill=white,
+      regular polygon,
+      regular polygon sides=3,
+      minimum size=0.55cm,
+      inner sep=0pt,
+      line width=0.9pt,
+      shape border rotate=0
+    ] {\textbf{\textcolor{naranja}{!}}};
+  }%
+}
+
+% ------------------------------------------------------------
+% Why This Matters Box
+% ------------------------------------------------------------
+\newtcolorbox{whythismattersbox}{
+    enhanced,
+    colback=white,
+    colframe=white,
+    boxrule=0pt,
+    borderline={0.8pt}{0pt}{naranja,dashed},
+    arc=2mm,
+    left=4mm,
+    right=4mm,
+    top=3mm,
+    bottom=3mm,
+    fontupper=\color{morado},
+    before upper={
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{6pt}
+        \linespread{1.08}\selectfont
+    }
+}
 % Background image commands
 \newcommand{\setbackgroundimage}[1]{
     \backgroundsetup{
